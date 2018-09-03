@@ -3,12 +3,11 @@ package com.rasset.shmstab.network.task;
 import android.content.Context;
 
 import com.rasset.shmstab.network.res.BaseModel;
-import com.rasset.shmstab.network.retrofit.MainAPInterface;
-import com.rasset.shmstab.network.retrofit.RetroRestAPIService;
 import com.google.gson.JsonElement;
 import  com.rasset.shmstab.network.OnNetworkListener;
 import  com.rasset.shmstab.network.protocol.ReqType;
-import com.rasset.shmstab.network.res.BaseModelOld;
+import com.rasset.shmstab.network.retrofit.MainAPInterface;
+import com.rasset.shmstab.network.retrofit.RetroRestAPIService;
 
 import org.json.JSONException;
 
@@ -38,7 +37,7 @@ public class MainListTask extends NetworkTask<BaseModel> {
         // reqType별 API WindowsTopViewService 별도 반환
         if (ReqType.REQUEST_TYPE_GET_USER_LIST == mRequestType) {
             return service.reqGetContentList(mParams);
-        } else if (ReqType.REQUEST_TYPE_POST_EVALUATE == mRequestType) {
+        } else if (ReqType.REQUEST_TYPE_GET_USER_LIST_ALL == mRequestType) {
             return service.reqPostComment(mParams);
         } else {
             return null;

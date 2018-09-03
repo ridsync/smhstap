@@ -11,6 +11,4 @@ open class BaseModel {
     var resMsg: String? = null
 }
 
-data class ResContentList(var list: ArrayList<ContentsInfo>) : BaseModel() {
-
-}
+data class ResContentList(var list: ArrayList<ContentsInfo>) : BaseModel()

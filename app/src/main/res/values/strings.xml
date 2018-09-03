@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">smhsTabApp</string>
     <string name="title_test_detail">test Detail</string>
+
+
+    <string name="popup_alert_not_exist_user_ask_login">UserID None Exist</string>
 </resources>

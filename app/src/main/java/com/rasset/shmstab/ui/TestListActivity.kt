@@ -12,12 +12,12 @@ import android.widget.TextView
 import com.rasset.shmstab.R
 
 import com.rasset.shmstab.dummy.DummyContent
-import com.rasset.shmstab.model.ContentInfo
 import com.rasset.shmstab.network.NetManager
 import com.rasset.shmstab.network.OnNetworkListener
 import com.rasset.shmstab.network.protocol.ParamKey
 import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.res.BaseModel
+import com.rasset.shmstab.network.res.ResContentList
 import com.rasset.shmstab.network.task.MainListTask
 import com.rasset.shmstab.utils.Logger
 import kotlinx.android.synthetic.main.activity_test_list.*
@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.test_list.*
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-class TestListActivity : AppCompatActivity(), OnNetworkListener {
+class TestListActivity : BaseActivity() {
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -74,12 +74,13 @@ class TestListActivity : AppCompatActivity(), OnNetworkListener {
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
         Logger.d("onNetSuccess  ")
 
-        if (data is ContentInfo){
+        if (data is ResContentList){
 
         }
     }
 
-    override fun onNetFail(retCode: Int, strErrorMsg: String?, nReqType: Int) {
+    override fun onNetFail(retCode: Int, strErrorMsg: String, nReqType: Int) {
+        super.onNetFail(retCode,strErrorMsg,nReqType)
         Logger.d("onNetFail  ")
     }
 

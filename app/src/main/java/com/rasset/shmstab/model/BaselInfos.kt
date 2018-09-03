@@ -1,6 +1,5 @@
 package com.rasset.shmstab.model
 
-import com.google.gson.annotations.SerializedName
 import java.util.*
 
 /**
@@ -12,4 +11,4 @@ open class BaseInfo {
 
 data class ContentsInfo(var title: String = "",
                         var imgPath: String = "",
-                        var regDate: Date) : BaseInfo()
+                        var regDate: Long) : BaseInfo()

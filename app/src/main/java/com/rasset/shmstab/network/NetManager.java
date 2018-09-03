@@ -7,7 +7,6 @@ import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 
 import com.rasset.shmstab.network.res.BaseModel;
-import com.rasset.shmstab.network.res.BaseModelOld;
 import com.rasset.shmstab.network.task.NetworkTask;
 import com.rasset.shmstab.utils.Logger;
 
@@ -245,7 +244,7 @@ public class NetManager {
         return response.code() == 200;
     }
 
-    public boolean isSuccessApp(BaseModelOld response){
+    public boolean isSuccessApp(BaseModel response){
         return response.getResVal() == 1;
     }
 }

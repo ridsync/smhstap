@@ -1,7 +1,6 @@
 package com.rasset.shmstab.network.retrofit;
 
 import com.rasset.shmstab.network.res.BaseModel;
-import com.rasset.shmstab.network.res.BaseModelOld;
 import com.rasset.shmstab.network.res.ResContentList;
 
 import java.util.Map;
