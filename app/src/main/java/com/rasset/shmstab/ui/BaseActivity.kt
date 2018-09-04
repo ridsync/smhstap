@@ -23,7 +23,7 @@ open class BaseActivity : AppCompatActivity() , OnNetworkListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mLockDialog = ProgressLockDialog(this)
+        mLockDialog = ProgressLockDialog(this,R.style.TransparentDialog)
     }
 
     override fun onStart() {

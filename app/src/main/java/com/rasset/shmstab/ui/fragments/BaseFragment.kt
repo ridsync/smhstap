@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
+import com.rasset.shmstab.R
 import com.rasset.shmstab.ui.dialog.ProgressLockDialog
 
 /**
@@ -18,7 +19,7 @@ class BaseFragment : Fragment(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mActivity = activity!!
-        mLockDialog = ProgressLockDialog(mActivity)
+        mLockDialog = ProgressLockDialog(mActivity, R.style.TransparentDialog)
     }
 
     override fun onStop() {

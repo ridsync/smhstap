@@ -50,7 +50,7 @@ class LoginActivity : BaseActivity() {
             val userId = ET_LOGIN_USERNAME.text.toString().trim()
             val password = ET_LOGIN_PASSWORD.text.toString().trim()
 
-            if (userId.length <= 3){
+            if (userId.isEmpty()){
                 showToast { "[ 아이디를 입력해주세요 ]" }
                 return@setOnClickListener
             }

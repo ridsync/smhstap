@@ -2,6 +2,7 @@ package com.rasset.shmstab.ui.dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ import com.rasset.shmstab.R
  * Created by devok on 2018-09-04.
  */
 
-class ProgressLockDialog(context: Context) : Dialog(context) {
+class ProgressLockDialog(context: Context, themeResId:Int) : Dialog(context,themeResId) {
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE) //
