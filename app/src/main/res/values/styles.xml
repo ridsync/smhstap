@@ -27,6 +27,13 @@
         <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
 
+    <style name="MainCustomDialog" parent="TransparentDialog">
+        <item name="android:windowBackground">@color/main_transparent</item>
+        <item name="android:background">@color/main_transparent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
     <style name="MaterialCustomDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <!-- Used for the Title and text -->
         <item name="android:textColorPrimary">@color/text_color_1f</item>

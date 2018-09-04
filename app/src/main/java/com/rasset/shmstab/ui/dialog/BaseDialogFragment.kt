@@ -12,16 +12,15 @@ import android.widget.TextView
  */
 open class BaseDialogFragment : DialogFragment() {
 
-    protected var mOnViewClickListener: BaseDialogFragment.OnViewClickListener? = null
-    protected var mOnClickListener: BaseDialogFragment.OnClickListener? = null
-    protected var mOnDismissListener: BaseDialogFragment.OnDismissListener? = null
-    protected var mContext: Context? = null
-    protected var mRootView: View? = null
+    lateinit var mOnViewClickListener: BaseDialogFragment.OnViewClickListener
+    lateinit var mOnClickListener: BaseDialogFragment.OnClickListener
+    lateinit var mOnDismissListener: BaseDialogFragment.OnDismissListener
+    lateinit var  mContext: Context
+    lateinit var mRootView: View
     var data: Any? = null
-    protected var mTvTitle: TextView? = null
-    protected var mTvContents: TextView? = null
-    protected var mBtnPositive: Button? = null
-    protected var mBtnNegative: Button? = null
+    lateinit var mTvContents: TextView
+    lateinit var mBtnPositive: Button
+    lateinit var mBtnNegative: Button
 
     interface OnViewClickListener {
         fun onClick(view: View, dialog: BaseDialogFragment)

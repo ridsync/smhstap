@@ -7,13 +7,15 @@ import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import com.rasset.shmstab.R
+import com.rasset.shmstab.core.AppConst
 
 import com.rasset.shmstab.network.NetManager
 import com.rasset.shmstab.network.protocol.ParamKey
 import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.res.BaseModel
-import com.rasset.shmstab.network.res.ResContentList
 import com.rasset.shmstab.network.task.MainListTask
+import com.rasset.shmstab.ui.dialog.MainCustomDialog
+import com.rasset.shmstab.utils.JUtil.isDoubleClick
 import com.rasset.shmstab.utils.Logger
 import com.rasset.shmstab.utils.showToast
 import kotlinx.android.synthetic.main.activity_login.*
@@ -65,6 +67,21 @@ class LoginActivity : BaseActivity() {
         ET_LOGIN_USERNAME.addTextChangedListener(mIdWatcher)
         ET_LOGIN_PASSWORD.addTextChangedListener(mPassWatcher)
     }
+
+    private fun showDialog(){
+
+        val dialog = MainCustomDialog.newInstance(mContext)
+//        dialog.setCustomLayout(R.layout.layout_dialog_simple_delete_account);
+        dialog.setTitle(R.string.common_alert)
+        dialog.setMessage("아이디 정보가 맞지 않습니다.\n본사 개발 관리 담당자에게 문의 해주세요.")
+        dialog.setPositiveButton((R.string.common_confirm, CustomSimpleDialog.OnPositvelListener { dialog ->
+                if (isDoubleClick(dialog.view)) return@OnPositvelListener
+
+            }
+        )
+        dialog.show(fragmentManager, AppConst.DIALOG_ACCOUNT_DELETE)
+    }
+
 
     private fun reqNetLogin(userId: String, password: String) {
         val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_GET_USER_LIST, this)
