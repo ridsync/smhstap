@@ -2,6 +2,7 @@ package com.rasset.shmstab.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.support.design.widget.Snackbar
@@ -86,10 +87,18 @@ class TestListActivity : BaseActivity() {
 
     override fun onProgresStart(nReqType: Int) {
         Logger.d("onProgresStart  ")
+        if (mLockDialog != null)
+            mLockDialog.show()
     }
 
     override fun onProgresStop(nReqType: Int) {
         Logger.d("onProgresStop  ")
+
+        Handler().postDelayed({
+            if (mLockDialog != null)
+                mLockDialog.cancel()
+        },2000)
+
     }
 
 

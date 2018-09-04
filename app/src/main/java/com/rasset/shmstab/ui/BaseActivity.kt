@@ -1,12 +1,13 @@
 package com.rasset.shmstab.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import com.rasset.shmstab.R
 import com.rasset.shmstab.network.OnNetworkListener
 import com.rasset.shmstab.network.protocol.ResultCode
 import com.rasset.shmstab.network.res.BaseModel
+import com.rasset.shmstab.ui.dialog.ProgressLockDialog
 import com.rasset.shmstab.utils.showToast
 
 /**
@@ -15,11 +16,26 @@ import com.rasset.shmstab.utils.showToast
 
 open class BaseActivity : AppCompatActivity() , OnNetworkListener{
 
+    val mContext : Context by lazy {
+        applicationContext
+    }
+    lateinit var mLockDialog: ProgressLockDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mLockDialog = ProgressLockDialog(this)
     }
 
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if (mLockDialog != null)
+            mLockDialog.dismiss()
+    }
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
     }
@@ -35,7 +51,7 @@ open class BaseActivity : AppCompatActivity() , OnNetworkListener{
     override fun onProgresStop(nReqType: Int) {
     }
 
-    fun doAlertCommonNetFail(retCode: Int, strErrorMsg: String, reqType: Int) {
+    private fun doAlertCommonNetFail(retCode: Int, strErrorMsg: String, reqType: Int) {
         if (isFinishing) return
 
         if (retCode == ResultCode.API_AUTH_NOT_EXIST_USER) {
