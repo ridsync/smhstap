@@ -12,9 +12,9 @@ import android.widget.TextView
  */
 open class BaseDialogFragment : DialogFragment() {
 
-    lateinit var mOnViewClickListener: BaseDialogFragment.OnViewClickListener
-    lateinit var mOnClickListener: BaseDialogFragment.OnClickListener
-    lateinit var mOnDismissListener: BaseDialogFragment.OnDismissListener
+    var mOnViewClickListener: BaseDialogFragment.OnViewClickListener? = null
+    var mOnClickListener: BaseDialogFragment.OnClickListener? = null
+    var mOnDismissListener: BaseDialogFragment.OnDismissListener? = null
     lateinit var  mContext: Context
     lateinit var mRootView: View
     var data: Any? = null
@@ -60,8 +60,8 @@ open class BaseDialogFragment : DialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface?) {
         super.onDismiss(dialog)
-        if (mOnDismissListener != null)
-            mOnDismissListener!!.onDismiss(this)
+        mOnDismissListener?.let { it.onDismiss(this) }
+
     }
 
     override fun onDestroyView() {

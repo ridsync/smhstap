@@ -3,16 +3,21 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/dialog_bg_main_bg_color_rounded_normal"
         android:layout_centerInParent="true"
+        android:orientation="vertical"
         android:layout_margin="21dp">
 
         <RelativeLayout
-            android:id="@+id/RL_CONTENTS_LAYOUT"
-            android:layout_width="270dp"
-            android:layout_height="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="21dp">
 
             <ImageView
@@ -23,8 +28,10 @@
                 android:scaleType="center"/>
 
             <LinearLayout
+                android:id="@+id/LL_CONTENTS_LAYOUT"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="170dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:orientation="vertical"
@@ -35,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="15dp" />
                 <TextView
-                    android:id="@+id/TV_CONTENTS"
+                    android:id="@+id/TV_DEFAULT_CONTENTS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="스마트하우스 부동산자산관리 진단프로그램"
@@ -47,13 +54,12 @@
         </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/RL_CONTENTS_LAYOUT"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:layout_centerHorizontal="true">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/BTN_CANCEL"
@@ -74,5 +80,6 @@
                     android:background="@null"
                     android:visibility="visible" />
         </LinearLayout>
+    </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

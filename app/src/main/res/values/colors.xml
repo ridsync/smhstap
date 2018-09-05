@@ -2,23 +2,19 @@
 <resources>
 
     <!-- Project Color -->
-    <color name="colorPrimary">#FFFF06</color>
-    <color name="colorPrimaryDark">#FFCF06</color>
-    <color name="colorAccent">#FF9906</color>
+    // Main
+    <color name="main_transparent">#00000000</color>
+    <color name="main_primary_color">#FFFF06</color>
+    <color name="main_primary_dark_color">#FFCF06</color>
+    <color name="main_accent_color">#FF9906</color>
+    <color name="main_bg_color">#ffffff</color>
+    <color name="main_dialog_dim_color">@color/color_black_23</color>
+    <color name="main_dialog_bg_color">@color/main_bg_color</color>
+    <color name="main_raised_button_bg_white">#ffffff</color>
 
     <color name="colorControlNormal">@color/text_color_6d</color>
     <color name="colorControlActivated">@color/text_color_6d</color>
     <color name="colorControlHighlight">@color/text_color_6d</color>
-
-    // 미사용
-    <color name="main_transparent">#00000000</color>
-    <color name="main_primary_dark">#afafaf</color>
-    <color name="main_bg_color">#ffffff</color>
-    <color name="main_bg_color_fb">#fbfbfb</color>
-    <color name="main_accent_color">#FFFF06</color>
-    <color name="main_listcard_bg">#ffffff</color>
-    <color name="main_comment_add_bg">#e4e7e8</color>
-    <color name="main_dialog_gray_bg">#f4f4f4</color>
 
     <!-- Text Color -->
     <color name="text_color_white">#ffffff</color>

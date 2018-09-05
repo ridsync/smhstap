@@ -242,30 +242,8 @@ public class AppConst {
     public static final String INTENT_EXTRA_ALARM_SCHEDULTYPE = "INTENT_EXTRA_ALARM_SCHEDULTYPE";
 
     // Dialog
-    public static final String DIALOG_NOTICE_APP_PREVIEW_OUT = "DIALOG_NOTICE_APP_PREVIEW_OUT";
-    public static final String DIALOG_NEED_UPLOAD_PHOPTO = "DIALOG_NEED_UPLOAD_PHOPTO";
-    public static final String DIALOG_ASK_BUY_FREE_PASS = "DIALOG_ASK_BUY_FREE_PASS";
-    public static final String DIALOG_ASK_EVALUATE = "DIALOG_ASK_EVALUATE";
-    public static final String DIALOG_ASK_BUY_HEART = "DIALOG_ASK_BUY_HEART";
-    public static final String DIALOG_REPORT = "DIALOG_REPORT";
-    public static final String DIALOG_REPORT_DETAIL = "DIALOG_REPORT_DETAIL";
-    public static final String DIALOG_PHOTO_COMMENT_EDIT = "DIALOG_PHOTO_COMMENT_EDIT";
-    public static final String DIALOG_PROFILE_PHOTO_UPLOAD_TIP = "DIALOG_PROFILE_PHOTO_UPLOAD_TIP";
-    public static final String DIALOG_ALERT_NOTICE_SERVER = "DIALOG_ALERT_NOTICE_SERVER";
-    public static final String DIALOG_ALERT_HEART_CONSUME= "DIALOG_ALERT_HEART_CONSUME";
-    public static final String DIALOG_ALERT_PURCHASE_FAILED_RETRY = "DIALOG_ALERT_PURCHASE_FAILED_RETRY";
-    public static final String DIALOG_ALERT_PURCHASE_RESULT_DIALOG= "DIALOG_ALERT_PURCHASE_RESULT_DIALOG";
-    public static final String DIALOG_ALERT_DEFAULT_DIALOG= "DIALOG_ALERT_DEFAULT_DIALOG";
-    public static final String DIALOG_ALERT_KONTACT_CHOICE = "DIALOG_ALERT_KONTACT_CHOICE";
-    public static final String DIALOG_ACCOUNT_LOGOUT = "DIALOG_ACCOUNT_LOGOUT";
-    public static final String DIALOG_ACCOUNT_DELETE = "DIALOG_ACCOUNT_DELETE";
-    public static final String DIALOG_REGIST_WELCOME = "DIALOG_REGIST_WELCOME";
-    public static final String DIALOG_CHAT_ROOM_CLOSE = "DIALOG_CHAT_ROOM_CLOSE";
-    public static final String DIALOG_LIKE_CANCELED_ALERT = "DIALOG_LIKE_CANCELED_ALERT";
-    public static final String DIALOG_WARNING_SERVERDOWN = "DIALOG_WARNING_SERVERDOWN";
-    public static final String DIALOG_CHAT_RECEIVE = "DIALOG_CHAT_RECEIVE";
-    public static final String DIALOG_EVALME_RECEIVE = "DIALOG_EVALME_RECEIVE";
-    public static final String DIALOG_PHOTO_UPLOAD = "DIALOG_PHOTO_UPLOAD";
+    public static final String DIALOG_LOGIN_FAIL = "DIALOG_LOGIN_FAIL";
+
 
     // pref
     public static final String PREFERENCE_ANALYTICS_REFERRER = "PREFERENCE_ANALYTICS_REFERRER";

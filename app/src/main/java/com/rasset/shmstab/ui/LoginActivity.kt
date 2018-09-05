@@ -64,22 +64,22 @@ class LoginActivity : BaseActivity() {
             reqNetLogin(userId,password)
         }
 
-        ET_LOGIN_USERNAME.addTextChangedListener(mIdWatcher)
-        ET_LOGIN_PASSWORD.addTextChangedListener(mPassWatcher)
+//        ET_LOGIN_USERNAME.addTextChangedListener(mIdWatcher)
+//        ET_LOGIN_PASSWORD.addTextChangedListener(mPassWatcher)
     }
 
     private fun showDialog(){
 
-        val dialog = MainCustomDialog.newInstance(mContext)
-//        dialog.setCustomLayout(R.layout.layout_dialog_simple_delete_account);
-        dialog.setTitle(R.string.common_alert)
-        dialog.setMessage("아이디 정보가 맞지 않습니다.\n본사 개발 관리 담당자에게 문의 해주세요.")
-        dialog.setPositiveButton((R.string.common_confirm, CustomSimpleDialog.OnPositvelListener { dialog ->
+        val dialog = MainCustomDialog.newInstance(mContext).apply {
+            setTitle(R.string.common_alert)
+            setMsgContents("아이디 정보가 맞지 않습니다.\n본사 담당자에게 문의 해주세요.")
+            setPositiveButton(R.string.common_confirm, MainCustomDialog.OnPositvelListener { dialog ->
                 if (isDoubleClick(dialog.view)) return@OnPositvelListener
-
-            }
-        )
-        dialog.show(fragmentManager, AppConst.DIALOG_ACCOUNT_DELETE)
+                    showToast { "감사합니다" }
+                }
+            )
+        }
+        dialog.show(supportFragmentManager,AppConst.DIALOG_LOGIN_FAIL)
     }
 
 
@@ -99,6 +99,7 @@ class LoginActivity : BaseActivity() {
                 startActivity(MainActivity.newIntent(mContext))
             } else {  // 로그인 실패 사유
                 showToast { "로그인 실패 : ${data.resMsg}" }
+                showDialog()
             }
         }
     }

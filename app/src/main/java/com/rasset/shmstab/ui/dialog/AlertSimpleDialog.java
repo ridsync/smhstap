@@ -20,7 +20,7 @@ import com.rasset.shmstab.R;
  *
  *   미 완 성
  */
-public class AlertDialogSimple extends DialogFragment {
+public class AlertSimpleDialog extends DialogFragment {
 
     private static final String ARG_AUTOCLOSE_TIME_MS = "autoClose";
 
@@ -40,29 +40,29 @@ public class AlertDialogSimple extends DialogFragment {
     private int isAutoCloseMs = 0;
     private android.support.v7.app.AlertDialog.Builder builder;
 
-    public AlertDialogSimple(){
+    public AlertSimpleDialog(){
         setArguments(getArguments());
     }
 
     @SuppressLint("ValidFragment")
-    public AlertDialogSimple(Context appContext) {
+    public AlertSimpleDialog(Context appContext) {
 //        builder =  new android.support.v7.app.AlertDialog.Builder(appContext, R.style.MaterialAlertDialog);
     }
 
     public interface OnPositvelListener {
-        void onClickPositive(AlertDialogSimple dialog);
+        void onClickPositive(AlertSimpleDialog dialog);
     }
     public interface OnNegativelListener {
-        void onClickNegative(AlertDialogSimple dialog);
+        void onClickNegative(AlertSimpleDialog dialog);
     }
     public interface OnNeutralListener {
-        void onClickNeutral(AlertDialogSimple dialog);
+        void onClickNeutral(AlertSimpleDialog dialog);
     }
     public interface OnCancelListener {
-        void onCancel(AlertDialogSimple dialog);
+        void onCancel(AlertSimpleDialog dialog);
     }
     public interface OnDismissListener {
-        void onDismiss(AlertDialogSimple dialog);
+        void onDismiss(AlertSimpleDialog dialog);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class AlertDialogSimple extends DialogFragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (onPositveListener != null) {
-                        onPositveListener.onClickPositive(AlertDialogSimple.this);
+                        onPositveListener.onClickPositive(AlertSimpleDialog.this);
                     }
                 }
             });
@@ -94,7 +94,7 @@ public class AlertDialogSimple extends DialogFragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (onNegativeListener != null) {
-                        onNegativeListener.onClickNegative(AlertDialogSimple.this);
+                        onNegativeListener.onClickNegative(AlertSimpleDialog.this);
                     }
                 }
             });
@@ -104,7 +104,7 @@ public class AlertDialogSimple extends DialogFragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (onNeutralListener != null) {
-                        onNeutralListener.onClickNeutral(AlertDialogSimple.this);
+                        onNeutralListener.onClickNeutral(AlertSimpleDialog.this);
                     }
                 }
             });
@@ -129,7 +129,7 @@ public class AlertDialogSimple extends DialogFragment {
     @Override
     public void onCancel(DialogInterface dialog) {
         if (onCancelListener != null){
-            onCancelListener.onCancel(AlertDialogSimple.this);
+            onCancelListener.onCancel(AlertSimpleDialog.this);
         }
         super.onCancel(dialog);
     }
@@ -137,7 +137,7 @@ public class AlertDialogSimple extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         if(onDismisslListener!=null){
-            onDismisslListener.onDismiss(AlertDialogSimple.this);
+            onDismisslListener.onDismiss(AlertSimpleDialog.this);
         }
         super.onDismiss(dialog);
     }
