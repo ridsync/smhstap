@@ -106,10 +106,10 @@ public class MainCustomDialog extends BaseDialogFragment   implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.BTN_NEGATIVE){
+        if (v.getId() == R.id.BTN_CANCEL){
             if (negativeListener !=null)
                 negativeListener.onClickNegative(this);
-        } else if (v.getId() == R.id.BTN_POSITIVE) {
+        } else if (v.getId() == R.id.BTN_DONE) {
             if (positiveListener !=null)
                 positiveListener.onClickPositive(this);
         }

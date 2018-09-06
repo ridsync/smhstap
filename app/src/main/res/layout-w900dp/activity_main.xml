@@ -1,26 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:baselineAligned="false"
-    android:divider="?android:attr/dividerHorizontal"
-    android:orientation="horizontal"
-    android:showDividers="middle"
-    tools:context=".ui.SplashActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.MainActivity">
 
-    <!--
-    This layout is a two-pane layout for the tests
-    master/detail flow.
-    
-    -->
-    <FrameLayout
-        android:id="@+id/test_detail_container"
-        android:layout_width="0dp"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <include layout="@layout/custom_appbarlayout"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/LL_MAIN_NAV_MENU"
+            android:layout_width="@dimen/main_navbar_width"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/LL_MAIN_CUSTOMER"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@color/main_primary_dark_color">
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_color_white"/>
+            <LinearLayout
+                android:id="@+id/LL_MAIN_RE_ASSET"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@color/main_primary_dark_color">
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/FR_MAIN_CONTAINER"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/LL_MAIN_NAV_MENU">
+        </FrameLayout>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

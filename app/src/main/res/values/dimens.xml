@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="loginid_max_length">15</dimen>
+    <dimen name="actionbar_height">63dp</dimen>
+    <dimen name="main_navbar_width">220dp</dimen>
 
     // 미사용
     <dimen name="fab_margin">16dp</dimen>

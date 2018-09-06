@@ -12,7 +12,12 @@ import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.network.res.ResContentList
 import com.rasset.shmstab.network.task.MainListTask
+import com.rasset.shmstab.ui.fragments.BaseFragment
+import com.rasset.shmstab.ui.fragments.MainSubCustomersFragment
+import com.rasset.shmstab.ui.fragments.MainSubREAssetFragment
 import com.rasset.shmstab.utils.Logger
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.custom_appbarlayout.*
 
 /**
  * An activity representing a list of Pings. This activity
@@ -23,10 +28,10 @@ import com.rasset.shmstab.utils.Logger
  * item details side-by-side using two vertical panes.
  */
 class MainActivity : BaseActivity() {
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
+
+    enum class SubFrags(val idx: Int) {
+        CUSTOMERS(0) , REASSET(1)
+    }
     companion object {
 
         private val INTENT_USER_ID = "user_id"
@@ -38,11 +43,38 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private var currentFragment:Int = SubFrags.CUSTOMERS.idx
+    private val mapSubFragments: HashMap<Int, BaseFragment> = hashMapOf(SubFrags.CUSTOMERS.idx to MainSubCustomersFragment(), SubFrags.REASSET.idx to MainSubREAssetFragment())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getUserList(1,0)
+        mapSubFragments[currentFragment]?.let { it -> replaceFragment(it) }
+        LL_MAIN_CUSTOMER.setOnClickListener {
+            if (currentFragment != SubFrags.CUSTOMERS.idx){
+                currentFragment = SubFrags.CUSTOMERS.idx
+                mapSubFragments[currentFragment]?.let { it -> replaceFragment(it) }
+            }
+        }
+
+        LL_MAIN_RE_ASSET.setOnClickListener {
+            if (currentFragment != SubFrags.REASSET.idx){
+                currentFragment = SubFrags.REASSET.idx
+                mapSubFragments[currentFragment]?.let { it -> replaceFragment(it) }
+            }
+        }
+
+        IB_APPBAR_ACTION.setOnClickListener {
+            startActivity(DiagAttentionActivity.newIntent(mContext))
+        }
+    }
+
+    private fun replaceFragment(fragment : BaseFragment){
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.FR_MAIN_CONTAINER, fragment)
+                .commit()
     }
 
     private fun getUserList(lId: Long, lFirstSeq: Long) {

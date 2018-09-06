@@ -12,6 +12,7 @@ import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.network.NetManager
 import com.rasset.shmstab.network.protocol.ParamKey
 import com.rasset.shmstab.network.protocol.ReqType
+import com.rasset.shmstab.network.protocol.ResultCode
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.network.task.MainListTask
 import com.rasset.shmstab.ui.dialog.MainCustomDialog
@@ -29,13 +30,10 @@ import kotlinx.android.synthetic.main.activity_login.*
  * item details side-by-side using two vertical panes.
  */
 class LoginActivity : BaseActivity() {
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
     companion object {
 
         private val INTENT_USER_ID = "user_id"
+        private val instance: LoginActivity? = null
 
         fun newIntent(context: Context): Intent {
             val intent = Intent(context, LoginActivity::class.java)
@@ -60,8 +58,10 @@ class LoginActivity : BaseActivity() {
                 showToast { "[ 패스워드를 입력해주세요 ]" }
                 return@setOnClickListener
             }
-
-            reqNetLogin(userId,password)
+            // TODO
+            startActivity(MainActivity.newIntent(mContext))
+            finish()
+//            reqNetLogin(userId,password)
         }
 
 //        ET_LOGIN_USERNAME.addTextChangedListener(mIdWatcher)
@@ -94,21 +94,21 @@ class LoginActivity : BaseActivity() {
         Logger.d("onNetSuccess  ")
 
         if (data is BaseModel){
-            if (data.resVal == 100){ // 로그인 성공
-                showToast { "로그인 성공 : OK" }
-                startActivity(MainActivity.newIntent(mContext))
-            } else {  // 로그인 실패 사유
-                showToast { "로그인 실패 : ${data.resMsg}" }
-                showDialog()
-            }
+            showToast { "로그인 성공 : OK" }
+            startActivity(MainActivity.newIntent(mContext))
+            finish()
         }
     }
 
     override fun onNetFail(retCode: Int, strErrorMsg: String, nReqType: Int) {
-        super.onNetFail(retCode,strErrorMsg,nReqType)
         Logger.d("onNetFail  ")
         // 로그인 실패
-        showToast { "로그인 실패 서버통신실패 : ${strErrorMsg}" }
+        if (nReqType == ReqType.REQUEST_TYPE_GET_USER_LIST) {
+            if (retCode == 2) { // 신규Googler
+                return
+            }
+        }
+        super.onNetFail(retCode,strErrorMsg,nReqType)
     }
 
     override fun onProgresStart(nReqType: Int) {

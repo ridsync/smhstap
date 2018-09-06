@@ -51,7 +51,7 @@ open class BaseActivity : AppCompatActivity() , OnNetworkListener{
     override fun onProgresStop(nReqType: Int) {
     }
 
-    private fun doAlertCommonNetFail(retCode: Int, strErrorMsg: String, reqType: Int) {
+    fun doAlertCommonNetFail(retCode: Int, strErrorMsg: String, reqType: Int) {
         if (isFinishing) return
 
         if (retCode == ResultCode.API_AUTH_NOT_EXIST_USER) {
@@ -62,6 +62,8 @@ open class BaseActivity : AppCompatActivity() , OnNetworkListener{
             showToast {
                 getString(R.string.popup_alert_not_exist_user_ask_login)
             }
+        } else {
+            showToast { "로그인 실패 서버통신실패 : ${strErrorMsg}" }
         }
     }
 
