@@ -10,15 +10,6 @@
     android:showDividers="middle"
     tools:context=".ui.SplashActivity">
 
-    <LinearLayout
-        android:id="@+id/LL_MAIN_NAV_MENU"
-        android:layout_width="@dimen/main_navbar_width"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/text_color_4b">
-
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

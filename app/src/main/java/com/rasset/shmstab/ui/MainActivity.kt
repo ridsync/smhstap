@@ -67,6 +67,7 @@ class MainActivity : BaseActivity() {
 
         IB_APPBAR_ACTION.setOnClickListener {
             startActivity(DiagAttentionActivity.newIntent(mContext))
+            overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out)
         }
     }
 

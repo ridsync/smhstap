@@ -7,7 +7,7 @@ import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.fragments.BaseFragment
-import com.rasset.shmstab.ui.fragments.DiagSubDefaultInfoFragment
+import com.rasset.shmstab.ui.fragments.DiagSubCustomerInfoFragment
 import com.rasset.shmstab.ui.fragments.DiagSubStepFirstFragment
 import com.rasset.shmstab.ui.fragments.DiagSubStepSecondFragment
 import com.rasset.shmstab.utils.Logger
@@ -22,40 +22,29 @@ class DiagAttentionActivity : BaseActivity() {
             return intent
         }
     }
-    enum class SubFrags(val idx: Int,val tag: String) {
-        CUSTOMER_INFO(0,AppConst.FRAG_NAME_DIAG_CUSTOMERINFO)
-        , DIAG_INFO_STEP1(1,AppConst.FRAG_NAME_DIAG_INFO_STEP1)
-        , DIAG_INFO_STEP2(2,AppConst.FRAG_NAME_DIAG_INFO_STEP2)
-        , DIAG_COMPLETE(3,"COMPLETED")
+    enum class SubFrags(val idx: Int,val tag: String, var fragment:BaseFragment?) {
+        DIAG_CUSTOER_INFO(0,AppConst.FRAG_NAME_DIAG_CUSTOMER_INFO, null)
+        , DIAG_INFO_STEP1(1,AppConst.FRAG_NAME_DIAG_INFO_STEP1, null)
+        , DIAG_INFO_STEP2(2,AppConst.FRAG_NAME_DIAG_INFO_STEP2, null)
+        , DIAG_COMPLETE(3,AppConst.FRAG_NAME_DIAG_COMPLETED, null)
     }
 
     var mStackFrags = Stack(mutableListOf<SubFrags>())
-    private val mapSubFragments: HashMap<SubFrags, BaseFragment> = hashMapOf(SubFrags.CUSTOMER_INFO to DiagSubDefaultInfoFragment())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diagnose_attention)
-
-        mapSubFragments[SubFrags.CUSTOMER_INFO]?.let {
-            replaceFragment(it,SubFrags.CUSTOMER_INFO)
-        }
+        replaceFragment(getNextFragInfo())
 
         IB_APPBAR_ACTION.setOnClickListener{
-            val fragment:BaseFragment? = when (mStackFrags.peek()){
-                SubFrags.CUSTOMER_INFO -> DiagSubStepFirstFragment()
-                SubFrags.DIAG_INFO_STEP1 -> DiagSubStepSecondFragment()
-                else -> null
-            }
-            val curFrag:SubFrags = when (mStackFrags.peek()){
-                SubFrags.CUSTOMER_INFO -> SubFrags.DIAG_INFO_STEP1
-                SubFrags.DIAG_INFO_STEP1 -> SubFrags.DIAG_INFO_STEP2
-                else -> SubFrags.CUSTOMER_INFO
-            }
-            if (fragment != null) {
-                replaceFragment(fragment, curFrag, true)
-            } else {
+            val nextFrag = getNextFragInfo()
+            if (nextFrag == SubFrags.DIAG_COMPLETE) {
                 // TODO 예진 정보 전송 후 메인 Refresh
+                // 전송 Dialog ??
                 finish()
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+            } else {
+                replaceFragment(nextFrag, true)
             }
         }
         IB_APPBAR_BACK.setOnClickListener{
@@ -63,25 +52,37 @@ class DiagAttentionActivity : BaseActivity() {
         }
     }
 
+    private fun getNextFragInfo(): DiagAttentionActivity.SubFrags {
+        var nextFrag:SubFrags = SubFrags.values()[mStackFrags.count()]
+        val fragment:BaseFragment? = when (nextFrag){
+            SubFrags.DIAG_CUSTOER_INFO -> DiagSubCustomerInfoFragment()
+            SubFrags.DIAG_INFO_STEP1 -> DiagSubStepFirstFragment()
+            SubFrags.DIAG_INFO_STEP2 -> DiagSubStepSecondFragment()
+            else -> null
+        }
+        nextFrag.fragment = fragment
+        return nextFrag
+    }
+
     override fun onBackPressed() {
         if (mStackFrags.count() == 1){
             finish()
+            overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
         } else {
             mStackFrags.pop()
             super.onBackPressed()
         }
     }
 
-    private fun replaceFragment(fragment : BaseFragment, curFrag: SubFrags, isAnim:Boolean = false){
+    private fun replaceFragment(curFrag: SubFrags, isAnim:Boolean = false){
        val transaction =  supportFragmentManager.beginTransaction()
         transaction.addToBackStack(curFrag.tag)
         if (isAnim){
             transaction.setCustomAnimations(R.animator.slide_in_from_right_object_enter, R.animator.slide_out_to_left_object_exit, R.animator.slide_in_left_object_popenter, R.animator.slide_out_to_right_object_popexit)
         }
-        transaction.replace(R.id.RL_DIAG_CONTAINER, fragment)
+        transaction.replace(R.id.FR_DIAG_CONTAINER, curFrag.fragment)
         transaction.commitAllowingStateLoss()
         mStackFrags.push(curFrag)
-        mapSubFragments[curFrag] = fragment
     }
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {

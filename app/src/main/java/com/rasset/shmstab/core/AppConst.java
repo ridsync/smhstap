@@ -42,9 +42,10 @@ public class AppConst {
     public static final int FRAGMENT_BOTNAV_MAIN = 10000;
     public static final int FRAGMENT_USER_LIST = FRAGMENT_BOTNAV_MAIN+1;
 
-    public static final String FRAG_NAME_DIAG_CUSTOMERINFO = "FRAG_NAME_DIAG_CUSTOMERINFO";
+    public static final String FRAG_NAME_DIAG_CUSTOMER_INFO = "FRAG_NAME_DIAG_CUSTOMER_INFO";
     public static final String FRAG_NAME_DIAG_INFO_STEP1 = "FRAG_NAME_DIAG_INFO_STEP1";
     public static final String FRAG_NAME_DIAG_INFO_STEP2 = "FRAG_NAME_DIAG_INFO_STEP2";
+    public static final String FRAG_NAME_DIAG_COMPLETED = "FRAG_NAME_DIAG_COMPLETED";
 
     //
     public static final String COMMON_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"; // "2014-11-24T16:23:00.000Z"

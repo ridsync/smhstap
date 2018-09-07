@@ -58,8 +58,8 @@ class LoginActivity : BaseActivity() {
                 showToast { "[ 패스워드를 입력해주세요 ]" }
                 return@setOnClickListener
             }
-            // TODO
             startActivity(MainActivity.newIntent(mContext))
+            overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
             finish()
 //            reqNetLogin(userId,password)
         }

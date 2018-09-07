@@ -8,23 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.network.res.BaseModel
-import com.rasset.shmstab.ui.dialog.ProgressLockDialog
 
 /**
  * Created by devok on 2018-09-05.
  */
 
-class DiagSubDefaultInfoFragment : BaseFragment() {
+class DiagSubCustomerInfoFragment : BaseFragment() {
 
-    private object Holder { val INSTANCE = DiagSubDefaultInfoFragment() }
+    private object Holder { val INSTANCE = DiagSubCustomerInfoFragment() }
 
     companion object {
-        val singleTone: DiagSubDefaultInfoFragment by lazy { Holder.INSTANCE }
+        val singleTone: DiagSubCustomerInfoFragment by lazy { Holder.INSTANCE }
 
-        val instance: DiagSubDefaultInfoFragment by lazy { DiagSubDefaultInfoFragment() }
+        val instance: DiagSubCustomerInfoFragment by lazy { DiagSubCustomerInfoFragment() }
 
         fun newInstance(context: Context): Intent {
-            val intent = Intent(context, DiagSubDefaultInfoFragment::class.java)
+            val intent = Intent(context, DiagSubCustomerInfoFragment::class.java)
             return intent
         }
     }
