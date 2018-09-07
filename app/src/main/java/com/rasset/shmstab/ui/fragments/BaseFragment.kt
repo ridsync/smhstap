@@ -27,9 +27,11 @@ open class BaseFragment : Fragment() , OnNetworkListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mActivity = activity!!
-        mContext = mActivity.applicationContext
-        mLockDialog = ProgressLockDialog(mActivity, R.style.TransparentDialog)
+        activity?.let {
+            mActivity = it
+            mContext = mActivity
+            mLockDialog = ProgressLockDialog(mActivity, R.style.TransparentDialog)
+        }
     }
 
     override fun onStop() {

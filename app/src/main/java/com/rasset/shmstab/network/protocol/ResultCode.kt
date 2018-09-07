@@ -39,10 +39,6 @@ class ResultCode {
         // Common Fail Code Range 21 ~
         const val API_AUTH_NOT_EXIST_USER = 21
         const val API_AUTH_NOT_EXIST_OTHERUSER = 22
-        const val API_AUTH_SELF_ACTION = 23
-        const val API_PAY_NEED_VIPMEMBER = 31  // (mobile not use)
-        const val API_PAY_NEED_FREEPASS = 32
-        const val API_PAY_NEED_HEART = 33
         const val API_CLIENT_OLD_VERSION = 41
         const val API_CLIENT_PARAM_ERROR = 42
         const val API_SERVER_DB_DOWN_ERROR = 51

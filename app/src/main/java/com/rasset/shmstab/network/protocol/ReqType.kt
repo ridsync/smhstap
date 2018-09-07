@@ -9,8 +9,8 @@ class ReqType {
 
         const val REQUEST_TYPE_GET_APIBASE_URL = 99991
 
-        const val REQUEST_TYPE_GET_USER_LIST = 700000
-        const val REQUEST_TYPE_GET_USER_LIST_ALL = REQUEST_TYPE_GET_USER_LIST + 1
+        const val REQUEST_TYPE_POST_USER_LOGIN = 700000
+        const val REQUEST_TYPE_GET_CUSOMER_LIST = REQUEST_TYPE_POST_USER_LOGIN + 1
 
     }
 }

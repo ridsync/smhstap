@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     android:baselineAligned="false"
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".ui.SplashActivity">
+    tools:context=".ui.SplashActivity"
+    android:background="@color/main_primary_color">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,25 +23,39 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/smarthaus"
+            android:src="@drawable/logo_big"
             android:scaleType="center"/>
+
         <Space
             android:layout_width="match_parent"
-            android:layout_height="15dp" />
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#111111"
+            android:alpha="0.2"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="스마트하우스 부동산자산관리 진단프로그램"
-            android:textSize="20sp"/>
+            android:textSize="32sp"
+            android:textColor="@color/main_text_primary"
+            android:textStyle="bold"/>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="7dp" />
+            android:layout_height="10dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Smarthaus Real Estate Asset Management Diagnostic program"
-            android:textSize="13sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/main_text_primary"/>
 
     </LinearLayout>
 
@@ -52,8 +65,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:text="Smarthouse@rasset.co.kr"
-        android:textSize="20sp"/>
+        android:layout_marginBottom="49dp"
+        android:text="Smarthausⓒrasset.co.kr"
+        android:textColor="#80000000"
+        android:textSize="16sp"/>
 
 </RelativeLayout>

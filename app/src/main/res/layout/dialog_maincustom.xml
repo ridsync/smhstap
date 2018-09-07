@@ -8,40 +8,34 @@
         android:layout_centerInParent="true">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:background="@drawable/dialog_bg_main_bg_color_rounded_normal"
         android:layout_centerInParent="true"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
         android:layout_margin="21dp">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_margin="21dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/smarthaus"
-                android:layout_centerHorizontal="true"
-                android:scaleType="center"/>
+            android:layout_marginTop="21dp"
+            android:src="@drawable/logo_small"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
 
             <LinearLayout
                 android:id="@+id/LL_CONTENTS_LAYOUT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="21dp"
                 android:minWidth="250dp"
-                android:minHeight="150dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:minHeight="120dp"
                 android:orientation="vertical"
                 android:layout_centerInParent="true"
                 android:gravity="center">
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
                 <TextView
                     android:id="@+id/TV_DEFAULT_CONTENTS"
                     android:layout_width="wrap_content"
@@ -51,13 +45,9 @@
 
             </LinearLayout>
 
-
-        </RelativeLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
@@ -66,10 +56,10 @@
                     android:id="@+id/BTN_CANCEL"
                     android:layout_width="60dp"
                     android:layout_height="35dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="60dp"
                     android:text="@string/btn_cancel"
-                    android:textColor="@color/main_accent_color"
-                    android:background="@null"
+                    android:textColor="@color/text_color_white"
+                    android:background="@drawable/selector_button_main_color_accent_oval_3dp"
                     android:visibility="gone"/>
 
                 <Button
@@ -77,8 +67,8 @@
                     android:layout_width="60dp"
                     android:layout_height="35dp"
                     android:text="@string/btn_confirm"
-                    android:textColor="@color/main_accent_color"
-                    android:background="@null"
+                    android:textColor="@color/text_color_white"
+                    android:background="@drawable/selector_button_main_color_accent_oval_3dp"
                     android:visibility="visible" />
         </LinearLayout>
     </LinearLayout>

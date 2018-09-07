@@ -7,7 +7,7 @@
         android:id="@+id/RL_APPBAR_ROOT_BG"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        android:background="@color/main_primary_color"/>
+        android:background="@color/main_appbar_bg_color"/>
 
     <!--  Sub Fragment TEXTBOX Toolbar-->
     <RelativeLayout
@@ -21,7 +21,8 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="21dp"
-            android:src="@android:drawable/stat_sys_warning"/>
+            android:src="@android:drawable/stat_sys_warning"
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/IB_APPBAR_BACK"
@@ -30,7 +31,8 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="21dp"
-            android:src="@android:drawable/stat_sys_warning"/>
+            android:src="@android:drawable/stat_sys_warning"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/TV_APPBAR_TEXT"
@@ -53,8 +55,9 @@
             android:layout_marginRight="21dp"
             android:singleLine="true"
             android:text="로그아웃"
-            android:textColor="@color/text_color_white"
-            android:textSize="19sp" />
+            android:textColor="@color/main_text_secondary"
+            android:textSize="19sp"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/IB_APPBAR_ACTION"
@@ -63,11 +66,18 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="21dp"
-            android:background="@drawable/selector_button_trans_color_bg_oval_90dp"
+            android:background="@drawable/selector_appbar_button_trans_color_bg_oval_90dp"
             android:text="다음"
             android:textColor="@drawable/selector_button_login_text_color"
             android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/main_list_divider"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 
 </RelativeLayout>

@@ -14,10 +14,12 @@ import com.rasset.shmstab.network.protocol.ParamKey
 import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.protocol.ResultCode
 import com.rasset.shmstab.network.res.BaseModel
+import com.rasset.shmstab.network.res.ResUserLogin
 import com.rasset.shmstab.network.task.MainListTask
 import com.rasset.shmstab.ui.dialog.MainCustomDialog
 import com.rasset.shmstab.utils.JUtil.isDoubleClick
 import com.rasset.shmstab.utils.Logger
+import com.rasset.shmstab.utils.Prefer
 import com.rasset.shmstab.utils.showToast
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -58,10 +60,7 @@ class LoginActivity : BaseActivity() {
                 showToast { "[ 패스워드를 입력해주세요 ]" }
                 return@setOnClickListener
             }
-            startActivity(MainActivity.newIntent(mContext))
-            overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
-            finish()
-//            reqNetLogin(userId,password)
+            reqNetLogin(userId,password)
         }
 
 //        ET_LOGIN_USERNAME.addTextChangedListener(mIdWatcher)
@@ -75,7 +74,7 @@ class LoginActivity : BaseActivity() {
             setMsgContents("아이디 정보가 맞지 않습니다.\n본사 담당자에게 문의 해주세요.")
             setPositiveButton(R.string.common_confirm, MainCustomDialog.OnPositvelListener { dialog ->
                 if (isDoubleClick(dialog.view)) return@OnPositvelListener
-                    showToast { "감사합니다" }
+//                    showToast { "감사합니다" }
                 }
             )
         }
@@ -84,7 +83,7 @@ class LoginActivity : BaseActivity() {
 
 
     private fun reqNetLogin(userId: String, password: String) {
-        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_GET_USER_LIST, this)
+        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_USER_LOGIN, this)
         task.addParam(ParamKey.PARAM_LOGIN_ID, userId)
         task.addParam(ParamKey.PARAM_LOGIN_PASSWORD, password)
         NetManager.startTask(task)
@@ -93,18 +92,23 @@ class LoginActivity : BaseActivity() {
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
         Logger.d("onNetSuccess  ")
 
-        if (data is BaseModel){
+        if (data is ResUserLogin){
             showToast { "로그인 성공 : OK" }
+            data.userId?.let {
+                Prefer.setSharedPreference(AppConst.PREFERENCE_USERINFO_ID, it,mContext)
+            }
             startActivity(MainActivity.newIntent(mContext))
             finish()
+            overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
         }
     }
 
     override fun onNetFail(retCode: Int, strErrorMsg: String, nReqType: Int) {
         Logger.d("onNetFail  ")
-        // 로그인 실패
-        if (nReqType == ReqType.REQUEST_TYPE_GET_USER_LIST) {
-            if (retCode == 2) { // 신규Googler
+        if (nReqType == ReqType.REQUEST_TYPE_POST_USER_LOGIN) {
+            // 로그인 실패
+            if (retCode != ResultCode.API_AUTH_NOT_EXIST_USER) {
+                showDialog()
                 return
             }
         }

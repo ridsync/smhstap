@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     android:baselineAligned="false"
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".ui.SplashActivity">
+    tools:context=".ui.SplashActivity"
+    android:background="@color/main_primary_color">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="26dp"
-        android:layout_marginLeft="16dp"
-        android:src="@drawable/smarthaus"
-        android:scaleType="center"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/logo_big"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,39 +32,64 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             android:orientation="vertical"
             android:gravity="center">
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="15dp" />
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="스마트하우스 부동산자산관리 진단프로그램"
-                android:textSize="20sp"/>
+                android:text="스마트하우스"
+                android:textColor="@color/main_text_primary"
+                android:gravity="center"
+                android:textSize="48sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="부동산자산관리 진단프로그램"
+                android:textColor="@color/main_text_primary"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="48sp"/>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="7dp" />
+                android:layout_height="10dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Smarthaus Real Estate Asset Management Diagnostic program"
-                android:textSize="13sp"/>
+                android:gravity="center"
+                android:textColor="@color/main_text_primary"
+                android:textSize="18sp"/>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="26dp" />
+                android:layout_height="50dp" />
+
+        <LinearLayout
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/shape_bg_white_oval_3dp"
+            android:gravity="center">
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/TIL_LOGIN_USERNAME"
                 android:theme="@style/StyledTilEditTextFloatingLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColorHint="@color/text_color_4b"
+                android:textColorHint="@color/text_color_ab"
                 app:hintAnimationEnabled="true">
 
                 <EditText
@@ -73,14 +98,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="26dp"
                     android:layout_marginRight="26dp"
-                    android:hint="아이디"
+                    android:hint="아이디를 입력하세요"
                     android:imeOptions="actionNext"
                     android:inputType="textNoSuggestions|textVisiblePassword"
                     android:maxLength="@integer/loginid_max_length"
                     android:paddingBottom="12dp"
                     android:singleLine="true"
-                    android:textColor="@color/text_color_6d"
-                    android:textSize="15dp" />
+                    android:textColor="@color/main_text_primary"
+                    android:textSize="24sp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -88,8 +113,8 @@
                 android:theme="@style/StyledTilEditTextFloatingLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColorHint="@color/text_color_4b"
+                android:layout_marginTop="30dp"
+                android:textColorHint="@color/text_color_ab"
                 app:hintAnimationEnabled="true">
 
                 <EditText
@@ -98,40 +123,46 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="26dp"
                     android:layout_marginRight="26dp"
-                    android:hint="패스워드"
+                    android:hint="패스워드를 입력하세요"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:maxLength="@integer/password_max_length"
                     android:paddingBottom="12dp"
                     android:singleLine="true"
-                    android:textColor="@color/text_color_6d"
-                    android:textSize="15dp" />
+                    android:textColor="@color/main_text_primary"
+                    android:textSize="24sp" />
             </android.support.design.widget.TextInputLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="26dp" />
+                android:layout_height="30dp" />
 
             <Button
                 android:id="@+id/BTN_LOGIN"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/selector_button_trans_color_bg_oval_90dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/selector_button_main_color_accent_oval_3dp"
                 android:text="로그인"
                 android:textColor="@drawable/selector_button_login_text_color"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="24dp"/>
 
         </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tvEasterEgg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="39dp"
+                android:text="Smarthouse@rasset.co.kr"
+                android:textSize="15sp"/>
+        </LinearLayout>
     </ScrollView>
-    <TextView
-        android:id="@+id/tvEasterEgg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:text="Smarthouse@rasset.co.kr"
-        android:textSize="15sp"/>
-
 </RelativeLayout>

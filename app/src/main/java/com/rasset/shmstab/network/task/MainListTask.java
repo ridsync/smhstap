@@ -35,10 +35,10 @@ public class MainListTask extends NetworkTask<BaseModel> {
     protected Call<? extends BaseModel> getRetroCallable() {
         MainAPInterface service = RetroRestAPIService.createService(MainAPInterface.class);
         // reqType별 API WindowsTopViewService 별도 반환
-        if (ReqType.REQUEST_TYPE_GET_USER_LIST == mRequestType) {
+        if (ReqType.REQUEST_TYPE_POST_USER_LOGIN == mRequestType) {
+            return service.reqPostUserLogin(mParams);
+        } else if (ReqType.REQUEST_TYPE_GET_CUSOMER_LIST == mRequestType) {
             return service.reqGetContentList(mParams);
-        } else if (ReqType.REQUEST_TYPE_GET_USER_LIST_ALL == mRequestType) {
-            return service.reqPostComment(mParams);
         } else {
             return null;
         }

@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import com.rasset.shmstab.R
+import com.rasset.shmstab.core.AppConst
 
 import com.rasset.shmstab.network.NetManager
 import com.rasset.shmstab.network.protocol.ParamKey
@@ -12,9 +14,11 @@ import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.network.res.ResContentList
 import com.rasset.shmstab.network.task.MainListTask
+import com.rasset.shmstab.ui.dialog.MainCustomDialog
 import com.rasset.shmstab.ui.fragments.BaseFragment
 import com.rasset.shmstab.ui.fragments.MainSubCustomersFragment
 import com.rasset.shmstab.ui.fragments.MainSubREAssetFragment
+import com.rasset.shmstab.utils.JUtil
 import com.rasset.shmstab.utils.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
@@ -65,10 +69,17 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        IB_APPBAR_ACTION.setOnClickListener {
-            startActivity(DiagAttentionActivity.newIntent(mContext))
-            overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out)
+        TV_APPBAR_LOGOUT.visibility = View.VISIBLE
+        TV_APPBAR_LOGOUT.setOnClickListener{
+            if (JUtil.isDoubleClick(it)) return@setOnClickListener
+
+            showDialog()
         }
+    }
+
+    fun startDiagAttentionActivity(){
+        startActivity(DiagAttentionActivity.newIntent(mContext))
+        overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out)
     }
 
     private fun replaceFragment(fragment : BaseFragment){
@@ -78,8 +89,25 @@ class MainActivity : BaseActivity() {
                 .commit()
     }
 
+    private fun showDialog(){
+
+        val dialog = MainCustomDialog.newInstance(mContext).apply {
+            setTitle(R.string.common_alert)
+            setMsgContents("로그아웃하시겠습니까?")
+            setPositiveButton(R.string.btn_confirm, MainCustomDialog.OnPositvelListener { dialog ->
+                if (JUtil.isDoubleClick(dialog.view)) return@OnPositvelListener
+                startActivity(LoginActivity.newIntent(mContext))
+                finish()
+            })
+            setNegativeButton(R.string.btn_cancel, MainCustomDialog.OnNegativelListener { dialog ->
+                if (JUtil.isDoubleClick(dialog.view)) return@OnNegativelListener
+            })
+        }
+        dialog.show(supportFragmentManager, AppConst.DIALOG_LOGIN_FAIL)
+    }
+
     private fun getUserList(lId: Long, lFirstSeq: Long) {
-        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_GET_USER_LIST, this)
+        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_GET_CUSOMER_LIST, this)
         task.addParam(ParamKey.PARAM_LISTTYPE, 1) // to server 1234
         task.addParam(ParamKey.PARAM_FIRSTSEQ, lFirstSeq)
         NetManager.startTask(task)

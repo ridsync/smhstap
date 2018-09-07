@@ -12,3 +12,5 @@ open class BaseModel {
 }
 
 data class ResContentList(var list: ArrayList<ContentsInfo>) : BaseModel()
+
+data class ResUserLogin(var userId: Long) : BaseModel()
