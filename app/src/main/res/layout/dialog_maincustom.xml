@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="스마트하우스 부동산자산관리 진단프로그램"
-                    android:textSize="13sp"/>
+                    android:textSize="@dimen/text_size_popup_contents"/>
 
             </LinearLayout>
 
@@ -49,25 +49,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:layout_marginLeft="21dp"
+                android:layout_marginRight="21dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/BTN_CANCEL"
-                    android:layout_width="60dp"
-                    android:layout_height="35dp"
-                    android:layout_marginRight="60dp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/btn_cancel"
                     android:textColor="@color/text_color_white"
+                    android:textSize="@dimen/text_size_popup_contents"
                     android:background="@drawable/selector_button_main_color_accent_oval_3dp"
-                    android:visibility="gone"/>
+                    android:layout_marginRight="21dp"/>
 
                 <Button
                     android:id="@+id/BTN_DONE"
-                    android:layout_width="60dp"
-                    android:layout_height="35dp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/btn_confirm"
                     android:textColor="@color/text_color_white"
+                    android:textSize="@dimen/text_size_popup_contents"
                     android:background="@drawable/selector_button_main_color_accent_oval_3dp"
                     android:visibility="visible" />
         </LinearLayout>
