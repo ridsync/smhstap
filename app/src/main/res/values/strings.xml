@@ -10,5 +10,7 @@
     // Btn
     <string name="btn_confirm">확인</string>
     <string name="btn_cancel">취소</string>
+    <string name="btn_next">다음</string>
+    <string name="btn_completed">완료</string>
 
 </resources>

@@ -20,6 +20,7 @@ import com.rasset.shmstab.ui.fragments.MainSubCustomersFragment
 import com.rasset.shmstab.ui.fragments.MainSubREAssetFragment
 import com.rasset.shmstab.utils.JUtil
 import com.rasset.shmstab.utils.Logger
+import com.rasset.shmstab.utils.Prefer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 
@@ -68,18 +69,24 @@ class MainActivity : BaseActivity() {
                 mapSubFragments[currentFragment]?.let { it -> replaceFragment(it) }
             }
         }
-
-        TV_APPBAR_LOGOUT.visibility = View.VISIBLE
-        TV_APPBAR_LOGOUT.setOnClickListener{
-            if (JUtil.isDoubleClick(it)) return@setOnClickListener
-
-            showDialog()
-        }
+        setAppBars()
     }
 
+    // 선택유저 정보 넘기기
     fun startDiagAttentionActivity(){
         startActivity(DiagAttentionActivity.newIntent(mContext))
         overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out)
+    }
+
+    private fun setAppBars(){
+        // 현재 화면위치 에 따른 Appbar visibility
+        IB_APPBAR_MENU.visibility = View.VISIBLE
+        TV_APPBAR_TEXT_LOGO.visibility = View.VISIBLE
+        TV_APPBAR_LOGOUT.visibility = View.VISIBLE
+        TV_APPBAR_LOGOUT.setOnClickListener{
+            if (JUtil.isDoubleClick(it)) return@setOnClickListener
+            showDialog()
+        }
     }
 
     private fun replaceFragment(fragment : BaseFragment){
@@ -96,6 +103,7 @@ class MainActivity : BaseActivity() {
             setMsgContents("로그아웃하시겠습니까?")
             setPositiveButton(R.string.btn_confirm, MainCustomDialog.OnPositvelListener { dialog ->
                 if (JUtil.isDoubleClick(dialog.view)) return@OnPositvelListener
+                Prefer.clearPreference(mContext)
                 startActivity(LoginActivity.newIntent(mContext))
                 finish()
             })

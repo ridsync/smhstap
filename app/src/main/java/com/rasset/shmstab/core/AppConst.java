@@ -42,9 +42,9 @@ public class AppConst {
     public static final int FRAGMENT_BOTNAV_MAIN = 10000;
     public static final int FRAGMENT_USER_LIST = FRAGMENT_BOTNAV_MAIN+1;
 
-    public static final String FRAG_NAME_DIAG_CUSTOMER_INFO = "FRAG_NAME_DIAG_CUSTOMER_INFO";
-    public static final String FRAG_NAME_DIAG_INFO_STEP1 = "FRAG_NAME_DIAG_INFO_STEP1";
-    public static final String FRAG_NAME_DIAG_INFO_STEP2 = "FRAG_NAME_DIAG_INFO_STEP2";
+    public static final String FRAG_NAME_DIAG_CUSTOMER_INFO = "회원 기본정보";
+    public static final String FRAG_NAME_DIAG_INFO_STEP1 = "회원 예진정보";
+    public static final String FRAG_NAME_DIAG_INFO_STEP2 = "회원 예진정보";
     public static final String FRAG_NAME_DIAG_COMPLETED = "FRAG_NAME_DIAG_COMPLETED";
 
     //

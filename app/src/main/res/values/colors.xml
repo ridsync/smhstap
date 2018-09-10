@@ -16,6 +16,7 @@
     <color name="main_appbar_button_disabled">#dddddd</color>
     <color name="main_dialog_dim_color">@color/color_black_23</color>
     <color name="main_dialog_bg_color">@color/main_bg_color</color>
+    <color name="main_dialog_button_bg_gray">#dddddd</color>
     <color name="main_raised_button_bg_white">#ffffff</color>
 
     <color name="main_list_divider">#dddddd</color>

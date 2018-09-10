@@ -8,7 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.network.res.BaseModel
+import com.rasset.shmstab.ui.DiagAttentionActivity
+import com.rasset.shmstab.ui.LoginActivity
+import com.rasset.shmstab.ui.MainActivity
 import com.rasset.shmstab.ui.dialog.ProgressLockDialog
+import kotlinx.android.synthetic.main.fragment_main_customer.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -56,6 +60,11 @@ class MainSubCustomersFragment : BaseFragment() {
     }
 
     fun initFirst(){
+        IB_TEMP_ACTION.setOnClickListener {
+           if (mActivity is MainActivity) {
+               (mActivity as MainActivity).startDiagAttentionActivity()
+           }
+        }
     }
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {

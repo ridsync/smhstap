@@ -5,7 +5,13 @@
     <dimen name="main_navbar_width">220dp</dimen>
 
     // Font Size
-    <dimen name="main_text_size">24dp</dimen>
+    <dimen name="main_text_bold_title">48dp</dimen>
+    <dimen name="main_text_large_title">36dp</dimen>
+    <dimen name="main_text_title1">36dp</dimen>
+    <dimen name="main_text_title2">24dp</dimen>
+    <dimen name="main_text_body1">24dp</dimen>
+    <dimen name="main_text_body2">21dp</dimen>
+    <dimen name="main_text_caption">16dp</dimen>
     <dimen name="text_size_popup_contents">20dp</dimen>
 
     // 미사용
