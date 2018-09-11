@@ -9,6 +9,16 @@ open class BaseInfo {
     var seq: Int = 0
 }
 
+
+data class UserInfo(var userId: Long = 0, var userName: String = "",var photoImgPath: String) {
+
+}
+
 data class ContentsInfo(var title: String = "",
                         var imgPath: String = "",
                         var regDate: Long) : BaseInfo()
+
+data class CustomerInfo(var idx: Int = 0,
+                        var userId: String = "",
+                        var userName: String = "",
+                        var userLevel: Long = 0) : BaseInfo()

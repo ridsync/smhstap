@@ -38,7 +38,7 @@ public class MainListTask extends NetworkTask<BaseModel> {
         if (ReqType.REQUEST_TYPE_POST_USER_LOGIN == mRequestType) {
             return service.reqPostUserLogin(mParams);
         } else if (ReqType.REQUEST_TYPE_GET_CUSOMER_LIST == mRequestType) {
-            return service.reqGetContentList(mParams);
+            return service.reqGetCustomerList(mParams);
         } else {
             return null;
         }

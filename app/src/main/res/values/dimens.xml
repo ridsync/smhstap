@@ -13,6 +13,7 @@
     <dimen name="main_text_body2">21dp</dimen>
     <dimen name="main_text_caption">16dp</dimen>
     <dimen name="text_size_popup_contents">20dp</dimen>
+    <dimen name="customerlist_item_margin_height">50dp</dimen>
 
     // 미사용
     <dimen name="fab_margin">16dp</dimen>

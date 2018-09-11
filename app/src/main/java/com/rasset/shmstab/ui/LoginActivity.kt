@@ -8,6 +8,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
+import com.rasset.shmstab.core.TabApp
+import com.rasset.shmstab.model.UserInfo
 
 import com.rasset.shmstab.network.NetManager
 import com.rasset.shmstab.network.protocol.ParamKey
@@ -94,8 +96,9 @@ class LoginActivity : BaseActivity() {
 
         if (data is ResUserLogin){
             showToast { "로그인 성공 : OK" }
-            data.userId?.let {
-                Prefer.setSharedPreference(AppConst.PREFERENCE_USERINFO_ID, it,mContext)
+            data.userInfo?.let {
+                Prefer.setSharedPreference(AppConst.PREFERENCE_USERINFO_ID, it.userId,mContext)
+                TabApp.userInfo = it
             }
             startActivity(MainActivity.newIntent(mContext))
             finish()

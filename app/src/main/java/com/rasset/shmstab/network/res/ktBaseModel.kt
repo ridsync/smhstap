@@ -1,6 +1,8 @@
 package com.rasset.shmstab.network.res
 
 import com.rasset.shmstab.model.ContentsInfo
+import com.rasset.shmstab.model.CustomerInfo
+import com.rasset.shmstab.model.UserInfo
 import java.util.ArrayList
 
 /**
@@ -11,6 +13,8 @@ open class BaseModel {
     var resMsg: String? = null
 }
 
+data class ResCustomerList(var userTotalCount: Int, var list: ArrayList<CustomerInfo>) : BaseModel()
+
 data class ResContentList(var list: ArrayList<ContentsInfo>) : BaseModel()
 
-data class ResUserLogin(var userId: Long) : BaseModel()
+data class ResUserLogin(var userInfo:UserInfo?) : BaseModel()

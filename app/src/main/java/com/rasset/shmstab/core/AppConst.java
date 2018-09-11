@@ -23,9 +23,7 @@ public class AppConst {
     public static final String LOCAL_BROADCAST_EVENT_CHATLIST = PACKAGE_NAME + "_LOCAL_INTENT_CHATLIST";
     public static final String LOCAL_BROADCAST_EVENT_EVALUATEME = PACKAGE_NAME + "_LOCAL_INTENT_EVALUATEME";
 
-    public static final int PRESENT_AGE_LIMIT = 40;
     public static final int MORE_LIST_LIMIT_UNIT = 30;
-    public static final int MORE_LIST_LIMIT_FAVDATE = 20;
     public static final int LEAST_ID_CNT = 4;
     public static final int LEAST_PASSWORD_CNT = 4;
 

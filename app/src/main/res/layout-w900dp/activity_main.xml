@@ -27,23 +27,86 @@
             android:id="@+id/LL_MAIN_NAV_MENU"
             android:layout_width="@dimen/main_navbar_width"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/main_primary_color">
 
             <LinearLayout
                 android:id="@+id/LL_MAIN_CUSTOMER"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@color/main_primary_dark_color">
+                android:layout_height="120dp"
+                android:background="@color/main_primary_color"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/TV_NAV_ICON"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:src="@drawable/ic_memberbig"
+                    android:background="@null"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/TV_NAV_MENU_CUSTOMER"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="회원"
+                        android:textColor="@color/main_text_primary"
+                        android:textSize="@dimen/main_text_title2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="회원관리"
+                        android:textColor="@color/main_text_primary"
+                        android:textSize="@dimen/main_text_body2" />
+                </LinearLayout>
             </LinearLayout>
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/text_color_white"/>
             <LinearLayout
                 android:id="@+id/LL_MAIN_RE_ASSET"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@color/main_primary_dark_color">
+                android:layout_height="120dp"
+                android:background="@color/main_primary_color"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:src="@drawable/ic_richservice"
+                    android:background="@null"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/TV_NAV_MENU_RE_ASSET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="부자지수"
+                        android:textColor="@color/main_text_primary"
+                        android:textSize="@dimen/main_text_title2" />
+
+                    <TextView
+                        android:id="@+id/TV_NAV_MENU_REASSET"
+                        android:layout_below="@+id/TV_NAV_MENU_CUSTOMER"
+                        android:layout_alignLeft="@+id/TV_NAV_MENU_CUSTOMER"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="진단서비스"
+                        android:textColor="@color/main_text_primary"
+                        android:textSize="@dimen/main_text_body2" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

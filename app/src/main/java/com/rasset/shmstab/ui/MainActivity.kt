@@ -7,6 +7,7 @@ import android.os.Handler
 import android.view.View
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
+import com.rasset.shmstab.model.CustomerInfo
 
 import com.rasset.shmstab.network.NetManager
 import com.rasset.shmstab.network.protocol.ParamKey
@@ -21,6 +22,7 @@ import com.rasset.shmstab.ui.fragments.MainSubREAssetFragment
 import com.rasset.shmstab.utils.JUtil
 import com.rasset.shmstab.utils.Logger
 import com.rasset.shmstab.utils.Prefer
+import com.rasset.shmstab.utils.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 
@@ -55,32 +57,44 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        LL_MAIN_CUSTOMER.setBackgroundResource(R.color.main_nav_menu_selected_color)
+        LL_MAIN_RE_ASSET.setBackgroundResource(R.color.main_primary_color)
         mapSubFragments[currentFragment]?.let { it -> replaceFragment(it) }
         LL_MAIN_CUSTOMER.setOnClickListener {
             if (currentFragment != SubFrags.CUSTOMERS.idx){
                 currentFragment = SubFrags.CUSTOMERS.idx
                 mapSubFragments[currentFragment]?.let { it -> replaceFragment(it) }
             }
+            LL_MAIN_CUSTOMER.setBackgroundResource(R.color.main_nav_menu_selected_color)
+            LL_MAIN_RE_ASSET.setBackgroundResource(R.color.main_primary_color)
         }
 
         LL_MAIN_RE_ASSET.setOnClickListener {
-            if (currentFragment != SubFrags.REASSET.idx){
-                currentFragment = SubFrags.REASSET.idx
-                mapSubFragments[currentFragment]?.let { it -> replaceFragment(it) }
+//            if (currentFragment != SubFrags.REASSET.idx){
+//                currentFragment = SubFrags.REASSET.idx
+//                mapSubFragments[currentFragment]?.let { it -> replaceFragment(it) }
+//            }
+//            LL_MAIN_CUSTOMER.setBackgroundResource(R.color.main_primary_color)
+//            LL_MAIN_RE_ASSET.setBackgroundResource(R.color.main_nav_menu_selected_color)
+            showToast {
+                "준비중입니다."
             }
         }
         setAppBars()
     }
 
     // 선택유저 정보 넘기기
-    fun startDiagAttentionActivity(){
-        startActivity(DiagAttentionActivity.newIntent(mContext))
+    fun startDiagAttentionActivity(customerInfo:CustomerInfo){
+        startActivity(DiagAttentionActivity.newIntent(mContext,customerInfo))
         overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out)
     }
 
     private fun setAppBars(){
         // 현재 화면위치 에 따른 Appbar visibility
         IB_APPBAR_MENU.visibility = View.VISIBLE
+        IB_APPBAR_MENU.setOnClickListener {
+            LL_MAIN_NAV_MENU.visibility = if ( LL_MAIN_NAV_MENU.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        }
         TV_APPBAR_TEXT_LOGO.visibility = View.VISIBLE
         TV_APPBAR_LOGOUT.visibility = View.VISIBLE
         TV_APPBAR_LOGOUT.setOnClickListener{

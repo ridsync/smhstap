@@ -2,6 +2,7 @@ package com.rasset.shmstab.network.retrofit;
 
 import com.rasset.shmstab.network.res.BaseModel;
 import com.rasset.shmstab.network.res.ResContentList;
+import com.rasset.shmstab.network.res.ResCustomerList;
 import com.rasset.shmstab.network.res.ResUserLogin;
 
 import java.util.Map;
@@ -22,7 +23,7 @@ public interface MainAPInterface {
     Call<ResUserLogin> reqPostUserLogin(@Body Map<String, Object> params);
 
     @GET("list")
-    Call<ResContentList> reqGetContentList(@QueryMap Map<String, Object> params);
+    Call<ResCustomerList> reqGetCustomerList(@QueryMap Map<String, Object> params);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST("upload")

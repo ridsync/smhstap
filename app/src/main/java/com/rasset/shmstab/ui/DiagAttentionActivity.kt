@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
+import com.rasset.shmstab.model.CustomerInfo
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.fragments.BaseFragment
 import com.rasset.shmstab.ui.fragments.DiagSubCustomerInfoFragment
@@ -20,8 +21,10 @@ import kotlinx.android.synthetic.main.dialog_maincustom.*
 class DiagAttentionActivity : BaseActivity() {
     companion object {
 
-        fun newIntent(context: Context): Intent {
+        fun newIntent(context: Context,customerInfo: CustomerInfo): Intent {
             val intent = Intent(context, DiagAttentionActivity::class.java)
+            // TODO 이벤트버스?? 다른방법으로 Object전달 리서치할것
+            intent.putExtra("",customerInfo.userId)
             return intent
         }
     }
@@ -32,6 +35,7 @@ class DiagAttentionActivity : BaseActivity() {
         , DIAG_COMPLETE(3,AppConst.FRAG_NAME_DIAG_COMPLETED, null)
     }
 
+    var customerInfo:CustomerInfo? = null
     var mStackFrags = Stack(mutableListOf<SubFrags>())
 
     override fun onCreate(savedInstanceState: Bundle?) {
