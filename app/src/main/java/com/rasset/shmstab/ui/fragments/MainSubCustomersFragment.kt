@@ -67,7 +67,7 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
     private var selectFilterType: Int = 0
     private var mListAdapter: CustomerListAdapter? = null
     private var myRecycler: RecyclerView? = null
-    private var manager: LinearLayoutManager? = null
+    private var manager: GridLayoutManager? = null
     private var mScrollListener: ReloadRecyclerViewScrollListner? = null
     private val mAdapterList = arrayListOf<CustomerInfo>()
 

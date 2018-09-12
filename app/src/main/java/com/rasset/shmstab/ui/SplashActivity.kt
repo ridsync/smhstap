@@ -37,12 +37,9 @@ class SplashActivity : BaseActivity() {
             finish()
         },1700)
 
-        tvEasterEgg.setOnClickListener {
-            showToast { "Good Luck !! " }
-        }
     }
 
-    private fun getUserList(lId: Long, lFirstSeq: Long) {
+    private fun postUserLogin(lId: Long, lFirstSeq: Long) {
 //        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_GET_USER_LIST, this)
 //        task.addParam(ParamKey.PARAM_LISTTYPE, 1) // to server 1234
 //        task.addParam(ParamKey.PARAM_FIRSTSEQ, lFirstSeq)
