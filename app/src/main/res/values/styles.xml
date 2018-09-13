@@ -36,6 +36,18 @@
         <item name="android:windowBackground">@color/main_transparent</item>
         <item name="android:background">@color/main_transparent</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="FullScreenDialog" parent="AppTheme">
+        <!-- Used for the Title and text -->
+        <item name="android:textColorPrimary">@color/text_color_1f</item>
+        <!-- Used for the buttons -->
+        <item name="colorAccent">@color/main_accent_color</item>
+        <!-- Used for the background -->
+        <item name="android:windowBackground">@color/main_dialog_dim_color</item>
+        <item name="android:background">@color/main_transparent</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="StyledTilEditTextFloatingLabel">
@@ -67,6 +79,27 @@
         <item name="colorControlNormal">@color/main_appbar_boxline</item>
         <item name="colorControlActivated">@color/main_accent_color</item>
         <item name="colorControlHighlight">@color/main_accent_color</item>
+    </style>
+
+    <!-- Custom font style 일괄적용 -->
+    <style name="TextViewStyle" parent="@android:style/Widget.DeviceDefault.TextView">
+        <item name="android:fontFamily">@font/nanosanscjk</item>
+    </style>
+
+    <style name="ButtonStyle" parent="@android:style/Widget.DeviceDefault.Button.Borderless">
+        <item name="android:fontFamily">@font/nanosanscjk</item>
+    </style>
+
+    <style name="EditTextStyle" parent="@android:style/Widget.DeviceDefault.EditText">
+        <item name="android:fontFamily">@font/nanosanscjk</item>
+    </style>
+
+    <style name="RadioButtonStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
+        <item name="android:fontFamily">@font/nanosanscjk</item>
+    </style>
+
+    <style name="CheckboxStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox">
+        <item name="android:fontFamily">@font/nanosanscjk</item>
     </style>
 
 </resources>

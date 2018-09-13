@@ -28,8 +28,77 @@
             android:layout_width="@dimen/main_navbar_width"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@color/text_color_4b">
+            android:gravity="center_horizontal"
+            android:background="@color/main_side_menu_bg_color">
 
+            <RelativeLayout
+                android:id="@+id/RL_CUSTOMER_PROFILE"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp">
+
+                <ImageView
+                    android:id="@+id/IV_CUSTOMER_PROFILE"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/profile_default"
+                    android:adjustViewBounds="true"/>
+
+                <ImageView
+                    android:id="@+id/IV_CUSTOMER_PROFILE_CAMERA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/ic_camera"
+                    android:adjustViewBounds="true"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+            <TextView
+                android:id="@+id/TV_CUSTOMER_LEVEL"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_marginTop="4dp"
+                android:text="비회원"
+                android:textColor="@color/basic_color_white"
+                android:textSize="@dimen/main_text_caption"/>
+
+            <TextView
+                android:id="@+id/TV_CUSTOMER_NAME"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginTop="12dp"
+                android:text="사진등록"
+                android:textColor="@color/basic_color_white"
+                android:textSize="30dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/TV_CUSTOMER_PHOTO_ADD"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginTop="12dp"
+                android:text="사진등록"
+                android:textColor="@color/basic_color_white"
+                android:textSize="30dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/TV_CUSTOMER_DESC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="사진아이콘을 터치하여\n사진을 등록해주세요"
+                android:textColor="@color/basic_color_white"
+                android:textSize="@dimen/main_text_caption"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <FrameLayout

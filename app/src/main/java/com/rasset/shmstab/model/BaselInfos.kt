@@ -19,6 +19,11 @@ data class ContentsInfo(var title: String = "",
                         var regDate: Long) : BaseInfo()
 
 data class CustomerInfo(var idx: Int = 0,
-                        var userId: String = "",
-                        var userName: String = "",
-                        var userLevel: Long = 0) : BaseInfo()
+                        var userId: String?=null,
+                        var userName: String?=null,
+                        var userLevel: Long = 0,
+                        var userPhone: String?=null,
+                        var consultingDate:Long = 0,
+                        var consultingTime:Long = 0,
+                        var diagField:String?=null,
+                        var question:String?=null) : BaseInfo()

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.dialog.ProgressLockDialog
+import kotlinx.android.synthetic.main.fragment_diag_step_first.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -55,11 +56,45 @@ class DiagSubStepFirstFragment : BaseFragment() {
             mLockDialog.dismiss()
     }
 
-    fun initFirst(){
+    private fun initFirst(){
+        setCheckCardViews(null)
 
+        RL_WEWON_INVEST.setOnClickListener {
+            setCheckCardViews(it)
+        }
+        RL_WEWON_MD.setOnClickListener {
+            setCheckCardViews(it)
+        }
+        RL_WEWON_TAX.setOnClickListener {
+            setCheckCardViews(it)
+        }
+        RL_WEWON_HOME_INTE.setOnClickListener {
+            setCheckCardViews(it)
+        }
+        RL_WEWON_MANAGEMENT.setOnClickListener {
+            setCheckCardViews(it)
+        }
+        RL_WEWON_CM.setOnClickListener {
+            setCheckCardViews(it)
+        }
     }
 
-
+    private fun setCheckCardViews(view:View?){
+        IV_WEWON_INVEST_CHECK.visibility = View.INVISIBLE
+        IV_WEWON_MD_CHECK.visibility = View.INVISIBLE
+        IV_WEWON_TAX_CHECK.visibility = View.INVISIBLE
+        IV_WEWON_HOME_INTE_CHECK.visibility = View.INVISIBLE
+        IV_WEWON_MANAGEMENT_CHECK.visibility = View.INVISIBLE
+        IV_WEWON_CM_CHECK.visibility = View.INVISIBLE
+        when (view){
+            RL_WEWON_INVEST -> IV_WEWON_INVEST_CHECK.visibility = View.VISIBLE
+            RL_WEWON_MD -> IV_WEWON_MD_CHECK.visibility = View.VISIBLE
+            RL_WEWON_TAX -> IV_WEWON_TAX_CHECK.visibility = View.VISIBLE
+            RL_WEWON_HOME_INTE -> IV_WEWON_HOME_INTE_CHECK.visibility = View.VISIBLE
+            RL_WEWON_MANAGEMENT -> IV_WEWON_MANAGEMENT_CHECK.visibility = View.VISIBLE
+            RL_WEWON_CM -> IV_WEWON_CM_CHECK.visibility = View.VISIBLE
+        }
+    }
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
 

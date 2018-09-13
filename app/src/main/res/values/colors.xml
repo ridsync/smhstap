@@ -18,6 +18,7 @@
     <color name="main_dialog_bg_color">@color/main_bg_color</color>
     <color name="main_dialog_button_bg_gray">#dddddd</color>
     <color name="main_raised_button_bg_white">#ffffff</color>
+    <color name="main_side_menu_bg_color">#2C3D50</color>
     <color name="main_nav_menu_selected_color">#EBBF06</color>
 
     <color name="main_list_divider">#dddddd</color>
