@@ -36,7 +36,6 @@ open class BaseFragment : Fragment() , OnNetworkListener{
 
     override fun onStop() {
         super.onStop()
-        if (mLockDialog != null)
             mLockDialog.dismiss()
     }
 

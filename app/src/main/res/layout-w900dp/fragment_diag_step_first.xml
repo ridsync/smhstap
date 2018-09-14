@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:visibility="invisible">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,13 +19,14 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="25dp"
-        card_view:cardElevation="3dp"
+        card_view:cardElevation="2dp"
         card_view:cardBackgroundColor="@color/basic_color_white">
 
     <RelativeLayout
         android:id="@+id/RL_WEWON_INVEST"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        style="@style/RippleEffect">
 
         <ImageView
             android:id="@+id/IV_WEWON_INVEST"
@@ -100,7 +102,8 @@
     <RelativeLayout
         android:id="@+id/RL_WEWON_MD"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        style="@style/RippleEffect">
 
         <ImageView
             android:id="@+id/IV_WEWON_MD"
@@ -177,7 +180,8 @@
     <RelativeLayout
         android:id="@+id/RL_WEWON_TAX"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        style="@style/RippleEffect">
 
         <ImageView
             android:id="@+id/IV_WEWON_TAX"
@@ -258,7 +262,8 @@
         <RelativeLayout
             android:id="@+id/RL_WEWON_HOME_INTE"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            style="@style/RippleEffect">
 
             <ImageView
                 android:id="@+id/IV_WEWON_HOME_INTE"
@@ -333,7 +338,8 @@
             <RelativeLayout
                 android:id="@+id/RL_WEWON_MANAGEMENT"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                style="@style/RippleEffect">
 
                 <ImageView
                     android:id="@+id/IV_WEWON_MANAGEMENT"
@@ -410,14 +416,15 @@
             <RelativeLayout
                 android:id="@+id/RL_WEWON_CM"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                style="@style/RippleEffect">
 
                 <ImageView
                     android:id="@+id/IV_WEWON_CM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/kys_2"
+                    android:src="@drawable/lts"
                     android:adjustViewBounds="true"/>
 
                 <ImageView

@@ -67,8 +67,6 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
 
     override fun onStop() {
         super.onStop()
-        if (mLockDialog != null)
-            mLockDialog.dismiss()
     }
 
     lateinit var acbPrivacyAgree: AppCompatCheckBox

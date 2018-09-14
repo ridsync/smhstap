@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            card_view:cardElevation="2dp"
+            card_view:cardElevation="3dp"
             card_view:cardBackgroundColor="@color/basic_color_white">
 
         <LinearLayout
@@ -120,7 +120,7 @@
                 android:layout_marginTop="50dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <TextView xmlns:tools=" http://schemas.android.com/tools"
                     android:id="@+id/TV_CONSULTING_DATE"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"

@@ -43,14 +43,14 @@
             android:id="@+id/TV_USER_PROFILE_NAME"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/IV_USER_PROFILE_IMG"
-            android:layout_centerVertical="true"
             android:singleLine="true"
             android:text="홍길동"
-            android:textStyle="bold"
             android:textColor="@color/main_text_primary"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
             <RadioButton
                 android:id="@+id/RB_FILTER_ALL"
                 android:layout_width="match_parent"
-                android:layout_height="31dp"
+                android:layout_height="wrap_content"
                 android:drawablePadding="10dp"
                 android:gravity="center_vertical"
                 android:checked="true"
@@ -133,6 +133,7 @@
                 android:paddingLeft="10dp"
                 android:button="@drawable/rbutton_customer_filter"
                 android:text="전체"
+                android:textStyle="normal"
                 android:singleLine="true"
                 android:textColor="@color/main_text_secondary"
                 android:textSize="@dimen/main_text_body2"/>
@@ -140,7 +141,7 @@
             <RadioButton
                 android:id="@+id/RB_FILTER_NONMEMBER"
                 android:layout_width="match_parent"
-                android:layout_height="31dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/RB_FILTER_ALL"
                 android:paddingLeft="10dp"
                 android:button="@drawable/rbutton_customer_filter"
@@ -155,7 +156,7 @@
             <RadioButton
                 android:id="@+id/RB_FILTER_NORMAL"
                 android:layout_width="match_parent"
-                android:layout_height="31dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/RB_FILTER_NONMEMBER"
                 android:paddingLeft="10dp"
                 android:button="@drawable/rbutton_customer_filter"
@@ -184,7 +185,7 @@
             <RadioButton
                 android:id="@+id/RB_FILTER_NOVELIE"
                 android:layout_width="match_parent"
-                android:layout_height="31dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/RB_FILTER_SILVER"
                 android:paddingLeft="10dp"
                 android:button="@drawable/rbutton_customer_filter"
@@ -199,7 +200,7 @@
             <RadioButton
                 android:id="@+id/RB_FILTER_RICH"
                 android:layout_width="match_parent"
-                android:layout_height="31dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/RB_FILTER_NOVELIE"
                 android:paddingLeft="10dp"
                 android:button="@drawable/rbutton_customer_filter"

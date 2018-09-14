@@ -3,7 +3,8 @@
                 android:id="@+id/RL_CUSTOMER_LAYOUT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp">
+                android:layout_marginTop="50dp"
+                style="@style/RippleEffect">
 
         <ImageView
             android:id="@+id/IV_CUSTOMER_PROFILE"
@@ -28,7 +29,7 @@
         <TextView
             android:id="@+id/TV_CUSTOMER_NAME"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_centerHorizontal="true"
             android:textStyle="bold"
@@ -39,7 +40,7 @@
         <TextView
             android:id="@+id/TV_CUSTOMER_LEVEL"
             android:layout_width="wrap_content"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/TV_CUSTOMER_NAME"

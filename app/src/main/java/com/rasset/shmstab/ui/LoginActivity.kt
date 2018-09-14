@@ -126,15 +126,13 @@ class LoginActivity : BaseActivity() {
 
     override fun onProgresStart(nReqType: Int) {
         Logger.d("onProgresStart  ")
-        if (mLockDialog != null)
-            mLockDialog.show()
+        mLockDialog.show()
     }
 
     override fun onProgresStop(nReqType: Int) {
         Logger.d("onProgresStop  ")
 
         Handler().postDelayed({
-            if (mLockDialog != null)
                 mLockDialog.cancel()
         },2000)
     }

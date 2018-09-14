@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
@@ -36,7 +35,6 @@ import com.rasset.shmstab.ui.MainActivity
 import com.rasset.shmstab.ui.adapter.BaseRecyclerExtendsAdapter
 import com.rasset.shmstab.ui.adapter.ReloadRecyclerViewScrollListner
 import com.rasset.shmstab.ui.components.CropCircleTransform
-import com.rasset.shmstab.utils.AUtil
 import com.rasset.shmstab.utils.JUtil
 import com.rasset.shmstab.utils.JUtil.isDoubleClick
 import com.rasset.shmstab.utils.Logger
@@ -63,7 +61,7 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
     }
 
     private var selectFilter :Int? = null
-    private var mFirstSeq :Long = 0
+    private var mlastSeq :Long = 0
     private var selectFilterType: Int = 0
     private var mListAdapter: CustomerListAdapter? = null
     private var myRecycler: RecyclerView? = null
@@ -93,20 +91,18 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
 
     override fun onStop() {
         super.onStop()
-        if (mLockDialog != null)
-            mLockDialog.dismiss()
     }
 
     override fun onRefresh() {
         Logger.d(this, "=== SubList onRefresh ===")
         //  ListView 데이터 다시가져와서 Net Callback에서 Refresh
 
-        mFirstSeq = 0
+        mlastSeq = 0
         mScrollListener?.reset()
         mAdapterList.clear()
         mListAdapter?.notifyDataSetChanged()
         SR_REFRESH_LAYOUT?.isEnabled = false
-        getCustomerList(mFirstSeq)
+        getCustomerList(mlastSeq)
     }
 
     fun initFirst(){
@@ -121,7 +117,7 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
         setuserInfo()
         setSwipeToRefresh()
         setRecyclerView()
-        getCustomerList(mFirstSeq)
+        getCustomerList(mlastSeq)
     }
 
     fun setuserInfo(){
@@ -174,7 +170,7 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
                 if (mListAdapter == null)
                     return
                 Logger.d(this@MainSubCustomersFragment, "=== SubList LoadMore ===")
-                getCustomerList(mFirstSeq)
+                getCustomerList(mlastSeq)
             }
 
             override fun onScrolledExt(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -234,13 +230,13 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
             spannablecontent.setSpan(RelativeSizeSpan(1.5f), 3,spannablecontent.length - 1, 0)
             TV_CUSTOMER_COUNT.text = spannablecontent
 
-            if (mFirstSeq == 0L) {
+            if (mlastSeq == 0L) {
                 mListAdapter?.data = data.list
+                mListAdapter?.notifyDataSetChanged()
             } else {
                 mListAdapter?.addItemAll(data.list)
             }
-            mFirstSeq = data.list.last()?.idx.toLong()
-            mListAdapter?.notifyDataSetChanged()
+            mlastSeq = data.list.last().idx.toLong()
             SR_REFRESH_LAYOUT?.isRefreshing = false  // Refresh Finished
             SR_REFRESH_LAYOUT?.isEnabled = true
         }
@@ -280,27 +276,25 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
                     .error(R.drawable.profile_default)
                     .into((viewHolder as MyCustomViewHolder).civProfileImage)
 
-            if (viewHolder is MyCustomViewHolder){
-                viewHolder.tvCustomerName.text = customerInfo.userName
-                viewHolder.tvCustomerLevel.text = getUserLevel(customerInfo.userLevel)
-                viewHolder.ibProfileImage.setOnClickListener {
-                    viewHolder.rootviewBg.performClick()
-                }
-                viewHolder.rootviewBg.setOnClickListener(View.OnClickListener {
-                    if (isDoubleClick(it)) {
-                        return@OnClickListener
-                    }
-                    viewHolder.ibProfileImage.isSelected = true
-                    notifyItemChanged(i)
-                    Handler().postDelayed({
-                        viewHolder.ibProfileImage.isSelected = false
-                        notifyItemChanged(i)
-                    },300)
-                    if (mActivity is MainActivity) {
-                        (mActivity as MainActivity).startDiagAttentionActivity(customerInfo)
-                    }
-                })
+            viewHolder.tvCustomerName.text = customerInfo.userName
+            viewHolder.tvCustomerLevel.text = getUserLevel(customerInfo.userLevel)
+            viewHolder.ibProfileImage.setOnClickListener {
+                viewHolder.rootviewBg.performClick()
             }
+            viewHolder.rootviewBg.setOnClickListener(View.OnClickListener {
+                if (isDoubleClick(it)) {
+                    return@OnClickListener
+                }
+                viewHolder.ibProfileImage.isSelected = true
+                notifyItemChanged(i)
+                Handler().postDelayed({
+                    viewHolder.ibProfileImage.isSelected = false
+                    notifyItemChanged(i)
+                },300)
+                if (mActivity is MainActivity) {
+                    (mActivity as MainActivity).startDiagAttentionActivity(customerInfo)
+                }
+            })
 
         }
 

@@ -150,7 +150,6 @@ class MainActivity : BaseActivity() {
 
     override fun onProgresStart(nReqType: Int) {
         Logger.d("onProgresStart  ")
-        if (mLockDialog != null)
             mLockDialog.show()
     }
 
@@ -158,8 +157,7 @@ class MainActivity : BaseActivity() {
         Logger.d("onProgresStop  ")
 
         Handler().postDelayed({
-            if (mLockDialog != null)
-                mLockDialog.cancel()
+            mLockDialog.cancel()
         },2000)
 
     }

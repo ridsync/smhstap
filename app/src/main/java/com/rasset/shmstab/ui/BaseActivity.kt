@@ -3,15 +3,15 @@ package com.rasset.shmstab.ui
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import com.rasset.shmstab.R
 import com.rasset.shmstab.network.OnNetworkListener
 import com.rasset.shmstab.network.protocol.ResultCode
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.dialog.ProgressLockDialog
-import com.rasset.shmstab.utils.JUtil
 import com.rasset.shmstab.utils.showToast
-import kotlinx.android.synthetic.main.custom_appbarlayout.*
+
+
+
 
 /**
  * Created by devok on 2018-09-03.
@@ -36,8 +36,7 @@ open class BaseActivity : AppCompatActivity() , OnNetworkListener{
     override fun onStop() {
         super.onStop()
 
-        if (mLockDialog != null)
-            mLockDialog.dismiss()
+        mLockDialog.dismiss()
     }
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
