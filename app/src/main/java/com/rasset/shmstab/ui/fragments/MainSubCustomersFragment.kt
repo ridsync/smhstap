@@ -38,6 +38,7 @@ import com.rasset.shmstab.ui.components.CropCircleTransform
 import com.rasset.shmstab.utils.JUtil
 import com.rasset.shmstab.utils.JUtil.isDoubleClick
 import com.rasset.shmstab.utils.Logger
+import com.rasset.shmstab.utils.getCustomerLevelStr
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
 import kotlinx.android.synthetic.main.fragment_main_customer.*
 
@@ -108,7 +109,7 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
     fun initFirst(){
         IB_TEMP_NEW_CUSTOMER.setOnClickListener {
            if (mActivity is MainActivity) {
-               (mActivity as MainActivity).startDiagAttentionActivity(CustomerInfo())
+               (mActivity as MainActivity).startDiagAttentionActivity(CustomerInfo(),null)
            }
         }
 
@@ -268,7 +269,7 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
             customerInfo.idx = i
 
             // View Set
-            val strProfileURL = customerInfo.userId
+            val strProfileURL = customerInfo.photoImgPath
             Glide.with(mContext)
                     .load(strProfileURL)
                     .bitmapTransform(CropCircleTransform(mContext))
@@ -276,8 +277,8 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
                     .error(R.drawable.profile_default)
                     .into((viewHolder as MyCustomViewHolder).civProfileImage)
 
-            viewHolder.tvCustomerName.text = customerInfo.userName
-            viewHolder.tvCustomerLevel.text = getUserLevel(customerInfo.userLevel)
+            viewHolder.tvCustomerName.text = customerInfo.customerName
+            viewHolder.tvCustomerLevel.text = getCustomerLevelStr(customerInfo.customerLevel)
             viewHolder.ibProfileImage.setOnClickListener {
                 viewHolder.rootviewBg.performClick()
             }
@@ -285,29 +286,17 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
                 if (isDoubleClick(it)) {
                     return@OnClickListener
                 }
-                viewHolder.ibProfileImage.isSelected = true
-                notifyItemChanged(i)
-                Handler().postDelayed({
-                    viewHolder.ibProfileImage.isSelected = false
-                    notifyItemChanged(i)
-                },300)
+//                viewHolder.ibProfileImage.isSelected = true
+//                notifyItemChanged(i)
+//                Handler().postDelayed({
+//                    viewHolder.ibProfileImage.isSelected = false
+//                    notifyItemChanged(i)
+//                },300)
                 if (mActivity is MainActivity) {
-                    (mActivity as MainActivity).startDiagAttentionActivity(customerInfo)
+                    (mActivity as MainActivity).startDiagAttentionActivity(customerInfo,viewHolder.civProfileImage)
                 }
             })
 
-        }
-
-        private fun getUserLevel(userLevel: Long): CharSequence? {
-            return when (userLevel){
-                0L -> "비회원"
-                1L -> "일반회원"
-                2L -> "실버"
-                3L -> "노블리에"
-                4L -> "리치"
-                5L -> "로얄패밀리"
-                else -> "비회원"
-            }
         }
 
         override fun onCreateViewHolderImpl(viewGroup: ViewGroup, adapter: BaseRecyclerExtendsAdapter<CustomerInfo>, i: Int): MyCustomViewHolder {

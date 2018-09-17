@@ -3,6 +3,7 @@
 
     <dimen name="actionbar_height">63dp</dimen>
     <dimen name="main_navbar_width">220dp</dimen>
+    <dimen name="diag_tablayout_height">80dp</dimen>
 
     // Font Size
     <dimen name="main_text_bold_title">48dp</dimen>

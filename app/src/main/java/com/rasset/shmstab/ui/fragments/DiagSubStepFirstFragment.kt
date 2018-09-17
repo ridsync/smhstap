@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.dialog.ProgressLockDialog
+import com.rasset.shmstab.utils.showToast
 import kotlinx.android.synthetic.main.fragment_diag_step_first.*
 
 /**
@@ -52,29 +53,37 @@ class DiagSubStepFirstFragment : BaseFragment() {
 
     override fun onStop() {
         super.onStop()
-        if (mLockDialog != null)
-            mLockDialog.dismiss()
     }
 
     private fun initFirst(){
-        setCheckCardViews(null)
+        setCheckCardViews(RL_WEWON_INVEST)
 
         RL_WEWON_INVEST.setOnClickListener {
             setCheckCardViews(it)
         }
         RL_WEWON_MD.setOnClickListener {
+            mContext.showToast{"준비중입니다."}
+            return@setOnClickListener
             setCheckCardViews(it)
         }
         RL_WEWON_TAX.setOnClickListener {
+            mContext.showToast{"준비중입니다."}
+            return@setOnClickListener
             setCheckCardViews(it)
         }
         RL_WEWON_HOME_INTE.setOnClickListener {
+            mContext.showToast{"준비중입니다."}
+            return@setOnClickListener
             setCheckCardViews(it)
         }
         RL_WEWON_MANAGEMENT.setOnClickListener {
+            mContext.showToast{"준비중입니다."}
+            return@setOnClickListener
             setCheckCardViews(it)
         }
         RL_WEWON_CM.setOnClickListener {
+            mContext.showToast{"준비중입니다."}
+            return@setOnClickListener
             setCheckCardViews(it)
         }
     }

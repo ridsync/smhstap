@@ -4,19 +4,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.bumptech.glide.Glide
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.model.CustomerInfo
 import com.rasset.shmstab.network.res.BaseModel
-import com.rasset.shmstab.ui.fragments.BaseFragment
-import com.rasset.shmstab.ui.fragments.DiagSubCustomerInfoFragment
-import com.rasset.shmstab.ui.fragments.DiagSubStepFirstFragment
-import com.rasset.shmstab.ui.fragments.DiagSubStepSecondFragment
-import com.rasset.shmstab.utils.JUtil
+import com.rasset.shmstab.ui.components.CropCircleTransform
+import com.rasset.shmstab.ui.fragments.*
 import com.rasset.shmstab.utils.Logger
 import com.rasset.shmstab.utils.Stack
+import com.rasset.shmstab.utils.getCustomerLevelStr
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
-import kotlinx.android.synthetic.main.dialog_maincustom.*
+import kotlinx.android.synthetic.main.activity_diagnose_attention.*
 
 class DiagAttentionActivity : BaseActivity() {
     companion object {
@@ -24,7 +23,10 @@ class DiagAttentionActivity : BaseActivity() {
         fun newIntent(context: Context,customerInfo: CustomerInfo): Intent {
             val intent = Intent(context, DiagAttentionActivity::class.java)
             // TODO 이벤트버스?? 다른방법으로 Object전달 리서치할것
-            intent.putExtra("",customerInfo.userId)
+            intent.putExtra("customerId",customerInfo.customerId)
+            intent.putExtra("customerName",customerInfo.customerName)
+            intent.putExtra("photoImgPath",customerInfo.photoImgPath)
+            intent.putExtra("customerLevel",customerInfo.customerLevel)
             return intent
         }
     }
@@ -35,7 +37,7 @@ class DiagAttentionActivity : BaseActivity() {
         , DIAG_COMPLETE(3,AppConst.FRAG_NAME_DIAG_COMPLETED, null)
     }
 
-    var customerInfo:CustomerInfo? = null
+    var customerInfo:CustomerInfo = CustomerInfo()
     var mStackFrags = Stack(mutableListOf<SubFrags>())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +46,66 @@ class DiagAttentionActivity : BaseActivity() {
         replaceFragment(getNextFragInfo())
 
         setAppBars()
+
+        // TODO 고객정보 처리 수정해야함
+        val cusromerId = intent.getLongExtra("customerId",0)
+        if (cusromerId != null){
+            val photoImgPath = intent.getStringExtra("photoImgPath")
+            val customerName = intent.getStringExtra("customerName")
+            val customerLevel = intent.getLongExtra("customerLevel",0)
+            customerInfo = CustomerInfo(customerId=cusromerId,customerName=customerName,photoImgPath=photoImgPath,customerLevel=customerLevel)
+            setMainNavMenuProfile(SubFrags.DIAG_CUSTOER_INFO,customerInfo)
+        } else {
+            setMainNavMenuProfile(SubFrags.DIAG_CUSTOER_INFO, customerInfo)
+        }
+
     }
+
+    private fun setMainNavMenuProfile(step: SubFrags, customerInfo:CustomerInfo){
+
+        when (step){
+            SubFrags.DIAG_CUSTOER_INFO -> {
+                IV_CUSTOMER_PROFILE.isClickable = true
+                TV_CUSTOMER_LEVEL.visibility = if (customerInfo.customerLevel > 0) View.VISIBLE else View.GONE
+                TV_CUSTOMER_LEVEL.text = getCustomerLevelStr(customerInfo.customerLevel)
+
+                if (customerInfo.photoImgPath != null && !customerInfo.photoImgPath.isNullOrEmpty()){
+                    Glide.with(mContext)
+                            .load(customerInfo.photoImgPath)
+                            .bitmapTransform(CropCircleTransform(mContext))
+                            .error(R.drawable.profile_default)
+                            .into(IV_CUSTOMER_PROFILE)
+                    TV_CUSTOMER_NAME.visibility = View.VISIBLE
+                    TV_CUSTOMER_NAME.text = customerInfo.customerName
+                    IV_CUSTOMER_PROFILE_CAMERA.visibility = View.GONE
+                    TV_CUSTOMER_PHOTO_ADD.visibility = View.GONE
+                    TV_CUSTOMER_DESC.visibility = View.GONE
+                } else {
+                    TV_CUSTOMER_NAME.visibility = View.GONE
+                    IV_CUSTOMER_PROFILE_CAMERA.visibility = View.VISIBLE
+                    TV_CUSTOMER_PHOTO_ADD.visibility = View.VISIBLE
+                    TV_CUSTOMER_DESC.visibility = View.VISIBLE
+                }
+            }
+            SubFrags.DIAG_INFO_STEP1, SubFrags.DIAG_INFO_STEP2 -> {
+                IV_CUSTOMER_PROFILE.isClickable = false
+                TV_CUSTOMER_LEVEL.visibility = View.VISIBLE
+                TV_CUSTOMER_NAME.visibility = View.VISIBLE
+                if (customerInfo.customerId > 0){
+                    TV_CUSTOMER_LEVEL.text =  getCustomerLevelStr(customerInfo.customerLevel)
+                    TV_CUSTOMER_NAME.text = customerInfo.customerName
+                }else {
+                    TV_CUSTOMER_LEVEL.text =  getCustomerLevelStr(0)
+                    TV_CUSTOMER_NAME.text =  ""
+                }
+                IV_CUSTOMER_PROFILE_CAMERA.visibility = View.GONE
+                TV_CUSTOMER_PHOTO_ADD.visibility = View.GONE
+                TV_CUSTOMER_DESC.visibility = View.GONE
+            }
+        }
+
+    }
+
 
     private fun getNextFragInfo(): DiagAttentionActivity.SubFrags {
         var nextFrag:SubFrags = SubFrags.values()[mStackFrags.count()]
@@ -60,16 +121,16 @@ class DiagAttentionActivity : BaseActivity() {
 
     override fun onBackPressed() {
         if (mStackFrags.count() == 1){
-            finish()
+            supportFinishAfterTransition()
             overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
         } else {
             mStackFrags.pop()
             super.onBackPressed()
-            setAppBarTitle()
+            setStatAppBarTitlenEtc()
         }
     }
     private fun setAppBars(){
-        setAppBarTitle()
+        setStatAppBarTitlenEtc()
         IB_APPBAR_ACTION.visibility = View.VISIBLE
         IB_APPBAR_ACTION.setOnClickListener{
             val nextFrag = getNextFragInfo()
@@ -80,7 +141,7 @@ class DiagAttentionActivity : BaseActivity() {
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
             } else {
                 replaceFragment(nextFrag, true)
-                setAppBarTitle()
+                setStatAppBarTitlenEtc()
             }
         }
         IB_APPBAR_BACK.visibility = View.VISIBLE
@@ -89,7 +150,7 @@ class DiagAttentionActivity : BaseActivity() {
         }
     }
 
-    private fun setAppBarTitle(){
+    private fun setStatAppBarTitlenEtc(){
         // 현재 화면위치 에 따른 Appbar Title
         mStackFrags.peek()?.let {
             TV_APPBAR_TEXT.text =  it.title
@@ -115,6 +176,8 @@ class DiagAttentionActivity : BaseActivity() {
                 }
                 else -> Unit
             }
+            // 현위치에 따른 프로필정보
+            setMainNavMenuProfile(it,customerInfo)
         }
 
     }

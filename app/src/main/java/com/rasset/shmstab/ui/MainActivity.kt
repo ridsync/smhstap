@@ -25,6 +25,9 @@ import com.rasset.shmstab.utils.Prefer
 import com.rasset.shmstab.utils.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
+import android.support.v4.app.ActivityOptionsCompat
+import kotlinx.android.synthetic.main.item_main_customer.*
+
 
 /**
  * An activity representing a list of Pings. This activity
@@ -84,8 +87,13 @@ class MainActivity : BaseActivity() {
     }
 
     // 선택유저 정보 넘기기
-    fun startDiagAttentionActivity(customerInfo:CustomerInfo){
-        startActivity(DiagAttentionActivity.newIntent(mContext,customerInfo))
+    fun startDiagAttentionActivity(customerInfo:CustomerInfo, imgView:View? ){
+        if (imgView!=null) {
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imgView, "profile")
+            startActivity(DiagAttentionActivity.newIntent(mContext,customerInfo),options.toBundle())
+        } else {
+            startActivity(DiagAttentionActivity.newIntent(mContext,customerInfo))
+        }
         overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out)
     }
 

@@ -12,6 +12,8 @@
         <item name="android:editTextStyle">@style/EditTextStyle</item>
         <item name="android:radioButtonStyle">@style/RadioButtonStyle</item>
         <item name="android:checkboxStyle">@style/CheckboxStyle</item>
+
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -68,6 +70,12 @@
         <item name="colorControlNormal">@color/main_appbar_boxline</item>
         <item name="colorControlActivated">@color/main_accent_color</item>
         <item name="colorControlHighlight">@color/main_accent_color</item>
+    </style>
+
+    <!-- Change Tab text appearance -->
+    <style name="CustomTabWidgetText"
+        parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">21dp</item>
     </style>
 
     <!--  (Ripple Effect) -->
