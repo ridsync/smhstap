@@ -3,7 +3,9 @@ package com.rasset.shmstab.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
@@ -17,6 +19,10 @@ import com.rasset.shmstab.utils.getCustomerLevelStr
 import com.rasset.shmstab.utils.hideIME
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 import kotlinx.android.synthetic.main.activity_diagnose_attention.*
+import kotlinx.android.synthetic.main.fragment_diag_survey_asset_sell.*
+import android.view.inputmethod.EditorInfo
+
+
 
 class DiagAttentionActivity : BaseActivity() {
     companion object {

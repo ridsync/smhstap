@@ -11,10 +11,13 @@ import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import com.rasset.shmstab.R
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.utils.Logger
+import com.rasset.shmstab.utils.hideIME
 import kotlinx.android.synthetic.main.fragment_diag_step_second.*
+import kotlinx.android.synthetic.main.fragment_diag_survey_asset_sell.*
 import java.util.HashMap
 
 /**
@@ -61,6 +64,14 @@ class DiagSurveyAssetSellFragment : BaseFragment() {
     }
 
     fun initFirst(){
+
+        ET_LOCATION_ADDRESS_DETAIL.setOnEditorActionListener { v, actionId, event ->
+            if (v?.id === ET_LOCATION_ADDRESS_DETAIL.id && actionId === EditorInfo.IME_ACTION_NEXT) {
+                hideIME(mContext,ET_LOCATION_ADDRESS_DETAIL)
+            }
+            false
+        }
+
 
     }
 
