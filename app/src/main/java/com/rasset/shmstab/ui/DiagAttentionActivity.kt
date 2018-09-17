@@ -14,6 +14,7 @@ import com.rasset.shmstab.ui.fragments.*
 import com.rasset.shmstab.utils.Logger
 import com.rasset.shmstab.utils.Stack
 import com.rasset.shmstab.utils.getCustomerLevelStr
+import com.rasset.shmstab.utils.hideIME
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 import kotlinx.android.synthetic.main.activity_diagnose_attention.*
 
@@ -103,7 +104,7 @@ class DiagAttentionActivity : BaseActivity() {
                 TV_CUSTOMER_DESC.visibility = View.GONE
             }
         }
-
+        hideIME(mContext,TV_CUSTOMER_LEVEL)
     }
 
 
