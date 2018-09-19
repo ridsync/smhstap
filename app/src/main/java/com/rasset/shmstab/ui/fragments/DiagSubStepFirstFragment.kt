@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
+import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.network.res.BaseModel
-import com.rasset.shmstab.ui.dialog.ProgressLockDialog
 import com.rasset.shmstab.utils.showToast
 import kotlinx.android.synthetic.main.fragment_diag_step_first.*
 
@@ -19,7 +19,14 @@ import kotlinx.android.synthetic.main.fragment_diag_step_first.*
 class DiagSubStepFirstFragment : BaseFragment() {
 
     private object Holder { val INSTANCE = DiagSubStepFirstFragment() }
-
+    enum class ADVISOR(val wCode: Int, val wewon: String) {
+        ADVISOR_NAME_INVEST(0, AppConst.ADVISOR_NAME_INVEST)
+        , ADVISOR_NAME_MD(1, AppConst.ADVISOR_NAME_MD)
+        , ADVISOR_NAME_TAX(2, AppConst.ADVISOR_NAME_TAX)
+        , ADVISOR_NAME_HOME_INTE(3, AppConst.ADVISOR_NAME_HOME_INTE)
+        , ADVISOR_NAME_MANAGEMENT(4, AppConst.ADVISOR_NAME_MANAGEMENT)
+        , ADVISOR_NAME_CM(5, AppConst.ADVISOR_NAME_CM)
+    }
     companion object {
         val singleTone: DiagSubStepFirstFragment by lazy { Holder.INSTANCE }
 
@@ -30,6 +37,8 @@ class DiagSubStepFirstFragment : BaseFragment() {
             return intent
         }
     }
+
+    var selectedWewon:ADVISOR = ADVISOR.ADVISOR_NAME_INVEST
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,52 +65,58 @@ class DiagSubStepFirstFragment : BaseFragment() {
     }
 
     private fun initFirst(){
-        setCheckCardViews(RL_WEWON_INVEST)
+        setCheckCardViews(RL_ADVISOR_INVEST)
 
-        RL_WEWON_INVEST.setOnClickListener {
+        RL_ADVISOR_INVEST.setOnClickListener {
             setCheckCardViews(it)
+            selectedWewon = ADVISOR.ADVISOR_NAME_INVEST
         }
-        RL_WEWON_MD.setOnClickListener {
+        RL_ADVISOR_MD.setOnClickListener {
             mContext.showToast{"준비중입니다."}
             return@setOnClickListener
             setCheckCardViews(it)
+            selectedWewon = ADVISOR.ADVISOR_NAME_MD
         }
-        RL_WEWON_TAX.setOnClickListener {
+        RL_ADVISOR_TAX.setOnClickListener {
             mContext.showToast{"준비중입니다."}
             return@setOnClickListener
             setCheckCardViews(it)
+            selectedWewon = ADVISOR.ADVISOR_NAME_TAX
         }
-        RL_WEWON_HOME_INTE.setOnClickListener {
+        RL_ADVISOR_HOME_INTE.setOnClickListener {
             mContext.showToast{"준비중입니다."}
             return@setOnClickListener
             setCheckCardViews(it)
+            selectedWewon = ADVISOR.ADVISOR_NAME_HOME_INTE
         }
-        RL_WEWON_MANAGEMENT.setOnClickListener {
+        RL_ADVISOR_MANAGEMENT.setOnClickListener {
             mContext.showToast{"준비중입니다."}
             return@setOnClickListener
             setCheckCardViews(it)
+            selectedWewon = ADVISOR.ADVISOR_NAME_MANAGEMENT
         }
-        RL_WEWON_CM.setOnClickListener {
+        RL_ADVISOR_CM.setOnClickListener {
             mContext.showToast{"준비중입니다."}
             return@setOnClickListener
             setCheckCardViews(it)
+            selectedWewon = ADVISOR.ADVISOR_NAME_CM
         }
     }
 
     private fun setCheckCardViews(view:View?){
-        IV_WEWON_INVEST_CHECK.visibility = View.INVISIBLE
-        IV_WEWON_MD_CHECK.visibility = View.INVISIBLE
-        IV_WEWON_TAX_CHECK.visibility = View.INVISIBLE
-        IV_WEWON_HOME_INTE_CHECK.visibility = View.INVISIBLE
-        IV_WEWON_MANAGEMENT_CHECK.visibility = View.INVISIBLE
-        IV_WEWON_CM_CHECK.visibility = View.INVISIBLE
+        IV_ADVISOR_INVEST_CHECK.visibility = View.INVISIBLE
+        IV_ADVISOR_MD_CHECK.visibility = View.INVISIBLE
+        IV_ADVISOR_TAX_CHECK.visibility = View.INVISIBLE
+        IV_ADVISOR_HOME_INTE_CHECK.visibility = View.INVISIBLE
+        IV_ADVISOR_MANAGEMENT_CHECK.visibility = View.INVISIBLE
+        IV_ADVISOR_CM_CHECK.visibility = View.INVISIBLE
         when (view){
-            RL_WEWON_INVEST -> IV_WEWON_INVEST_CHECK.visibility = View.VISIBLE
-            RL_WEWON_MD -> IV_WEWON_MD_CHECK.visibility = View.VISIBLE
-            RL_WEWON_TAX -> IV_WEWON_TAX_CHECK.visibility = View.VISIBLE
-            RL_WEWON_HOME_INTE -> IV_WEWON_HOME_INTE_CHECK.visibility = View.VISIBLE
-            RL_WEWON_MANAGEMENT -> IV_WEWON_MANAGEMENT_CHECK.visibility = View.VISIBLE
-            RL_WEWON_CM -> IV_WEWON_CM_CHECK.visibility = View.VISIBLE
+            RL_ADVISOR_INVEST -> IV_ADVISOR_INVEST_CHECK.visibility = View.VISIBLE
+            RL_ADVISOR_MD -> IV_ADVISOR_MD_CHECK.visibility = View.VISIBLE
+            RL_ADVISOR_TAX -> IV_ADVISOR_TAX_CHECK.visibility = View.VISIBLE
+            RL_ADVISOR_HOME_INTE -> IV_ADVISOR_HOME_INTE_CHECK.visibility = View.VISIBLE
+            RL_ADVISOR_MANAGEMENT -> IV_ADVISOR_MANAGEMENT_CHECK.visibility = View.VISIBLE
+            RL_ADVISOR_CM -> IV_ADVISOR_CM_CHECK.visibility = View.VISIBLE
         }
     }
 

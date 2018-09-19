@@ -3,6 +3,6 @@ ext {
     version_name ='0.1.468'
 
     api_main_url_prod = '"https://api.saycupid.co.kr/prod/"'
-    api_main_url_dev = '"https://1ecd5401-740b-4266-9061-16eba6e5ee4a.mock.pstmn.io/api/pad/"'
+    api_main_url_dev = '"https://9144b29a-0131-45c0-be7a-fc0926a23e00.mock.pstmn.io/api/pad/"'
 
 }

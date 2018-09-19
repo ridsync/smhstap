@@ -3,22 +3,17 @@ package com.rasset.shmstab.ui.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.rasset.shmstab.R
-import com.rasset.shmstab.network.res.BaseModel
-import com.rasset.shmstab.utils.Logger
 import com.rasset.shmstab.utils.hideIME
-import kotlinx.android.synthetic.main.fragment_diag_step_second.*
 import kotlinx.android.synthetic.main.fragment_diag_survey_asset_sell.*
-import java.util.HashMap
+import java.util.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -38,6 +33,8 @@ class DiagSurveyAssetSellFragment : BaseFragment() {
             return intent
         }
     }
+
+    var mPurchasedYear:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +69,80 @@ class DiagSurveyAssetSellFragment : BaseFragment() {
             false
         }
 
+        initSpinners()
+    }
 
+
+    private fun initSpinners() {
+
+        /* 스피너 디폴트 텍스트 고민좀 해보자 */
+        // ++ BORN ++
+        val maxAge = 50
+        val minAge = 0
+        val cal = Calendar.getInstance()
+        val nowYear = cal.get(Calendar.YEAR)
+        val minYear = nowYear - minAge
+        val rangeAge = maxAge - minAge
+
+        val bornSpinnerAdapter = object : ArrayAdapter<String>(mContext, R.layout.item_spinner) {
+
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                val row = inflater.inflate(R.layout.item_spinner, parent, false)
+                val label = row.findViewById(android.R.id.text1) as TextView
+//                label.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16f)
+                if (position == 0) {
+                    label.text = "선택"
+//                    label.setTextColor(resources.getColor(R.color.color_black_12))
+                } else if (position < count) {
+//                    label.setTextColor(resources.getColor(R.color.color_black_87))
+                    label.text = getItem(position) + "년"
+                }
+
+                return row
+            }
+
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View? {
+                var v: View? = null
+                if (position == 0) {
+                    val tv = TextView(context)
+                    tv.height = 0
+                    tv.visibility = View.GONE
+                    v = tv
+                } else {
+                    v = super.getDropDownView(position, null, parent)
+                }
+                parent.isVerticalScrollBarEnabled = false
+                return v
+            }
+        }
+
+        val arrYear = arrayOfNulls<String>(rangeAge)
+        for (i in 0 until rangeAge) {
+            arrYear[i] = (minYear - i).toString() + ""
+        }
+
+        // index 0
+        bornSpinnerAdapter.add("년도선택")
+        for (i in arrYear.indices) {
+            bornSpinnerAdapter.add(arrYear[i])
+        }
+
+        bornSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        SPN_CONSULTING_DATE_YMD.adapter = bornSpinnerAdapter
+        SPN_CONSULTING_DATE_YMD.onItemSelectedListener = mItemSelectedListener
+    }
+
+    private val mItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+        override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            if (position == 0) return
+            mPurchasedYear = parent.getItemAtPosition(position).toString()
+        }
+
+        override fun onNothingSelected(parent: AdapterView<*>) {
+
+        }
     }
 
 }

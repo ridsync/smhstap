@@ -6,8 +6,8 @@
         <item>@string/diag_txt_md</item>
         <item>@string/diag_txt_tax</item>
         <item>@string/diag_txt_home_inte</item>
-        <item>@string/diag_txt_cm</item>
         <item>@string/diag_txt_management</item>
+        <item>@string/diag_txt_cm</item>
     </array>
 
 </resources>

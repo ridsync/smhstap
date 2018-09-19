@@ -391,7 +391,7 @@
                         android:paddingBottom="12dp"
                         android:singleLine="true"
                         android:background="@null"
-                        android:textColor="@color/main_text_primary"
+                        android:textColor="@color/main_text_secondary"
                         android:textSize="@dimen/main_text_body1" />
 
                 </LinearLayout>

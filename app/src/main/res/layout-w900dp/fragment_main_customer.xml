@@ -64,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/IB_TEMP_NEW_CUSTOMER"
+            android:layout_alignWithParentIfMissing="true"
             android:gravity="center_vertical"
             android:layout_marginRight="30dp"
             android:orientation="horizontal">
@@ -95,7 +96,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="50dp"
             android:src="@drawable/ic_member_add"
-            android:background="@null"/>
+            android:background="@null"
+            android:visibility="gone"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

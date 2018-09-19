@@ -22,20 +22,20 @@
         card_view:cardBackgroundColor="@color/basic_color_white">
 
     <RelativeLayout
-        android:id="@+id/RL_WEWON_INVEST"
+        android:id="@+id/RL_ADVISOR_INVEST"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         style="@style/RippleEffect">
 
         <ImageView
-            android:id="@+id/IV_WEWON_INVEST"
+            android:id="@+id/IV_ADVISOR_INVEST"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:src="@drawable/kms"/>
 
         <ImageView
-            android:id="@+id/IV_WEWON_INVEST_CHECK"
+            android:id="@+id/IV_ADVISOR_INVEST_CHECK"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
@@ -50,12 +50,12 @@
             android:layout_height="12dp" />
 
         <TextView
-            android:id="@+id/TV_WEWON_DIAG_FIELD"
+            android:id="@+id/TV_ADVISOR_DIAG_FIELD"
             android:layout_width="wrap_content"
             android:layout_height="27dp"
             android:layout_marginTop="24dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/IV_WEWON_INVEST"
+            android:layout_below="@+id/IV_ADVISOR_INVEST"
             android:text="부동산 재테크"
             android:textColor="@color/main_text_primary"
             android:textSize="18dp"/>
@@ -64,11 +64,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/TV_WEWON_DIAG_FIELD"
+            android:layout_below="@+id/TV_ADVISOR_DIAG_FIELD"
             android:orientation="horizontal"
             android:gravity="center_horizontal">
         <TextView
-            android:id="@+id/TV_WEWON_NAME"
+            android:id="@+id/TV_ADVISOR_NAME"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:text="김민수"
@@ -77,9 +77,9 @@
             android:textSize="30dp"/>
 
         <TextView
-            android:id="@+id/TV_WEWON_SUFFIX"
+            android:id="@+id/TV_ADVISOR_SUFFIX"
             android:layout_width="wrap_content"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="전문위원"
             android:textColor="@color/main_text_primary"
@@ -99,13 +99,13 @@
         card_view:cardElevation="2dp"
         card_view:cardBackgroundColor="@color/basic_color_white">
     <RelativeLayout
-        android:id="@+id/RL_WEWON_MD"
+        android:id="@+id/RL_ADVISOR_MD"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         style="@style/RippleEffect">
 
         <ImageView
-            android:id="@+id/IV_WEWON_MD"
+            android:id="@+id/IV_ADVISOR_MD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -113,7 +113,7 @@
             android:adjustViewBounds="true"/>
 
         <ImageView
-            android:id="@+id/IV_WEWON_MD_CHECK"
+            android:id="@+id/IV_ADVISOR_MD_CHECK"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
@@ -128,12 +128,12 @@
             android:layout_height="12dp" />
 
         <TextView
-            android:id="@+id/TV_WEWON_DIAG_FIELD2"
+            android:id="@+id/TV_ADVISOR_DIAG_FIELD2"
             android:layout_width="wrap_content"
             android:layout_height="27dp"
             android:layout_marginTop="24dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/IV_WEWON_MD"
+            android:layout_below="@+id/IV_ADVISOR_MD"
             android:text="토지/개발(MD)"
             android:textColor="@color/main_text_primary"
             android:textSize="18dp"/>
@@ -142,11 +142,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/TV_WEWON_DIAG_FIELD2"
+            android:layout_below="@+id/TV_ADVISOR_DIAG_FIELD2"
             android:orientation="horizontal"
             android:gravity="center_horizontal">
                 <TextView
-                android:id="@+id/TV_WEWON_NAME2"
+                android:id="@+id/TV_ADVISOR_NAME2"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="고상철"
@@ -155,9 +155,9 @@
                 android:textSize="30dp"/>
 
             <TextView
-                android:id="@+id/TV_WEWON_SUFFIX2"
+                android:id="@+id/TV_ADVISOR_SUFFIX2"
                 android:layout_width="wrap_content"
-                android:layout_height="27dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="전문위원"
                 android:textColor="@color/main_text_primary"
@@ -177,13 +177,13 @@
         card_view:cardElevation="2dp"
         card_view:cardBackgroundColor="@color/basic_color_white">
     <RelativeLayout
-        android:id="@+id/RL_WEWON_TAX"
+        android:id="@+id/RL_ADVISOR_TAX"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         style="@style/RippleEffect">
 
         <ImageView
-            android:id="@+id/IV_WEWON_TAX"
+            android:id="@+id/IV_ADVISOR_TAX"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -191,7 +191,7 @@
             android:adjustViewBounds="true"/>
 
         <ImageView
-            android:id="@+id/IV_WEWON_TAX_CHECK"
+            android:id="@+id/IV_ADVISOR_TAX_CHECK"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
@@ -206,12 +206,12 @@
             android:layout_height="12dp" />
 
         <TextView
-            android:id="@+id/TV_WEWON_DIAG_FIELD3"
+            android:id="@+id/TV_ADVISOR_DIAG_FIELD3"
             android:layout_width="wrap_content"
             android:layout_height="27dp"
             android:layout_marginTop="24dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/IV_WEWON_TAX"
+            android:layout_below="@+id/IV_ADVISOR_TAX"
             android:text="부동산 세금"
             android:textColor="@color/main_text_primary"
             android:textSize="18dp"/>
@@ -220,11 +220,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/TV_WEWON_DIAG_FIELD3"
+            android:layout_below="@+id/TV_ADVISOR_DIAG_FIELD3"
             android:orientation="horizontal"
             android:gravity="center_horizontal">
             <TextView
-                android:id="@+id/TV_WEWON_NAME3"
+                android:id="@+id/TV_ADVISOR_NAME3"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="김윤석"
@@ -233,9 +233,9 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/TV_WEWON_SUFFIX3"
+                android:id="@+id/TV_ADVISOR_SUFFIX3"
                 android:layout_width="wrap_content"
-                android:layout_height="27dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="전문위원"
                 android:textColor="@color/main_text_primary"
@@ -259,20 +259,20 @@
         card_view:cardElevation="2dp"
         card_view:cardBackgroundColor="@color/basic_color_white">
         <RelativeLayout
-            android:id="@+id/RL_WEWON_HOME_INTE"
+            android:id="@+id/RL_ADVISOR_HOME_INTE"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             style="@style/RippleEffect">
 
             <ImageView
-                android:id="@+id/IV_WEWON_HOME_INTE"
+                android:id="@+id/IV_ADVISOR_HOME_INTE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/kys_1"/>
 
             <ImageView
-                android:id="@+id/IV_WEWON_HOME_INTE_CHECK"
+                android:id="@+id/IV_ADVISOR_HOME_INTE_CHECK"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
@@ -287,12 +287,12 @@
                 android:layout_height="12dp" />
 
             <TextView
-                android:id="@+id/TV_WEWON_DIAG_FIELD4"
+                android:id="@+id/TV_ADVISOR_DIAG_FIELD4"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
                 android:layout_marginTop="24dp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/IV_WEWON_HOME_INTE"
+                android:layout_below="@+id/IV_ADVISOR_HOME_INTE"
                 android:text="홈스테이징/인테리어"
                 android:textColor="@color/main_text_primary"
                 android:textSize="18dp"/>
@@ -301,11 +301,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/TV_WEWON_DIAG_FIELD4"
+                android:layout_below="@+id/TV_ADVISOR_DIAG_FIELD4"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal">
                 <TextView
-                    android:id="@+id/TV_WEWON_NAME4"
+                    android:id="@+id/TV_ADVISOR_NAME4"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
                     android:text="김영숙"
@@ -314,9 +314,9 @@
                     android:textSize="30dp"/>
 
                 <TextView
-                    android:id="@+id/TV_WEWON_SUFFIX4"
+                    android:id="@+id/TV_ADVISOR_SUFFIX4"
                     android:layout_width="wrap_content"
-                    android:layout_height="27dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="전문위원"
                     android:textColor="@color/main_text_primary"
@@ -335,13 +335,13 @@
             card_view:cardElevation="2dp"
             card_view:cardBackgroundColor="@color/basic_color_white">
             <RelativeLayout
-                android:id="@+id/RL_WEWON_MANAGEMENT"
+                android:id="@+id/RL_ADVISOR_MANAGEMENT"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 style="@style/RippleEffect">
 
                 <ImageView
-                    android:id="@+id/IV_WEWON_MANAGEMENT"
+                    android:id="@+id/IV_ADVISOR_MANAGEMENT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -349,7 +349,7 @@
                     android:adjustViewBounds="true"/>
 
                 <ImageView
-                    android:id="@+id/IV_WEWON_MANAGEMENT_CHECK"
+                    android:id="@+id/IV_ADVISOR_MANAGEMENT_CHECK"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginTop="10dp"
@@ -364,12 +364,12 @@
                     android:layout_height="12dp" />
 
                 <TextView
-                    android:id="@+id/TV_WEWON_DIAG_FIELD5"
+                    android:id="@+id/TV_ADVISOR_DIAG_FIELD5"
                     android:layout_width="wrap_content"
                     android:layout_height="27dp"
                     android:layout_marginTop="24dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/IV_WEWON_MANAGEMENT"
+                    android:layout_below="@+id/IV_ADVISOR_MANAGEMENT"
                     android:text="주택임대관리"
                     android:textColor="@color/main_text_primary"
                     android:textSize="18dp"/>
@@ -378,11 +378,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/TV_WEWON_DIAG_FIELD5"
+                    android:layout_below="@+id/TV_ADVISOR_DIAG_FIELD5"
                     android:orientation="horizontal"
                     android:gravity="center_horizontal">
                     <TextView
-                        android:id="@+id/TV_WEWON_NAME5"
+                        android:id="@+id/TV_ADVISOR_NAME5"
                         android:layout_width="wrap_content"
                         android:layout_height="36dp"
                         android:text="박진상"
@@ -391,9 +391,9 @@
                         android:textStyle="bold"/>
 
                     <TextView
-                        android:id="@+id/TV_WEWON_SUFFIX5"
+                        android:id="@+id/TV_ADVISOR_SUFFIX5"
                         android:layout_width="wrap_content"
-                        android:layout_height="27dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="전문위원"
                         android:textColor="@color/main_text_primary"
@@ -413,13 +413,13 @@
             card_view:cardElevation="2dp"
             card_view:cardBackgroundColor="@color/basic_color_white">
             <RelativeLayout
-                android:id="@+id/RL_WEWON_CM"
+                android:id="@+id/RL_ADVISOR_CM"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 style="@style/RippleEffect">
 
                 <ImageView
-                    android:id="@+id/IV_WEWON_CM"
+                    android:id="@+id/IV_ADVISOR_CM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -427,7 +427,7 @@
                     android:adjustViewBounds="true"/>
 
                 <ImageView
-                    android:id="@+id/IV_WEWON_CM_CHECK"
+                    android:id="@+id/IV_ADVISOR_CM_CHECK"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginTop="10dp"
@@ -442,12 +442,12 @@
                     android:layout_height="12dp" />
 
                 <TextView
-                    android:id="@+id/TV_WEWON_DIAG_FIELD6"
+                    android:id="@+id/TV_ADVISOR_DIAG_FIELD6"
                     android:layout_width="wrap_content"
                     android:layout_height="27dp"
                     android:layout_marginTop="24dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/IV_WEWON_CM"
+                    android:layout_below="@+id/IV_ADVISOR_CM"
                     android:text="건축/리모델링(CM)"
                     android:textColor="@color/main_text_primary"
                     android:textSize="18dp"/>
@@ -456,11 +456,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/TV_WEWON_DIAG_FIELD6"
+                    android:layout_below="@+id/TV_ADVISOR_DIAG_FIELD6"
                     android:orientation="horizontal"
                     android:gravity="center_horizontal">
                     <TextView
-                        android:id="@+id/TV_WEWON_NAME6"
+                        android:id="@+id/TV_ADVISOR_NAME6"
                         android:layout_width="wrap_content"
                         android:layout_height="36dp"
                         android:text="이택수"
@@ -469,9 +469,9 @@
                         android:textStyle="bold"/>
 
                     <TextView
-                        android:id="@+id/TV_WEWON_SUFFIX6"
+                        android:id="@+id/TV_ADVISOR_SUFFIX6"
                         android:layout_width="wrap_content"
-                        android:layout_height="27dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="전문위원"
                         android:textColor="@color/main_text_primary"

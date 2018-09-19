@@ -3,9 +3,7 @@ package com.rasset.shmstab.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.View
-import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
@@ -13,15 +11,9 @@ import com.rasset.shmstab.model.CustomerInfo
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.components.CropCircleTransform
 import com.rasset.shmstab.ui.fragments.*
-import com.rasset.shmstab.utils.Logger
-import com.rasset.shmstab.utils.Stack
-import com.rasset.shmstab.utils.getCustomerLevelStr
-import com.rasset.shmstab.utils.hideIME
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 import kotlinx.android.synthetic.main.activity_diagnose_attention.*
-import kotlinx.android.synthetic.main.fragment_diag_survey_asset_sell.*
-import android.view.inputmethod.EditorInfo
-
+import com.rasset.shmstab.utils.*
 
 
 class DiagAttentionActivity : BaseActivity() {
@@ -34,6 +26,7 @@ class DiagAttentionActivity : BaseActivity() {
             intent.putExtra("customerName",customerInfo.customerName)
             intent.putExtra("photoImgPath",customerInfo.photoImgPath)
             intent.putExtra("customerLevel",customerInfo.customerLevel)
+            intent.putExtra("customerPhone",customerInfo.customerPhone)
             return intent
         }
     }
@@ -45,6 +38,7 @@ class DiagAttentionActivity : BaseActivity() {
     }
 
     var customerInfo:CustomerInfo = CustomerInfo()
+    var selectedAdviser:DiagSubStepFirstFragment.ADVISOR = DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST
     var mStackFrags = Stack(mutableListOf<SubFrags>())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,11 +50,12 @@ class DiagAttentionActivity : BaseActivity() {
 
         // TODO 고객정보 처리 수정해야함
         val cusromerId = intent.getLongExtra("customerId",0)
-        if (cusromerId != null){
+        if (cusromerId > 0){
             val photoImgPath = intent.getStringExtra("photoImgPath")
             val customerName = intent.getStringExtra("customerName")
             val customerLevel = intent.getLongExtra("customerLevel",0)
-            customerInfo = CustomerInfo(customerId=cusromerId,customerName=customerName,photoImgPath=photoImgPath,customerLevel=customerLevel)
+            val customerPhone = intent.getStringExtra("customerPhone")
+            customerInfo = CustomerInfo(customerId=cusromerId,customerName=customerName,photoImgPath=photoImgPath,customerLevel=customerLevel,customerPhone=customerPhone)
             setMainNavMenuProfile(SubFrags.DIAG_CUSTOER_INFO,customerInfo)
         } else {
             setMainNavMenuProfile(SubFrags.DIAG_CUSTOER_INFO, customerInfo)
@@ -142,11 +137,17 @@ class DiagAttentionActivity : BaseActivity() {
         IB_APPBAR_ACTION.setOnClickListener{
             val nextFrag = getNextFragInfo()
             if (nextFrag == SubFrags.DIAG_COMPLETE) {
-                // TODO 예진 정보 전송 후 메인 Refresh
-                // 전송 Dialog ??
+                postCustomerDiagInfos()
                 finish()
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+                showToast {
+                    "[ 서버 전송 완료 ]"
+                }
             } else {
+                if (nextFrag == SubFrags.DIAG_INFO_STEP2) {
+                    val fragFirst = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP1.title) as DiagSubStepFirstFragment
+                    selectedAdviser = fragFirst.selectedWewon
+                }
                 replaceFragment(nextFrag, true)
                 setStatAppBarTitlenEtc()
             }
@@ -155,6 +156,20 @@ class DiagAttentionActivity : BaseActivity() {
         IB_APPBAR_BACK.setOnClickListener{
             onBackPressed()
         }
+    }
+
+    private fun postCustomerDiagInfos() {
+
+        // TODO Validation Check
+        val fragSecond = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP2.title) as DiagSubStepSecondFragment
+        val fragments = fragSecond.getSubFragments()
+
+        //TODO 데이터 추출
+        val fragInfo = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_CUSTOER_INFO.title) as DiagSubCustomerInfoFragment
+        val fragFirst = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP1.title) as DiagSubStepFirstFragment
+
+        //TODO API 전송
+        Logger.d("postCustomerDiagInfos  ")
     }
 
     private fun setStatAppBarTitlenEtc(){
@@ -195,7 +210,7 @@ class DiagAttentionActivity : BaseActivity() {
         if (isAnim){
             transaction.setCustomAnimations(R.animator.slide_in_from_right_object_enter, R.animator.slide_out_to_left_object_exit, R.animator.slide_in_left_object_popenter, R.animator.slide_out_to_right_object_popexit)
         }
-        transaction.replace(R.id.FR_DIAG_CONTAINER, curFrag.fragment)
+        transaction.replace(R.id.FR_DIAG_CONTAINER, curFrag.fragment,curFrag.title)
         transaction.commitAllowingStateLoss()
         mStackFrags.push(curFrag)
     }

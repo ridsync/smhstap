@@ -13,7 +13,7 @@
     <string name="btn_next">다음</string>
     <string name="btn_completed">완료</string>
 
-    // WEWON_SURVEYS_TITLE
+    // ADVISOR_SURVEYS_TITLE
     <string name="diag_txt_asset_sell">부동산 재테크_매도</string>
     <string name="diag_txt_asset_buy">부동산 재테크_매수</string>
     <string name="diag_txt_md">토지/개발(MD)</string>

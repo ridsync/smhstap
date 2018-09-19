@@ -15,6 +15,7 @@ import android.widget.TextView
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.network.res.BaseModel
+import com.rasset.shmstab.ui.DiagAttentionActivity
 import com.rasset.shmstab.ui.LoginActivity
 import com.rasset.shmstab.ui.components.RecursiveRadioGroup
 import com.rasset.shmstab.ui.dialog.AlertSimpleDialog
@@ -70,7 +71,7 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
     }
 
     lateinit var acbPrivacyAgree: AppCompatCheckBox
-    fun initFirst(){
+    private fun initFirst(){
         acbPrivacyAgree = ACB_PRIVACY_AGREE
         RG_DIAG_FIELD.check(RB_DIAG_INVEST)
 
@@ -90,18 +91,34 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
         }
 
         TV_CONSULTING_DATE_YMD.setOnClickListener {
-            setDateYMD()
+//            setDateYMD()
             hideIME(mContext,ET_CUSTOMER_PHONE)
         }
         TV_CONSULTING_DATE_START_HOUR.setOnClickListener {
-            setDateTime()
+//            setDateTime()
             hideIME(mContext,ET_CUSTOMER_PHONE)
         }
         TV_CONSULTING_DATE_END_HOUR.setOnClickListener {
-            setDateTime()
+//            setDateTime()
             hideIME(mContext,ET_CUSTOMER_PHONE)
         }
         ET_CUSTOMER_PHONE.addTextChangedListener(mContactWatcher)
+
+        (activity as DiagAttentionActivity).customerInfo.let {
+            it.customerName?.let {
+                ET_CUSTOMER_NAME.setText(it)
+            }
+            it.customerPhone?.let {
+                ET_CUSTOMER_PHONE.setText(it)
+            }
+            it.customerLevel.let {
+                ET_CUSTOMER_LEVEL.setText(getCustomerLevelStr(it))
+            }
+        }
+
+        (activity as DiagAttentionActivity).customerInfo.customerName?.let {
+
+        }
     }
 
     private fun setDateYMD() {

@@ -255,20 +255,20 @@
                     android:gravity="center_vertical"/>
 
                 <Spinner
+                    android:id="@+id/SPN_CONSULTING_DATE_YMD"
                     android:layout_width="160dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="30dp"
                     android:layout_below="@+id/TV_DIAG_TYPE_LABEL_BUY_TIMING"/>
-                <TextView
-                    android:id="@+id/TV_CONSULTING_DATE_YMD"
-                    android:layout_width="160dp"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_below="@+id/TV_DIAG_TYPE_LABEL_BUY_TIMING"
-                    android:text="2018년"
-                    android:textSize="@dimen/main_text_body1"
-                    android:textColor="@color/main_text_secondary"
-                    android:gravity="center_vertical"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/SPN_CONSULTING_DATE_YMD"
+                    android:layout_alignLeft="@+id/SPN_CONSULTING_DATE_YMD"
+                    android:layout_alignRight="@+id/SPN_CONSULTING_DATE_YMD"
+                    android:background="@color/main_list_divider"/>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -422,8 +422,9 @@
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="20dp"
-                        android:layout_toRightOf="@+id/TV_SELL_LABEL_LOWER"/>
-                    <TextView
+                        android:layout_toRightOf="@+id/TV_SELL_LABEL_LOWER"
+                        android:visibility="invisible"/>
+                    <EditText
                         android:id="@+id/TV_SELL_LOWER"
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
@@ -432,7 +433,7 @@
                         android:textSize="@dimen/main_text_body1"
                         android:textColor="@color/main_text_secondary"
                         android:gravity="center_vertical|right"
-                        android:paddingRight="40dp"/>
+                        android:paddingRight="20dp"/>
                     <TextView
                         android:id="@+id/TV_SELL_LABEL_DASH"
                         android:layout_width="wrap_content"
@@ -459,9 +460,10 @@
                     <Spinner
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
-                        android:layout_toRightOf="@+id/TV_SELL_LABEL_HIGHER"/>
+                        android:layout_toRightOf="@+id/TV_SELL_LABEL_HIGHER"
+                        android:visibility="invisible"/>
 
-                    <TextView
+                    <EditText
                         android:id="@+id/TV_SELL_HIGHER"
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
@@ -469,7 +471,7 @@
                         android:text="100억원"
                         android:textSize="@dimen/main_text_body1"
                         android:textColor="@color/main_text_secondary"
-                        android:paddingRight="40dp"
+                        android:paddingRight="20dp"
                         android:gravity="center_vertical|right"/>
 
                 </RelativeLayout>

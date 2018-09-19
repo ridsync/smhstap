@@ -3,6 +3,7 @@ package com.rasset.shmstab.ui.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -11,8 +12,10 @@ import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import com.rasset.shmstab.R
 import com.rasset.shmstab.network.res.BaseModel
+import com.rasset.shmstab.ui.DiagAttentionActivity
 import com.rasset.shmstab.utils.Logger
 import com.rasset.shmstab.utils.dpToPx
 import kotlinx.android.synthetic.main.fragment_diag_step_second.*
@@ -38,7 +41,8 @@ class DiagSubStepSecondFragment : BaseFragment() {
     }
 
     lateinit var tabLayout: TabLayout
-    var fragments: HashMap<Int, Fragment> = HashMap()
+    var fragments: HashMap<Int, BaseFragment> = HashMap()
+    var selectedAdviser:DiagSubStepFirstFragment.ADVISOR = DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST
 
     private var previousVPposition: Int = 0
 
@@ -65,11 +69,24 @@ class DiagSubStepSecondFragment : BaseFragment() {
         super.onStop()
     }
 
-    fun initFirst(){
+    private fun initFirst(){
+
+        selectedAdviser = (activity as DiagAttentionActivity).selectedAdviser
 
         setupTablayout()
         setupMainViewPager()
-
+        // Transition 문제회피
+        VP_DIAG_SURVEYS.translationY = 300f
+        Handler().postDelayed({
+            VP_DIAG_SURVEYS.visibility = View.VISIBLE
+            VP_DIAG_SURVEYS.alpha = 0.5f
+            VP_DIAG_SURVEYS.animate()
+                    .alpha(1f)
+                    .translationY(0f)
+                    .setInterpolator(AccelerateDecelerateInterpolator())
+                    .setDuration(80)
+                    .start()
+        },500)
     }
 
     private fun setupTablayout() {
@@ -83,15 +100,27 @@ class DiagSubStepSecondFragment : BaseFragment() {
         tabLayout.setTabTextColors(resources.getColor(R.color.main_text_secondary), resources.getColor(R.color.main_text_primary))
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
 
-        // 선택 위원에 따른 탭구성 TODO
-        var idx = 0
-        for (title:String in digCategorise){
-            if (idx < 2){
-                tabLayout.addTab(tabLayout.newTab().setText(title))
-            } else {
-                break
+        // TODO 선택 위원에 따른 탭 과 화면 구성
+        when (selectedAdviser) {
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST -> {
+                tabLayout.addTab(tabLayout.newTab().setText(digCategorise[0]))
+                tabLayout.addTab(tabLayout.newTab().setText(digCategorise[1]))
             }
-            idx++
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MD -> {
+                tabLayout.addTab(tabLayout.newTab().setText(digCategorise[2]))
+            }
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX-> {
+                tabLayout.addTab(tabLayout.newTab().setText(digCategorise[3]))
+            }
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_HOME_INTE-> {
+                tabLayout.addTab(tabLayout.newTab().setText(digCategorise[4]))
+            }
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MANAGEMENT-> {
+                tabLayout.addTab(tabLayout.newTab().setText(digCategorise[5]))
+            }
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_CM-> {
+                tabLayout.addTab(tabLayout.newTab().setText(digCategorise[6]))
+            }
         }
         for (i in 0 until tabLayout.tabCount) {
             val tab = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
@@ -102,7 +131,6 @@ class DiagSubStepSecondFragment : BaseFragment() {
     }
 
     private fun setupMainViewPager() {
-        if (tabLayout == null) return
 
         //        coordLayout = (CoordinatorLayout) mRootView.findViewById(R.id.coordinatorLayout);
         //        VP_DIAG_SURVEYS = (GestureViewPager) mRootView.findViewById(R.id.VP_MAIN_CHAT_LIST);
@@ -111,7 +139,7 @@ class DiagSubStepSecondFragment : BaseFragment() {
             VP_DIAG_SURVEYS.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
             VP_DIAG_SURVEYS.adapter = adapter
             VP_DIAG_SURVEYS.setSwipeEnabled(false)
-            tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     if (VP_DIAG_SURVEYS == null) return
                     VP_DIAG_SURVEYS.setCurrentItem(tab.position,false)
@@ -146,6 +174,34 @@ class DiagSubStepSecondFragment : BaseFragment() {
 
     }
 
+    fun getFragmentEachAdvisor(index:Int) = when (selectedAdviser) {
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST -> {
+                if(index == 0 ) {
+                    DiagSurveyAssetSellFragment()
+                } else {
+                    DiagSurveyAssetBuyFragment()
+                }
+            }
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MD -> {
+                DiagSurveyAssetBuyFragment()
+            }
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX-> {
+                DiagSurveyAssetBuyFragment()
+            }
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_HOME_INTE-> {
+                DiagSurveyAssetBuyFragment()
+            }
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MANAGEMENT-> {
+                DiagSurveyAssetBuyFragment()
+            }
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_CM-> {
+                DiagSurveyAssetBuyFragment()
+            }
+    }
+
+    fun getSubFragments(): HashMap<Int, BaseFragment>{
+        return fragments
+    }
 
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
@@ -180,12 +236,8 @@ class DiagSubStepSecondFragment : BaseFragment() {
         // Returns the fragment to display for that page
         // Adapter내부 인스턴스가 필요한경우만 호출됨. Destroy를 안하도록했기에 최초1회만 호출.
         override fun getItem(position: Int): Fragment {
-            var fragment = BaseFragment()
-            when (position) {
-                0 -> fragment = DiagSurveyAssetSellFragment()
-                1 -> fragment = DiagSurveyAssetBuyFragment()
-            }
-            fragments.put(position, fragment)
+            var fragment = getFragmentEachAdvisor(position)
+            fragments[position] = fragment
             Logger.d("MainFragmentPagerAdapter", "getItem position = " + position + "fragment = " + fragment)
             return fragment
         }

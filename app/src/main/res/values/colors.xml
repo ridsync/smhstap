@@ -8,7 +8,7 @@
     <color name="main_primary_dark_color">#FFEECC06</color>
     <color name="main_accent_color">#F76800</color>
     <color name="main_bg_color">#fafafa</color>
-    <color name="main_appbar_bg_color">#fafafa</color>
+    <color name="main_appbar_bg_color">#ffffff</color>
 
     <color name="main_appbar_underline">#1A000000</color>
     <color name="main_appbar_boxline">#dddddd</color>
