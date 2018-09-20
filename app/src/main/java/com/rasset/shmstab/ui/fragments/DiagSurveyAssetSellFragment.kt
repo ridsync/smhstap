@@ -11,6 +11,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.rasset.shmstab.R
+import com.rasset.shmstab.core.AppConst
+import com.rasset.shmstab.ui.dialog.BaseDialogFragment
+import com.rasset.shmstab.ui.dialog.SearchAddressDialog
 import com.rasset.shmstab.utils.hideIME
 import kotlinx.android.synthetic.main.fragment_diag_survey_asset_sell.*
 import java.util.*
@@ -69,9 +72,27 @@ class DiagSurveyAssetSellFragment : BaseFragment() {
             false
         }
 
+        BTN_SEARCH_ADDRESS_SHOW.setOnClickListener {
+            showDialog()
+        }
+
         initSpinners()
     }
 
+    private fun showDialog(){
+
+        val dialog = SearchAddressDialog.newInstance(mContext).apply {
+            setOnDismissListener(object : BaseDialogFragment.OnDismissListener{
+                override fun onDismiss(dialog: BaseDialogFragment) {
+                    val result = dialog as SearchAddressDialog
+                    result.mSelectedAddress?.let {
+                        this@DiagSurveyAssetSellFragment.TV_LOCATION_ADDRESS.text = result.mSelectedAddress
+                    }
+                }
+            })
+        }
+        dialog.show(fragmentManager, AppConst.DIALOG_CUSTOMER_INFO_PRIVACY)
+    }
 
     private fun initSpinners() {
 

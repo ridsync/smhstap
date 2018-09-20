@@ -16,11 +16,8 @@ import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.DiagAttentionActivity
-import com.rasset.shmstab.ui.LoginActivity
 import com.rasset.shmstab.ui.components.RecursiveRadioGroup
-import com.rasset.shmstab.ui.dialog.AlertSimpleDialog
 import com.rasset.shmstab.ui.dialog.BaseDialogFragment
-import com.rasset.shmstab.ui.dialog.MainCustomDialog
 import com.rasset.shmstab.ui.dialog.PrivacyAgreeDialog
 import com.rasset.shmstab.utils.*
 import kotlinx.android.synthetic.main.fragment_diag_default_info.*

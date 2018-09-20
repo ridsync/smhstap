@@ -1,5 +1,6 @@
 package com.rasset.shmstab.model
 
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
 /**

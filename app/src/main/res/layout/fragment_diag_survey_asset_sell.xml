@@ -191,7 +191,7 @@
                     android:id="@+id/TV_LOCATION_ADDRESS"
                     android:layout_width="160dp"
                     android:layout_height="46dp"
-                    android:layout_toLeftOf="@+id/BTN_PRIVACY_SHOW"
+                    android:layout_toLeftOf="@+id/BTN_SEARCH_ADDRESS_SHOW"
                     android:layout_below="@+id/TV_DIAG_TYPE_LABEL_LOCATION"
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="10dp"
@@ -202,7 +202,7 @@
                     android:gravity="center_vertical"/>
 
                 <Button
-                    android:id="@+id/BTN_PRIVACY_SHOW"
+                    android:id="@+id/BTN_SEARCH_ADDRESS_SHOW"
                     android:layout_width="152dp"
                     android:layout_height="56dp"
                     android:layout_below="@+id/TV_DIAG_TYPE_LABEL_LOCATION"
@@ -266,6 +266,7 @@
                     android:layout_height="1dp"
                     android:layout_below="@+id/SPN_CONSULTING_DATE_YMD"
                     android:layout_alignLeft="@+id/SPN_CONSULTING_DATE_YMD"
+                    android:layout_marginLeft="20dp"
                     android:layout_alignRight="@+id/SPN_CONSULTING_DATE_YMD"
                     android:background="@color/main_list_divider"/>
 
