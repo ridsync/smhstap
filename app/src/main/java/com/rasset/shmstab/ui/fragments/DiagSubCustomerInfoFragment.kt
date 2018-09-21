@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
+import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.DiagAttentionActivity
 import com.rasset.shmstab.ui.components.RecursiveRadioGroup
@@ -49,7 +50,7 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
-            mRootView = inflater?.inflate(R.layout.fragment_diag_default_info, container, false)
+            mRootView = inflater.inflate(R.layout.fragment_diag_default_info, container, false)
         }
         return mRootView
     }
@@ -70,11 +71,6 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
     lateinit var acbPrivacyAgree: AppCompatCheckBox
     private fun initFirst(){
         acbPrivacyAgree = ACB_PRIVACY_AGREE
-        RG_DIAG_FIELD.check(RB_DIAG_INVEST)
-
-        RG_DIAG_FIELD.setOnCheckedChangeListener{ _: RecursiveRadioGroup, checkedId: Int ->
-
-        }
 
         BTN_PRIVACY_SHOW.setOnClickListener {
             val dialog = PrivacyAgreeDialog.newInstance(mContext).apply {
@@ -101,21 +97,34 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
         }
         ET_CUSTOMER_PHONE.addTextChangedListener(mContactWatcher)
 
-        (activity as DiagAttentionActivity).customerInfo.let {
-            it.customerName?.let {
+
+        (activity as DiagAttentionActivity).diagnoseInfo.let { diagnoseInfo ->
+            diagnoseInfo.customerName?.let {
                 ET_CUSTOMER_NAME.setText(it)
             }
-            it.customerPhone?.let {
+            diagnoseInfo.customerPhone?.let {
                 ET_CUSTOMER_PHONE.setText(it)
             }
-            it.customerLevel.let {
+            diagnoseInfo.customerLevel.let {
                 ET_CUSTOMER_LEVEL.setText(getCustomerLevelStr(it))
+            }
+            when(diagnoseInfo.applyPart){
+                11L -> RB_DIAG_INVEST.isChecked = true
+                12L -> RB_DIAG_MD.isChecked = true
+                13L -> RB_DIAG_TAX.isChecked = true
+                14L -> RB_DIAG_HOME_INTE.isChecked = true
+                15L -> RB_DIAG_CM.isChecked = true
+                16L -> RB_DIAG_MANAGEMENT.isChecked = true
+            }
+            diagnoseInfo.customerLevel.let {
+                ET_CUSTOMER_QUESTION.setText(diagnoseInfo.contents)
             }
         }
 
-        (activity as DiagAttentionActivity).customerInfo.customerName?.let {
-
-        }
+//
+//        RG_DIAG_FIELD.setOnCheckedChangeListener{ _: RecursiveRadioGroup, checkedId: Int ->
+//
+//        }
     }
 
     private fun setDateYMD() {

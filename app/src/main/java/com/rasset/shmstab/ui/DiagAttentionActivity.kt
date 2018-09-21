@@ -7,26 +7,28 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
-import com.rasset.shmstab.model.CustomerInfo
+import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.components.CropCircleTransform
 import com.rasset.shmstab.ui.fragments.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 import kotlinx.android.synthetic.main.activity_diagnose_attention.*
 import com.rasset.shmstab.utils.*
+import de.greenrobot.event.EventBus
 
 
 class DiagAttentionActivity : BaseActivity() {
     companion object {
 
-        fun newIntent(context: Context,customerInfo: CustomerInfo): Intent {
+        fun newIntent(context: Context,diagnoseInfo: DiagnoseInfo): Intent {
             val intent = Intent(context, DiagAttentionActivity::class.java)
             // TODO 이벤트버스?? 다른방법으로 Object전달 리서치할것
-            intent.putExtra("customerId",customerInfo.customerId)
-            intent.putExtra("customerName",customerInfo.customerName)
-            intent.putExtra("photoImgPath",customerInfo.photoImgPath)
-            intent.putExtra("customerLevel",customerInfo.customerLevel)
-            intent.putExtra("customerPhone",customerInfo.customerPhone)
+            intent.putExtra("diagnoseId",diagnoseInfo.diagnoseId)
+            intent.putExtra("dianoseDetailId",diagnoseInfo.diagnoseDetailId)
+            intent.putExtra("customerName",diagnoseInfo.customerName)
+            intent.putExtra("photoImgPath",diagnoseInfo.photoImgPath)
+            intent.putExtra("customerLevel",diagnoseInfo.customerLevel)
+            intent.putExtra("customerPhone",diagnoseInfo.customerPhone)
             return intent
         }
     }
@@ -37,48 +39,51 @@ class DiagAttentionActivity : BaseActivity() {
         , DIAG_COMPLETE(3,AppConst.FRAG_NAME_DIAG_COMPLETED, null)
     }
 
-    var customerInfo:CustomerInfo = CustomerInfo()
+    lateinit var diagnoseInfo:DiagnoseInfo
     var selectedAdviser:DiagSubStepFirstFragment.ADVISOR = DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST
     var mStackFrags = Stack(mutableListOf<SubFrags>())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diagnose_attention)
+
+        diagnoseInfo = EventBus.getDefault().removeStickyEvent<DiagnoseInfo>(DiagnoseInfo::class.java)
         replaceFragment(getNextFragInfo())
+        setMainNavMenuProfile(SubFrags.DIAG_CUSTOER_INFO, diagnoseInfo)
+        // 제거해야함
+//        val cusromerId = intent.getLongExtra("diagnoseId",0)
+//        if (cusromerId > 0){
+//            val photoImgPath = intent.getStringExtra("photoImgPath")
+//            val customerName = intent.getStringExtra("customerName")
+//            val customerLevel = intent.getLongExtra("customerLevel",0)
+//            val customerPhone = intent.getStringExtra("customerPhone")
+//            val dianoseDetailId = intent.getStringExtra("dianoseDetailId")
+////            diagnoseInfo = DiagnoseInfo(diagnoseId=cusromerId,customerName=customerName,photoImgPath=photoImgPath,customerLevel=customerLevel,customerPhone=customerPhone)
+//            setMainNavMenuProfile(SubFrags.DIAG_CUSTOER_INFO,diagnoseInfo)
+//        } else {
+//            setMainNavMenuProfile(SubFrags.DIAG_CUSTOER_INFO, diagnoseInfo)
+//        }
 
         setAppBars()
 
-        // TODO 고객정보 처리 수정해야함
-        val cusromerId = intent.getLongExtra("customerId",0)
-        if (cusromerId > 0){
-            val photoImgPath = intent.getStringExtra("photoImgPath")
-            val customerName = intent.getStringExtra("customerName")
-            val customerLevel = intent.getLongExtra("customerLevel",0)
-            val customerPhone = intent.getStringExtra("customerPhone")
-            customerInfo = CustomerInfo(customerId=cusromerId,customerName=customerName,photoImgPath=photoImgPath,customerLevel=customerLevel,customerPhone=customerPhone)
-            setMainNavMenuProfile(SubFrags.DIAG_CUSTOER_INFO,customerInfo)
-        } else {
-            setMainNavMenuProfile(SubFrags.DIAG_CUSTOER_INFO, customerInfo)
-        }
-
     }
 
-    private fun setMainNavMenuProfile(step: SubFrags, customerInfo:CustomerInfo){
+    private fun setMainNavMenuProfile(step: SubFrags, diagnoseInfo:DiagnoseInfo){
 
         when (step){
             SubFrags.DIAG_CUSTOER_INFO -> {
                 IV_CUSTOMER_PROFILE.isClickable = true
-                TV_CUSTOMER_LEVEL.visibility = if (customerInfo.customerLevel > 0) View.VISIBLE else View.GONE
-                TV_CUSTOMER_LEVEL.text = getCustomerLevelStr(customerInfo.customerLevel)
+                TV_CUSTOMER_LEVEL.visibility = if (diagnoseInfo.customerLevel > 0) View.VISIBLE else View.GONE
+                TV_CUSTOMER_LEVEL.text = getCustomerLevelStr(diagnoseInfo.customerLevel)
 
-                if (customerInfo.photoImgPath != null && !customerInfo.photoImgPath.isNullOrEmpty()){
+                if (diagnoseInfo.photoImgPath != null && !diagnoseInfo.photoImgPath.isNullOrEmpty()){
                     Glide.with(mContext)
-                            .load(customerInfo.photoImgPath)
+                            .load(diagnoseInfo.photoImgPath)
                             .bitmapTransform(CropCircleTransform(mContext))
                             .error(R.drawable.profile_default)
                             .into(IV_CUSTOMER_PROFILE)
                     TV_CUSTOMER_NAME.visibility = View.VISIBLE
-                    TV_CUSTOMER_NAME.text = customerInfo.customerName
+                    TV_CUSTOMER_NAME.text = diagnoseInfo.customerName
                     IV_CUSTOMER_PROFILE_CAMERA.visibility = View.GONE
                     TV_CUSTOMER_PHOTO_ADD.visibility = View.GONE
                     TV_CUSTOMER_DESC.visibility = View.GONE
@@ -93,9 +98,9 @@ class DiagAttentionActivity : BaseActivity() {
                 IV_CUSTOMER_PROFILE.isClickable = false
                 TV_CUSTOMER_LEVEL.visibility = View.VISIBLE
                 TV_CUSTOMER_NAME.visibility = View.VISIBLE
-                if (customerInfo.customerId > 0){
-                    TV_CUSTOMER_LEVEL.text =  getCustomerLevelStr(customerInfo.customerLevel)
-                    TV_CUSTOMER_NAME.text = customerInfo.customerName
+                if (diagnoseInfo.diagnoseId > 0){
+                    TV_CUSTOMER_LEVEL.text =  getCustomerLevelStr(diagnoseInfo.customerLevel)
+                    TV_CUSTOMER_NAME.text = diagnoseInfo.customerName
                 }else {
                     TV_CUSTOMER_LEVEL.text =  getCustomerLevelStr(0)
                     TV_CUSTOMER_NAME.text =  ""
@@ -199,7 +204,7 @@ class DiagAttentionActivity : BaseActivity() {
                 else -> Unit
             }
             // 현위치에 따른 프로필정보
-            setMainNavMenuProfile(it,customerInfo)
+            setMainNavMenuProfile(it,diagnoseInfo)
         }
 
     }

@@ -37,8 +37,10 @@ public class MainListTask extends NetworkTask<BaseModel> {
         // reqType별 API WindowsTopViewService 별도 반환
         if (ReqType.REQUEST_TYPE_POST_USER_LOGIN == mRequestType) {
             return service.reqPostUserLogin(mParams);
-        } else if (ReqType.REQUEST_TYPE_GET_CUSOMER_LIST == mRequestType) {
-            return service.reqGetCustomerList(mParams);
+        }  else if (ReqType.REQUEST_TYPE_GET_DIAGNOSE_LIST == mRequestType) {
+            return service.reqGetDiagnoseList(mParams);
+        } else if (ReqType.REQUEST_TYPE_POST_DIAGNOSE_UPDATE == mRequestType) {
+            return service.reqPostDiagnoseUpdate(mParams);
         } else {
             return null;
         }

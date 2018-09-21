@@ -91,8 +91,8 @@ public class SearchAddressDialog extends BaseDialogFragment   implements View.On
     }
 
     private class AndroidBridge {
-        @JavascriptInterface
-        public void setAddress(final String zonecode, final String roadAddress, final String buildingName) {
+        @JavascriptInterface // 도로명
+        public void setAddressR(final String zonecode, final String roadAddress, final String buildingName) {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -103,6 +103,18 @@ public class SearchAddressDialog extends BaseDialogFragment   implements View.On
                         String address = String.format("%s", roadAddress);
                         mSelectedAddress = address;
                     }
+//                    mResultView.setText(mSelectedAddress);
+                    dismiss();
+                }
+            });
+        }
+        @JavascriptInterface // 지번
+        public void setAddressJ(final String zonecode, final String roadAddress, final String buildingName) {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    String address = String.format("%s", roadAddress);
+                    mSelectedAddress = address;
 //                    mResultView.setText(mSelectedAddress);
                     dismiss();
                 }

@@ -1,6 +1,8 @@
 package com.rasset.shmstab.network.retrofit;
 
 import com.rasset.shmstab.BuildConfig;
+import com.rasset.shmstab.core.TabApp;
+import com.rasset.shmstab.network.protocol.ParamKey;
 import com.rasset.shmstab.utils.Logger;
 
 import java.io.IOException;
@@ -47,7 +49,7 @@ public class RetroRestAPIService {
                         .removeHeader("Accept-Encoding")
                         .addHeader("Connection", "keep-alive")
                         .addHeader("Accept", "*/*")
-//                        .addHeader(ParamKey.PARAM_USERID, SQApp.getUserInfo().getUser_id() + "")
+                        .addHeader(ParamKey.PARAM_USERID, TabApp.Companion.getUserInfo().getUserId()+"")
 //                        .addHeader(ParamKey.PARAM_DEVICE_UUIID, AUtil.getDeviceId(SQApp.getContext()) + "")
 //                        .addHeader(ParamKey.PARAM_APPVER, AUtil.getVersion())
                         .build();

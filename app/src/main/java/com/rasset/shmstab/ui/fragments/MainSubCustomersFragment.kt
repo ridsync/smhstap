@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -24,7 +23,7 @@ import com.bumptech.glide.Glide
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.core.TabApp
-import com.rasset.shmstab.model.CustomerInfo
+import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.network.NetManager
 import com.rasset.shmstab.network.protocol.ParamKey
 import com.rasset.shmstab.network.protocol.ReqType
@@ -68,7 +67,7 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
     private var myRecycler: RecyclerView? = null
     private var manager: GridLayoutManager? = null
     private var mScrollListener: ReloadRecyclerViewScrollListner? = null
-    private val mAdapterList = arrayListOf<CustomerInfo>()
+    private val mAdapterList = arrayListOf<DiagnoseInfo>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,13 +102,13 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
         mAdapterList.clear()
         mListAdapter?.notifyDataSetChanged()
         SR_REFRESH_LAYOUT?.isEnabled = false
-        getCustomerList(mlastSeq)
+        getDiagnoseList()
     }
 
     fun initFirst(){
         IB_TEMP_NEW_CUSTOMER.setOnClickListener {
            if (mActivity is MainActivity) {
-               (mActivity as MainActivity).startDiagAttentionActivity(CustomerInfo(),null)
+               (mActivity as MainActivity).startDiagAttentionActivity(DiagnoseInfo(),null)
            }
         }
 
@@ -118,18 +117,19 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
         setuserInfo()
         setSwipeToRefresh()
         setRecyclerView()
-        getCustomerList(mlastSeq)
+        getDiagnoseList()
     }
 
     fun setuserInfo(){
         // TODO 인턴 프로필사진 이름 설정
         TabApp.userInfo?.let {
-            val strProfileURL = it.photoImgPath
-            Glide.with(mContext)
-                    .load(strProfileURL)
+            it.photoImgPath?.let {
+                Glide.with(mContext)
+                    .load(it)
                     .bitmapTransform(CropCircleTransform(mContext))
                     .crossFade(300)
                     .into(IV_USER_PROFILE_IMG)
+            }
 
             TV_USER_PROFILE_NAME.text = it.userName
         }
@@ -171,7 +171,7 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
                 if (mListAdapter == null)
                     return
                 Logger.d(this@MainSubCustomersFragment, "=== SubList LoadMore ===")
-                getCustomerList(mlastSeq)
+                getDiagnoseList()
             }
 
             override fun onScrolledExt(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -214,11 +214,9 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
         SR_REFRESH_LAYOUT?.setColorSchemeResources(R.color.main_accent_color)
     }
 
-    private fun getCustomerList(mFirstSeq:Long) {
-        val task = MainListTask(mContext, ReqType.REQUEST_TYPE_GET_CUSOMER_LIST, this)
-        task.addParam(ParamKey.PARAM_LASTSEQ, 0)
-        task.addParam(ParamKey.PARAM_FIRSTSEQ, mFirstSeq)
-        task.addParam(ParamKey.PARAM_LISTTYPE, selectFilterType)
+    private fun getDiagnoseList() {
+        val task = MainListTask(mContext, ReqType.REQUEST_TYPE_GET_DIAGNOSE_LIST, this)
+        task.addParam(ParamKey.PARAM_DIAG_ID, TabApp.userInfo?.userId)
         NetManager.startTask(task)
     }
 
@@ -255,21 +253,21 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
 
     }
 
-    private inner class CustomerListAdapter(data: List<CustomerInfo>) : BaseRecyclerExtendsAdapter<CustomerInfo>(data) {
+    private inner class CustomerListAdapter(data: List<DiagnoseInfo>) : BaseRecyclerExtendsAdapter<DiagnoseInfo>(data) {
 
 //        override fun onViewRecycled(holder: RecyclerView.ViewHolder?) {
 //            super.onViewRecycled(holder)
 //            //            Glide.clear(holder.itemView.findViewById(R.id.IV_USERLIST_PROFILE_IMAGE));
 //        }
 
-        override fun onBindViewHolderImpl(viewHolder: RecyclerView.ViewHolder, adapter: BaseRecyclerExtendsAdapter<CustomerInfo>, i: Int) {
+        override fun onBindViewHolderImpl(viewHolder: RecyclerView.ViewHolder, adapter: BaseRecyclerExtendsAdapter<DiagnoseInfo>, i: Int) {
             // If you're using your custom handler (as you should of course)
             // you need to cast viewHolder to it.
-            val customerInfo = data[i]
-            customerInfo.idx = i
+            val diagnoseInfo = data[i]
+            diagnoseInfo.idx = i
 
             // View Set
-            val strProfileURL = customerInfo.photoImgPath
+            val strProfileURL = diagnoseInfo.photoImgPath
             Glide.with(mContext)
                     .load(strProfileURL)
                     .bitmapTransform(CropCircleTransform(mContext))
@@ -277,8 +275,8 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
                     .error(R.drawable.profile_default)
                     .into((viewHolder as MyCustomViewHolder).civProfileImage)
 
-            viewHolder.tvCustomerName.text = customerInfo.customerName
-            viewHolder.tvCustomerLevel.text = getCustomerLevelStr(customerInfo.customerLevel)
+            viewHolder.tvCustomerName.text = diagnoseInfo.customerName
+            viewHolder.tvCustomerLevel.text = getCustomerLevelStr(diagnoseInfo.customerLevel)
             viewHolder.ibProfileImage.setOnClickListener {
                 viewHolder.rootviewBg.performClick()
             }
@@ -293,26 +291,26 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
 //                    notifyItemChanged(i)
 //                },300)
                 if (mActivity is MainActivity) {
-                    (mActivity as MainActivity).startDiagAttentionActivity(customerInfo,viewHolder.civProfileImage)
+                    (mActivity as MainActivity).startDiagAttentionActivity(diagnoseInfo,viewHolder.civProfileImage)
                 }
             })
 
         }
 
-        override fun onCreateViewHolderImpl(viewGroup: ViewGroup, adapter: BaseRecyclerExtendsAdapter<CustomerInfo>, i: Int): MyCustomViewHolder {
+        override fun onCreateViewHolderImpl(viewGroup: ViewGroup, adapter: BaseRecyclerExtendsAdapter<DiagnoseInfo>, i: Int): MyCustomViewHolder {
             // Here is where you inflate your row and pass it to the constructor of your ViewHolder
             val view = MyCustomViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.item_main_customer, viewGroup, false))
             return view
         }
 
-        fun addItemAllAtTop(items: List<CustomerInfo>?) {
+        fun addItemAllAtTop(items: List<DiagnoseInfo>?) {
             if (mData != null && items != null) {
                 mData.addAll(0, items)
                 notifyItemRangeInserted(0, items.size)
             }
         }
 
-        fun addItemAtTop(items: CustomerInfo?, position: Int) {
+        fun addItemAtTop(items: DiagnoseInfo?, position: Int) {
             if (mData != null && items != null) {
                 mData.add(position, items)
                 notifyItemInserted(position)

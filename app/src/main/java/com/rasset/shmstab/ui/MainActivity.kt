@@ -26,6 +26,8 @@ import com.rasset.shmstab.utils.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 import android.support.v4.app.ActivityOptionsCompat
+import com.rasset.shmstab.model.DiagnoseInfo
+import de.greenrobot.event.EventBus
 import kotlinx.android.synthetic.main.item_main_customer.*
 
 
@@ -87,13 +89,14 @@ class MainActivity : BaseActivity() {
     }
 
     // 선택유저 정보 넘기기
-    fun startDiagAttentionActivity(customerInfo:CustomerInfo, imgView:View? ){
+    fun startDiagAttentionActivity(diagnoseInfo: DiagnoseInfo, imgView:View? ){
         if (imgView!=null) {
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imgView, "profile")
-            startActivity(DiagAttentionActivity.newIntent(mContext,customerInfo),options.toBundle())
+            startActivity(DiagAttentionActivity.newIntent(mContext,diagnoseInfo),options.toBundle())
         } else {
-            startActivity(DiagAttentionActivity.newIntent(mContext,customerInfo))
+            startActivity(DiagAttentionActivity.newIntent(mContext,diagnoseInfo))
         }
+        EventBus.getDefault().postSticky(diagnoseInfo)
         overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out)
     }
 
@@ -137,7 +140,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun getUserList(lId: Long, lFirstSeq: Long) {
-        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_GET_CUSOMER_LIST, this)
+        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_GET_DIAGNOSE_LIST, this)
         task.addParam(ParamKey.PARAM_LISTTYPE, 1) // to server 1234
         task.addParam(ParamKey.PARAM_FIRSTSEQ, lFirstSeq)
         NetManager.startTask(task)

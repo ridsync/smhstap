@@ -117,7 +117,8 @@
             android:orientation="vertical"
             android:background="#F5F5F5"
             android:paddingTop="50dp"
-            android:paddingLeft="24dp">
+            android:paddingLeft="24dp"
+            android:visibility="visible">
 
             <RadioGroup
                 android:id="@+id/RG_FILTER_GROUP"

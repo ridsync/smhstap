@@ -65,7 +65,7 @@ open class BaseActivity : AppCompatActivity() , OnNetworkListener{
                 getString(R.string.popup_alert_not_exist_user_ask_login)
             }
         } else {
-            showToast { "로그인 실패 서버통신실패 : ${strErrorMsg}" }
+            showToast { "서버통신실패 : ${strErrorMsg}" }
         }
     }
 
