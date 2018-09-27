@@ -7,9 +7,16 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
+import com.rasset.shmstab.core.TabApp
+import com.rasset.shmstab.model.DiagnoseBaseInfo
 import com.rasset.shmstab.model.DiagnoseInfo
+import com.rasset.shmstab.network.NetManager
+import com.rasset.shmstab.network.protocol.ParamKey
+import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.res.BaseModel
+import com.rasset.shmstab.network.task.MainListTask
 import com.rasset.shmstab.ui.components.CropCircleTransform
+import com.rasset.shmstab.ui.dialog.BaseDialogFragment
 import com.rasset.shmstab.ui.fragments.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 import kotlinx.android.synthetic.main.activity_diagnose_attention.*
@@ -143,15 +150,10 @@ class DiagAttentionActivity : BaseActivity() {
             val nextFrag = getNextFragInfo()
             if (nextFrag == SubFrags.DIAG_COMPLETE) {
                 postCustomerDiagInfos()
-                finish()
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
-                showToast {
-                    "[ 서버 전송 완료 ]"
-                }
             } else {
                 if (nextFrag == SubFrags.DIAG_INFO_STEP2) {
                     val fragFirst = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP1.title) as DiagSubStepFirstFragment
-                    selectedAdviser = fragFirst.selectedWewon
+                    selectedAdviser = fragFirst.selectedAdvisor
                 }
                 replaceFragment(nextFrag, true)
                 setStatAppBarTitlenEtc()
@@ -165,16 +167,30 @@ class DiagAttentionActivity : BaseActivity() {
 
     private fun postCustomerDiagInfos() {
 
-        // TODO Validation Check
         val fragSecond = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP2.title) as DiagSubStepSecondFragment
         val fragments = fragSecond.getSubFragments()
-
-        //TODO 데이터 추출
-        val fragInfo = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_CUSTOER_INFO.title) as DiagSubCustomerInfoFragment
-        val fragFirst = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP1.title) as DiagSubStepFirstFragment
-
-        //TODO API 전송
+        val surveyFragment = fragments[0]
+        surveyFragment?.getDiagDatas()?.let { diagInfo ->
+                    //API 전송
+                    diagInfo.diagnoseId = diagnoseInfo.diagnoseId
+                    diagInfo.diagnoseDetailId = diagnoseInfo.diagnoseDetailId
+                    diagInfo.applyPart = diagnoseInfo.applyPart
+                    diagInfo.diagnoseType = diagnoseInfo.diagnoseType
+                    reqNetUpdateDiagInfos(diagInfo)
+        }
+        if (surveyFragment?.getDiagDatas() == null){
+            showToast {
+                "질문항목을 모두 선택해주세요."
+            }
+        }
         Logger.d("postCustomerDiagInfos  ")
+    }
+
+    private fun reqNetUpdateDiagInfos(diagInfo: DiagnoseBaseInfo) {
+        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_DIAGNOSE_UPDATE, this)
+        task.addParam(ParamKey.PARAM_USERID, TabApp.userInfo?.userId)
+        task.addParam(ParamKey.PARAM_DIAG_INFO, diagInfo)
+        NetManager.startTask(task)
     }
 
     private fun setStatAppBarTitlenEtc(){
@@ -222,6 +238,12 @@ class DiagAttentionActivity : BaseActivity() {
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
         Logger.d("onNetSuccess  ")
+        // TODO
+        finish()
+        overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+        showToast {
+            "[ 서버 전송 완료 ]"
+        }
     }
 
     override fun onNetFail(retCode: Int, strErrorMsg: String, nReqType: Int) {

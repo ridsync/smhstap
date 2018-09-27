@@ -7,7 +7,6 @@ import android.os.Handler
 import android.view.View
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
-import com.rasset.shmstab.model.CustomerInfo
 
 import com.rasset.shmstab.network.NetManager
 import com.rasset.shmstab.network.protocol.ParamKey

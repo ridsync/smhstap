@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
@@ -8,11 +10,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -39,7 +42,7 @@
                     android:id="@+id/TV_DIAG_TYPE_LABEL_RESTATE"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:text="1. 매수 희망 부동산 종류?"
+                    android:text="1. 매도 부동산 종류?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
                     android:gravity="center_vertical"/>
@@ -62,6 +65,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_DIAG_INVEST"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -75,6 +79,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_DIAG_MD"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -88,6 +93,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:id="@+id/RB_DIAG_TAX"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -108,6 +114,7 @@
                             android:orientation="horizontal">
 
                             <RadioButton
+                                android:tag="41"
                                 android:id="@+id/RB_DIAG_HOME_INTE"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -120,6 +127,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="51"
                                 android:id="@+id/RB_DIAG_MANAGEMENT"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -133,6 +141,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="61"
                                 android:id="@+id/RB_DIAG_CM"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -153,6 +162,7 @@
                             android:layout_marginTop="30dp"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="71"
                                 android:id="@+id/RB_DIAG_ETC"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -179,18 +189,115 @@
                     android:id="@+id/TV_DIAG_TYPE_LABEL_LOCATION"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:text="2. 매수 희망 지역?"
+                    android:text="2. 매도 부동산 지역?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
                     android:gravity="center_vertical"/>
 
+                <TextView
+                    android:id="@+id/TV_LOCATION_ADDRESS"
+                    android:layout_width="160dp"
+                    android:layout_height="46dp"
+                    android:layout_toLeftOf="@+id/BTN_SEARCH_ADDRESS_SHOW"
+                    android:layout_below="@+id/TV_DIAG_TYPE_LABEL_LOCATION"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:text="주소찾기"
+                    android:textSize="@dimen/main_text_body1"
+                    android:textColor="@color/main_text_secondary"
+                    android:gravity="center_vertical"/>
 
+                <Button
+                    android:id="@+id/BTN_SEARCH_ADDRESS_SHOW"
+                    android:layout_width="152dp"
+                    android:layout_height="56dp"
+                    android:layout_below="@+id/TV_DIAG_TYPE_LABEL_LOCATION"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/selector_body_button_border_gray_oval_90dp"
+                    android:text="주소찾기"
+                    android:textColor="@drawable/selector_body_button_text_color"
+                    android:textSize="@dimen/main_text_body1"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/TV_LOCATION_ADDRESS"
+                    android:layout_alignRight="@+id/TV_LOCATION_ADDRESS"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/main_list_divider"/>
+
+                <EditText
+                    android:theme="@style/CustomEditText"
+                    android:id="@+id/ET_LOCATION_ADDRESS_DETAIL"
+                    android:layout_width="160dp"
+                    android:layout_height="56dp"
+                    android:layout_below="@+id/TV_LOCATION_ADDRESS"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignRight="@+id/TV_LOCATION_ADDRESS"
+                    android:layout_marginTop="30dp"
+                    android:hint="상세주소"
+                    android:textColorHint="@color/main_text_input_hint"
+                    android:imeOptions="actionNext"
+                    android:paddingBottom="12dp"
+                    android:singleLine="true"
+                    android:textColor="@color/main_text_secondary"
+                    android:textSize="@dimen/main_text_body1" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp">
+
+                <TextView
+                    android:id="@+id/TV_DIAG_TYPE_LABEL_BUY_TIMING"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="3. 매도 부동산 매입시점?"
+                    android:textSize="30dp"
+                    android:textColor="@color/main_text_primary"
+                    android:gravity="center_vertical"/>
+
+                <Spinner
+                    android:id="@+id/SPN_CONSULTING_DATE_YMD"
+                    android:layout_width="160dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_below="@+id/TV_DIAG_TYPE_LABEL_BUY_TIMING"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/SPN_CONSULTING_DATE_YMD"
+                    android:layout_alignLeft="@+id/SPN_CONSULTING_DATE_YMD"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignRight="@+id/SPN_CONSULTING_DATE_YMD"
+                    android:background="@color/main_list_divider"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp">
+
+                <TextView
+                    android:id="@+id/TV_DIAG_TYPE_LABEL_PURPOSE"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="4. 매도 목적?"
+                    android:textSize="30dp"
+                    android:textColor="@color/main_text_primary"
+                    android:gravity="center_vertical"/>
 
                 <com.rasset.shmstab.ui.components.RecursiveRadioGroup
-                    android:id="@+id/RG_BUY_LOCATION"
+                    android:id="@+id/RG_DIAG_SELL_PURPOSE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/TV_DIAG_TYPE_LABEL_LOCATION"
+                    android:layout_below="@+id/TV_DIAG_TYPE_LABEL_PURPOSE"
                     android:layout_marginTop="30dp">
 
                     <LinearLayout
@@ -204,40 +311,43 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
-                                android:id="@+id/RB_BUY_GANGNAM"
+                                android:tag="11"
+                                android:id="@+id/RB_SELL_PURPOSE_MARGIN"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
-                                android:text="서울 강남3구"
+                                android:text="시세차익목적"
                                 android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
-                                android:id="@+id/RB_BUY_GANGBOOK"
+                                android:tag="21"
+                                android:id="@+id/RB_SELL_PURPOSE_CASH"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
-                                android:text="강북 마/용/성"
+                                android:text="현금 필요목적"
                                 android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
-                                android:id="@+id/RB_BUY_SEOUL_ETC"
+                                android:tag="31"
+                                android:id="@+id/RB_SELL_PURPOSE_TIMINNG"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
-                                android:text="서울기타지역"
+                                android:text="매도 시기목적"
                                 android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
@@ -250,42 +360,41 @@
                             android:orientation="horizontal">
 
                             <RadioButton
-                                android:id="@+id/RB_BUY_GYUNGKI"
+                                android:tag="41"
+                                android:id="@+id/RB_SELL_PURPOSE_TAX_SOLUTION"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="10dp"
                                 android:paddingLeft="10dp"
-                                android:text="경기도 투자유망지"
+                                android:text="세금해결목적"
                                 android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
-                                android:id="@+id/RB_BUY_ETC"
+                                android:tag="51"
+                                android:id="@+id/RB_SELL_PURPOSE_ETC"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
-                                android:text="기타 매수 유망지역"
+                                android:text="기타 사유"
                                 android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
 
-                            <RadioButton
+
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text=""
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"
-                                android:visibility="invisible"/>
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30dp"
+                                android:orientation="horizontal">
+
+                            </LinearLayout>
                         </LinearLayout>
 
                     </LinearLayout>
@@ -297,20 +406,110 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="80dp">
 
+            <TextView
+                android:id="@+id/TV_SELL_LABEL_PRICE"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="5. 매도 예상가격?"
+                android:textSize="30dp"
+                android:textColor="@color/main_text_primary"
+                android:gravity="center_vertical"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/TV_SELL_LABEL_PRICE"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:id="@+id/TV_SELL_LABEL_LOWER"
+                        android:layout_width="66dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:text="하한가"
+                        android:textSize="@dimen/main_text_body1"
+                        android:textColor="@color/main_text_secondary"
+                        android:gravity="center_vertical"/>
+
+                    <Spinner
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/TV_SELL_LABEL_LOWER"
+                        android:visibility="invisible"/>
+                    <EditText
+                        android:id="@+id/ET_SELL_LOWER"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/TV_SELL_LABEL_LOWER"
+                        android:hint="5천만원"
+                        android:textSize="@dimen/main_text_body1"
+                        android:textColor="@color/main_text_secondary"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="20dp"/>
+                    <TextView
+                        android:id="@+id/TV_SELL_LABEL_DASH"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_toRightOf="@+id/ET_SELL_LOWER"
+                        android:text="~"
+                        android:textSize="@dimen/main_text_body1"
+                        android:textColor="@color/main_text_primary"
+                        android:gravity="center_vertical"/>
+
+                    <TextView
+                        android:id="@+id/TV_SELL_LABEL_HIGHER"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/TV_SELL_LABEL_DASH"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center_vertical"
+                        android:text="상한가"
+                        android:textColor="@color/main_text_secondary"
+                        android:textSize="@dimen/main_text_body1" />
+
+                    <Spinner
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/TV_SELL_LABEL_HIGHER"
+                        android:visibility="invisible"/>
+
+                    <EditText
+                        android:id="@+id/ET_SELL_HIGHER"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/TV_SELL_LABEL_HIGHER"
+                        android:hint="100억원"
+                        android:textSize="@dimen/main_text_body1"
+                        android:textColor="@color/main_text_secondary"
+                        android:paddingRight="20dp"
+                        android:gravity="center_vertical|right"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp">
+
                 <TextView
-                    android:id="@+id/TV_LABEL_BUY_TIMING"
+                    android:id="@+id/TV_SELL_LABEL_TIMING"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:text="3. 부동산 매수 시점?"
+                    android:text="6. 매도 하고 싶은 시점?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
                     android:gravity="center_vertical"/>
 
                 <com.rasset.shmstab.ui.components.RecursiveRadioGroup
-                    android:id="@+id/RG_BUY_TIMING"
+                    android:id="@+id/RG_SELL_TIMING"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/TV_LABEL_BUY_TIMING"
+                    android:layout_below="@+id/TV_SELL_LABEL_TIMING"
                     android:layout_marginTop="30dp">
 
                     <LinearLayout
@@ -324,7 +523,8 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
-                                android:id="@+id/RB_BUY_TIMING_IMMEDIATE"
+                                android:tag="11"
+                                android:id="@+id/RB_SELL_TIMING_IMMEDIATE"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
@@ -337,7 +537,8 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
-                                android:id="@+id/RB_BUY_TIMING_IN_3MONTHS"
+                                android:tag="21"
+                                android:id="@+id/RB_SELL_TIMING_IN_3MONTHS"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
@@ -350,7 +551,8 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
-                                android:id="@+id/RB_BUY_TIMING_IN_6MONTHS"
+                                android:tag="31"
+                                android:id="@+id/RB_SELL_TIMING_IN_6MONTHS"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
@@ -370,7 +572,8 @@
                             android:orientation="horizontal">
 
                             <RadioButton
-                                android:id="@+id/RB_BUY_TIMING_IN_1YEAR"
+                                android:tag="41"
+                                android:id="@+id/RB_SELL_TIMING_IN_1YEAR"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
@@ -382,7 +585,8 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
-                                android:id="@+id/RB_BUY_TIMING_LATER_1YEAR"
+                                android:tag="51"
+                                android:id="@+id/RB_SELL_TIMING_LATER_1YEAR"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
@@ -418,373 +622,19 @@
                 android:layout_marginTop="80dp">
 
                 <TextView
-                    android:id="@+id/TV_INVEST_PURPOSE"
+                    android:id="@+id/TV_SELL_LABEL_NEED_CONSULTANT"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:text="4. 투자 목적?"
-                    android:textSize="30dp"
-                    android:textColor="@color/main_text_primary"
-                    android:gravity="center_vertical"/>
-
-                <com.rasset.shmstab.ui.components.RecursiveRadioGroup
-                    android:id="@+id/RG_INVEST_PURPOSE"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/TV_INVEST_PURPOSE"
-                    android:layout_marginTop="30dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_MARGIN"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="시세차익목적"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_IMADE_REVENUE"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="임대수익목적"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_LIVE"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="사용/입주목적"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_BESTWOL"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:paddingLeft="10dp"
-                                android:text="증여목적"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_DEV"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="개발목적"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="30dp"
-                                android:orientation="horizontal">
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp">
-
-            <TextView
-                android:id="@+id/TV_INVEST_SCALE"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:text="5. 투자 현금 규모?"
-                android:textSize="30dp"
-                android:textColor="@color/main_text_primary"
-                android:gravity="center_vertical"/>
-
-                <com.rasset.shmstab.ui.components.RecursiveRadioGroup
-                    android:id="@+id/RG_INVEST_SCALE"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/TV_INVEST_SCALE"
-                    android:layout_marginTop="30dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_SCALE_1_MILLION"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="1억미만"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_SCALE_1_5_MILLION"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="1-5억"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_SCALE_5_10_MILLION"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="5억-10억"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_SCALE_10_20_MILLION"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:paddingLeft="10dp"
-                                android:text="10억-20억"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_SCALE_20_OVER_MILLION"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="20억이상"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="30dp"
-                                android:orientation="horizontal">
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp">
-
-                <TextView
-                    android:id="@+id/TV_INVEST_CONSIDER"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:text="6. 투자시 가장 고려하는 사항?"
-                    android:textSize="30dp"
-                    android:textColor="@color/main_text_primary"
-                    android:gravity="center_vertical"/>
-
-                <com.rasset.shmstab.ui.components.RecursiveRadioGroup
-                    android:id="@+id/RG_INVEST_CONSIDER"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/TV_INVEST_CONSIDER"
-                    android:layout_marginTop="30dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_CONS_CASHING"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="환금성"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_CONS_STABILITY"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="안정성"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_CONS_MARGIN"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="시세차익"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_CONS_REVENUE"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:paddingLeft="10dp"
-                                android:text="임대수익률"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <RadioButton
-                                android:id="@+id/RB_INVEST_CONS_ETC"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="기타사항"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"/>
-
-                            <RadioButton
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text=""
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body1"
-                                android:visibility="invisible"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp">
-
-                <TextView
-                    android:id="@+id/TV_BUY_LABEL_NEED_CONSULTANT"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:text="7. 매수진단시 상담받고 싶은 내용? (중복선택 가능)"
+                    android:text="7. 매도진단시 상담받고 싶은 내용? (중복선택 가능)"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
                     android:gravity="center_vertical"/>
 
                 <LinearLayout
-                    android:id="@+id/RG_BUY_NEED_CONSULTANT"
+                    android:id="@+id/RG_SELL_NEED_CONSULTANT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/TV_BUY_LABEL_NEED_CONSULTANT"
+                    android:layout_below="@+id/TV_SELL_LABEL_NEED_CONSULTANT"
                     android:layout_marginTop="30dp">
 
                     <LinearLayout
@@ -798,40 +648,40 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <android.support.v7.widget.AppCompatCheckBox
-                                android:id="@+id/CB_SELL_CON_LOCATION"
+                                android:id="@+id/CB_SELL_CON_TIMING"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
-                                android:text="인기투자지역 추천"
+                                android:text="매도 타이밍상담"
                                 android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <android.support.v7.widget.AppCompatCheckBox
-                                android:id="@+id/CB_SELL_CON_DEV"
+                                android:id="@+id/CB_SELL_CON_PRICE"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
-                                android:text="개발호재 지역 추천"
+                                android:text="매도 가격상담"
                                 android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <android.support.v7.widget.AppCompatCheckBox
-                                android:id="@+id/CB_SELL_CON_MARGIN"
+                                android:id="@+id/CB_SELL_CON_REQUEST"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
-                                android:text="시세차익매물추천"
+                                android:text="매도 의뢰상담"
                                 android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
@@ -844,13 +694,14 @@
                             android:orientation="horizontal">
 
                             <android.support.v7.widget.AppCompatCheckBox
-                                android:id="@+id/CB_SELL_CON_REVENUE"
+                                android:id="@+id/CB_SELL_CON_METHOD"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="10dp"
                                 android:paddingLeft="10dp"
-                                android:text="임대수익률\n높은매물추천"
+                                android:text="매도 방법상담"
+                                android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
 
@@ -862,7 +713,7 @@
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
-                                android:text="기타 매수상담"
+                                android:text="기타 매도상담"
                                 android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>

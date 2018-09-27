@@ -19,19 +19,17 @@ data class ContentsInfo(var title: String = "",
                         var imgPath: String = "",
                         var regDate: Long) : BaseInfo()
 
-data class CustomerInfo(var idx: Int = 0,
-                        @SerializedName("dianoseId") // 서버에선 신청건리스트로 내려줌젠장 욕나오네
-                        var diagnoseId: Long=0,
-                        var customerName: String?=null,
-                        var photoImgPath: String?=null,
-                        var customerLevel: Long = 0) : BaseInfo()
+open class DiagnoseBaseInfo(var idx: Int = 0,
+                            @SerializedName("dianoseId")
+                            var diagnoseId: Long=0,
+                            @SerializedName("dianoseDetailId")
+                            var diagnoseDetailId: Long=0,
+                            var applyPart:Long = 0, // (11:부동산재테크 (매도/매수), 21: 토지/개발(MD), 31: 부동산 세금, 41:홈스테이징/인테리어, 51: 건축/리모델링(CM), 61: 주
+                            var diagnoseType: Long=0
+                            ) : BaseInfo()
 
-data class DiagnoseInfo(var idx: Int = 0,
-                        @SerializedName("dianoseId")
-                        var diagnoseId: Long=0,
-                        @SerializedName("dianoseDetailId")
-                        var diagnoseDetailId: Long=0,
-                        var customerId: Long=0,
+// 진단정보List
+data class DiagnoseInfo(var customerId: Long=0,
                         var customerName: String?=null,
                         var photoImgPath: String?=null,
                         var customerLevel: Long = 0,
@@ -42,5 +40,72 @@ data class DiagnoseInfo(var idx: Int = 0,
                         var consultingTimeStart:String?=null,
                         @SerializedName("endTime")
                         var consultingTime:String?=null,
-                        var applyPart:Long = 0, // 11 매도/매수
-                        var contents:String?=null) : BaseInfo()
+                        var contents:String?=null) : DiagnoseBaseInfo()
+
+// Update Diaginfos
+data class DiagnoseAssetSellInfo(var itemType: String?=null,
+                                var address: String?=null,
+                                var buyYear: String?=null,
+                                var sellPurpose:String?=null,
+                                var minAmount:String?=null,
+                                var maxAmount:String?=null,
+                                var sellTime:String?=null,
+                                var consultPart01:Long=0,
+                                var consultPart02:Long=0,
+                                var consultPart03:Long=0,
+                                var consultPart04:Long=0,
+                                var consultPart05:Long=0) : DiagnoseBaseInfo()
+
+data class DiagnoseAssetBuyInfo(var customerId: Long=0,
+                                var customerName: String?=null,
+                                var photoImgPath: String?=null,
+                                var customerLevel: Long = 0,
+                                var customerPhone: String?=null,
+                                @SerializedName("bookingDate")
+                                var consultingDate:String?=null,
+                                @SerializedName("startTime")
+                                var consultingTimeStart:String?=null,
+                                @SerializedName("endTime")
+                                var consultingTime:String?=null,
+                                var contents:String?=null) : DiagnoseBaseInfo()
+
+data class DiagnoseCMInfo(var customerId: Long=0,
+                        var customerName: String?=null,
+                        var photoImgPath: String?=null,
+                        var customerLevel: Long = 0,
+                        var customerPhone: String?=null,
+                        @SerializedName("bookingDate")
+                        var consultingDate:String?=null,
+                        @SerializedName("startTime")
+                        var consultingTimeStart:String?=null,
+                        @SerializedName("endTime")
+                        var consultingTime:String?=null,
+                        var contents:String?=null) : DiagnoseBaseInfo()
+
+data class DiagnoseTaxAssetInfo(var customerId: Long=0,
+                                var customerName: String?=null,
+                                var photoImgPath: String?=null,
+                                var customerLevel: Long = 0,
+                                var customerPhone: String?=null,
+                                @SerializedName("bookingDate")
+                                var consultingDate:String?=null,
+                                @SerializedName("startTime")
+                                var consultingTimeStart:String?=null,
+                                @SerializedName("endTime")
+                                var consultingTime:String?=null,
+                                var contents:String?=null) : DiagnoseBaseInfo()
+
+
+data class DiagnoseTaxFalmInfo(var customerId: Long=0,
+                                var customerName: String?=null,
+                                var photoImgPath: String?=null,
+                                var customerLevel: Long = 0,
+                                var customerPhone: String?=null,
+                                @SerializedName("bookingDate")
+                                var consultingDate:String?=null,
+                                @SerializedName("startTime")
+                                var consultingTimeStart:String?=null,
+                                @SerializedName("endTime")
+                                var consultingTime:String?=null,
+                                var contents:String?=null) : DiagnoseBaseInfo()
+

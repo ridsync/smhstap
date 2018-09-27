@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.network.res.BaseModel
+import com.rasset.shmstab.ui.DiagAttentionActivity
 import com.rasset.shmstab.utils.showToast
+import kotlinx.android.synthetic.main.fragment_diag_default_info.*
 import kotlinx.android.synthetic.main.fragment_diag_step_first.*
 
 /**
@@ -38,7 +40,7 @@ class DiagSubStepFirstFragment : BaseFragment() {
         }
     }
 
-    var selectedWewon:ADVISOR = ADVISOR.ADVISOR_NAME_INVEST
+    var selectedAdvisor:ADVISOR = ADVISOR.ADVISOR_NAME_INVEST
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +48,7 @@ class DiagSubStepFirstFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
-            mRootView = inflater?.inflate(R.layout.fragment_diag_step_first, container, false)
+            mRootView = inflater.inflate(R.layout.fragment_diag_step_first, container, false)
         }
         return mRootView
     }
@@ -65,41 +67,70 @@ class DiagSubStepFirstFragment : BaseFragment() {
     }
 
     private fun initFirst(){
-        setCheckCardViews(RL_ADVISOR_INVEST)
+
+        (activity as DiagAttentionActivity).diagnoseInfo.let { diagnoseInfo ->
+            when(diagnoseInfo.applyPart){
+                11L -> {
+                    setCheckCardViews(RL_ADVISOR_INVEST)
+                    selectedAdvisor = ADVISOR.ADVISOR_NAME_INVEST
+                }
+                12L -> {
+                    setCheckCardViews(RL_ADVISOR_MD)
+                    selectedAdvisor = ADVISOR.ADVISOR_NAME_MD
+                }
+                13L ->  {
+                    setCheckCardViews(RL_ADVISOR_TAX)
+                    selectedAdvisor = ADVISOR.ADVISOR_NAME_TAX
+                }
+                14L ->  {
+                    setCheckCardViews(RL_ADVISOR_HOME_INTE)
+                    selectedAdvisor = ADVISOR.ADVISOR_NAME_HOME_INTE
+                }
+                15L -> {
+                    setCheckCardViews(RL_ADVISOR_CM)
+                    selectedAdvisor = ADVISOR.ADVISOR_NAME_CM
+                }
+                16L -> {
+                    setCheckCardViews(RL_ADVISOR_MANAGEMENT)
+                    selectedAdvisor = ADVISOR.ADVISOR_NAME_MANAGEMENT
+                }
+            }
+        }
 
         RL_ADVISOR_INVEST.setOnClickListener {
+            return@setOnClickListener
             setCheckCardViews(it)
-            selectedWewon = ADVISOR.ADVISOR_NAME_INVEST
+            selectedAdvisor = ADVISOR.ADVISOR_NAME_INVEST
         }
         RL_ADVISOR_MD.setOnClickListener {
-            mContext.showToast{"준비중입니다."}
+//            mContext.showToast{"준비중입니다."}
             return@setOnClickListener
             setCheckCardViews(it)
-            selectedWewon = ADVISOR.ADVISOR_NAME_MD
+            selectedAdvisor = ADVISOR.ADVISOR_NAME_MD
         }
         RL_ADVISOR_TAX.setOnClickListener {
-            mContext.showToast{"준비중입니다."}
+//            mContext.showToast{"준비중입니다."}
             return@setOnClickListener
             setCheckCardViews(it)
-            selectedWewon = ADVISOR.ADVISOR_NAME_TAX
+            selectedAdvisor = ADVISOR.ADVISOR_NAME_TAX
         }
         RL_ADVISOR_HOME_INTE.setOnClickListener {
-            mContext.showToast{"준비중입니다."}
+//            mContext.showToast{"준비중입니다."}
             return@setOnClickListener
             setCheckCardViews(it)
-            selectedWewon = ADVISOR.ADVISOR_NAME_HOME_INTE
+            selectedAdvisor = ADVISOR.ADVISOR_NAME_HOME_INTE
         }
         RL_ADVISOR_MANAGEMENT.setOnClickListener {
-            mContext.showToast{"준비중입니다."}
+//            mContext.showToast{"준비중입니다."}
             return@setOnClickListener
             setCheckCardViews(it)
-            selectedWewon = ADVISOR.ADVISOR_NAME_MANAGEMENT
+            selectedAdvisor = ADVISOR.ADVISOR_NAME_MANAGEMENT
         }
         RL_ADVISOR_CM.setOnClickListener {
-            mContext.showToast{"준비중입니다."}
+//            mContext.showToast{"준비중입니다."}
             return@setOnClickListener
             setCheckCardViews(it)
-            selectedWewon = ADVISOR.ADVISOR_NAME_CM
+            selectedAdvisor = ADVISOR.ADVISOR_NAME_CM
         }
     }
 

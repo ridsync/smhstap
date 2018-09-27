@@ -268,8 +268,10 @@
                             android:orientation="horizontal">
                             <RadioButton
                                 android:id="@+id/RB_DIAG_INVEST"
-                                android:layout_width="162dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="31dp"
+                                android:layout_marginRight="30dp"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
@@ -280,9 +282,9 @@
 
                             <RadioButton
                                 android:id="@+id/RB_DIAG_MD"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="1.6"
                                 android:layout_height="31dp"
-                                android:layout_marginLeft="200dp"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
@@ -300,8 +302,10 @@
                             android:orientation="horizontal">
                             <RadioButton
                                 android:id="@+id/RB_DIAG_TAX"
-                                android:layout_width="162dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="31dp"
+                                android:layout_marginRight="30dp"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
@@ -312,9 +316,9 @@
 
                             <RadioButton
                                 android:id="@+id/RB_DIAG_HOME_INTE"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="1.6"
                                 android:layout_height="31dp"
-                                android:layout_marginLeft="200dp"
                                 android:drawablePadding="10dp"
                                 android:paddingLeft="10dp"
                                 android:text="홈스테이징/인테리어"
@@ -328,8 +332,23 @@
                             android:layout_marginTop="30dp"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:id="@+id/RB_DIAG_CM"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="31dp"
+                                android:layout_marginRight="30dp"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="건축./리모델링(CM)"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body2"/>
+
+                            <RadioButton
                                 android:id="@+id/RB_DIAG_MANAGEMENT"
-                                android:layout_width="162dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1.6"
                                 android:layout_height="31dp"
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
@@ -339,18 +358,6 @@
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body2"/>
 
-                            <RadioButton
-                                android:id="@+id/RB_DIAG_CM"
-                                android:layout_width="wrap_content"
-                                android:layout_height="31dp"
-                                android:layout_marginLeft="200dp"
-                                android:drawablePadding="10dp"
-                                android:gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="건축./리모델링(CM)"
-                                android:singleLine="true"
-                                android:textColor="@color/main_text_secondary"
-                                android:textSize="@dimen/main_text_body2"/>
                         </LinearLayout>
                         </LinearLayout>
                     </com.rasset.shmstab.ui.components.RecursiveRadioGroup>

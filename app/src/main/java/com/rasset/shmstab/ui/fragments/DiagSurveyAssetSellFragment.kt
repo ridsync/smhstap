@@ -12,6 +12,9 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
+import com.rasset.shmstab.model.DiagnoseAssetBuyInfo
+import com.rasset.shmstab.model.DiagnoseAssetSellInfo
+import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.ui.dialog.BaseDialogFragment
 import com.rasset.shmstab.ui.dialog.SearchAddressDialog
 import com.rasset.shmstab.utils.hideIME
@@ -22,7 +25,7 @@ import java.util.*
  * Created by devok on 2018-09-05.
  */
 
-class DiagSurveyAssetSellFragment : BaseFragment() {
+class DiagSurveyAssetSellFragment : SurveyBaseFragment() {
 
     private object Holder { val INSTANCE = DiagSurveyAssetSellFragment() }
 
@@ -164,6 +167,40 @@ class DiagSurveyAssetSellFragment : BaseFragment() {
         override fun onNothingSelected(parent: AdapterView<*>) {
 
         }
+    }
+
+    override fun isValidDiagInputs(): Boolean {
+        return true
+    }
+
+    override fun getDiagDatas(): DiagnoseAssetSellInfo? {
+
+        val estateType = RG_DIAG_RESTATE_TYPE.checkedItem?.tag.toString()
+        val address = TV_LOCATION_ADDRESS.text.toString().trim()
+        val addressDetail = ET_LOCATION_ADDRESS_DETAIL.text.toString().trim()
+        mPurchasedYear
+        val sellPurpose = RG_DIAG_SELL_PURPOSE.checkedItem?.tag.toString()
+        val lowerPrice = ET_SELL_LOWER.text.toString().trim()
+        val higherPrice = ET_SELL_HIGHER.text.toString().trim()
+        val sellTiming = RG_SELL_TIMING.checkedItem?.tag.toString()
+        val cbSellTiming = if (CB_SELL_CON_TIMING.isChecked) 1 else 0
+        val cbSellPrice = if (CB_SELL_CON_PRICE.isChecked) 1 else 0
+        val cbSellRequest = if (CB_SELL_CON_REQUEST.isChecked) 1 else 0
+        val cbSellMethod = if (CB_SELL_CON_METHOD.isChecked) 1 else 0
+        val cbSellEtc = if (CB_SELL_CON_ETC.isChecked) 1 else 0
+
+        if (estateType.isEmpty() || address.isEmpty() || sellPurpose.isEmpty()
+         || lowerPrice?.isNullOrEmpty() || higherPrice?.isNullOrEmpty() || sellTiming?.isNullOrEmpty()){
+            return null
+        }
+
+        return DiagnoseAssetSellInfo(itemType=estateType,address="$address $addressDetail",buyYear=mPurchasedYear,
+                                    sellPurpose = sellPurpose,minAmount = lowerPrice,maxAmount = higherPrice,sellTime = sellTiming
+                ,consultPart01 = cbSellTiming.toLong()
+                ,consultPart02 = cbSellPrice.toLong()
+                ,consultPart03 = cbSellRequest.toLong()
+                ,consultPart04 = cbSellMethod.toLong()
+                ,consultPart05 = cbSellEtc.toLong())
     }
 
 }

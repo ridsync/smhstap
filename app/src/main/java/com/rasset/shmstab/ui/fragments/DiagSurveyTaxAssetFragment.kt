@@ -12,9 +12,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
-import com.rasset.shmstab.model.DiagnoseAssetBuyInfo
-import com.rasset.shmstab.model.DiagnoseBaseInfo
+import com.rasset.shmstab.model.DiagnoseAssetSellInfo
 import com.rasset.shmstab.model.DiagnoseInfo
+import com.rasset.shmstab.model.DiagnoseTaxAssetInfo
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.utils.Logger
 import kotlinx.android.synthetic.main.fragment_diag_step_second.*
@@ -24,17 +24,17 @@ import java.util.HashMap
  * Created by devok on 2018-09-05.
  */
 
-class DiagSurveyAssetBuyFragment : SurveyBaseFragment(){
+class DiagSurveyTaxAssetFragment : SurveyBaseFragment() {
 
-    private object Holder { val INSTANCE = DiagSurveyAssetBuyFragment() }
+    private object Holder { val INSTANCE = DiagSurveyTaxAssetFragment() }
 
     companion object {
-        val singleTone: DiagSurveyAssetBuyFragment by lazy { Holder.INSTANCE }
+        val singleTone: DiagSurveyTaxAssetFragment by lazy { Holder.INSTANCE }
 
-        val instance: DiagSurveyAssetBuyFragment by lazy { DiagSurveyAssetBuyFragment() }
+        val instance: DiagSurveyTaxAssetFragment by lazy { DiagSurveyTaxAssetFragment() }
 
         fun newInstance(context: Context): Intent {
-            val intent = Intent(context, DiagSurveyAssetBuyFragment::class.java)
+            val intent = Intent(context, DiagSurveyTaxAssetFragment::class.java)
             return intent
         }
     }
@@ -45,7 +45,7 @@ class DiagSurveyAssetBuyFragment : SurveyBaseFragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
-            mRootView = inflater.inflate(R.layout.fragment_diag_survey_asset_buy, container, false)
+            mRootView = inflater.inflate(R.layout.fragment_diag_survey_tax_asset, container, false)
         }
         return mRootView
     }
@@ -71,11 +71,8 @@ class DiagSurveyAssetBuyFragment : SurveyBaseFragment(){
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseAssetBuyInfo {
-
-
-        return DiagnoseAssetBuyInfo()
+    override fun getDiagDatas(): DiagnoseTaxAssetInfo{
+        return DiagnoseTaxAssetInfo()
     }
-
 
 }

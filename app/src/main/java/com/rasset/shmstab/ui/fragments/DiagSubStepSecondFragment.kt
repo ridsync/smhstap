@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import com.rasset.shmstab.R
+import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.DiagAttentionActivity
 import com.rasset.shmstab.utils.Logger
@@ -29,6 +30,11 @@ class DiagSubStepSecondFragment : BaseFragment() {
 
     private object Holder { val INSTANCE = DiagSubStepSecondFragment() }
 
+    interface UpdateDiagnoseDatas {
+        fun isValidDiagInputs(): Boolean
+        fun getDiagDatas():DiagnoseInfo
+    }
+
     companion object {
         val singleTone: DiagSubStepSecondFragment by lazy { Holder.INSTANCE }
 
@@ -41,7 +47,7 @@ class DiagSubStepSecondFragment : BaseFragment() {
     }
 
     lateinit var tabLayout: TabLayout
-    var fragments: HashMap<Int, BaseFragment> = HashMap()
+    var fragments: HashMap<Int, SurveyBaseFragment> = HashMap()
     var selectedAdviser:DiagSubStepFirstFragment.ADVISOR = DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST
 
     private var previousVPposition: Int = 0
@@ -100,7 +106,6 @@ class DiagSubStepSecondFragment : BaseFragment() {
         tabLayout.setTabTextColors(resources.getColor(R.color.main_text_secondary), resources.getColor(R.color.main_text_primary))
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
 
-        // TODO 선택 위원에 따른 탭 과 화면 구성
         when (selectedAdviser) {
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST -> {
                 tabLayout.addTab(tabLayout.newTab().setText(digCategorise[0]))
@@ -111,15 +116,16 @@ class DiagSubStepSecondFragment : BaseFragment() {
             }
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX-> {
                 tabLayout.addTab(tabLayout.newTab().setText(digCategorise[3]))
-            }
-            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_HOME_INTE-> {
                 tabLayout.addTab(tabLayout.newTab().setText(digCategorise[4]))
             }
-            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MANAGEMENT-> {
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_HOME_INTE-> {
                 tabLayout.addTab(tabLayout.newTab().setText(digCategorise[5]))
             }
-            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_CM-> {
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MANAGEMENT-> {
                 tabLayout.addTab(tabLayout.newTab().setText(digCategorise[6]))
+            }
+            DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_CM-> {
+                tabLayout.addTab(tabLayout.newTab().setText(digCategorise[7]))
             }
         }
         for (i in 0 until tabLayout.tabCount) {
@@ -183,23 +189,27 @@ class DiagSubStepSecondFragment : BaseFragment() {
                 }
             }
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MD -> {
-                DiagSurveyAssetBuyFragment()
+                DiagSurveyMDFragment()
             }
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX-> {
-                DiagSurveyAssetBuyFragment()
+                if(index == 0 ) {
+                    DiagSurveyTaxAssetFragment()
+                } else {
+                    DiagSurveyTaxFalmLandFragment()
+                }
             }
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_HOME_INTE-> {
-                DiagSurveyAssetBuyFragment()
+                DiagSurveyHomeInteFragment()
             }
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MANAGEMENT-> {
-                DiagSurveyAssetBuyFragment()
+                DiagSurveyManageFragment()
             }
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_CM-> {
-                DiagSurveyAssetBuyFragment()
+                DiagSurveyCMFragment()
             }
     }
 
-    fun getSubFragments(): HashMap<Int, BaseFragment>{
+    fun getSubFragments(): HashMap<Int, SurveyBaseFragment>{
         return fragments
     }
 

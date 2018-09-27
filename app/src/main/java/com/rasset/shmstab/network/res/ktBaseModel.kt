@@ -1,7 +1,6 @@
 package com.rasset.shmstab.network.res
 
 import com.rasset.shmstab.model.ContentsInfo
-import com.rasset.shmstab.model.CustomerInfo
 import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.model.UserInfo
 import java.util.ArrayList

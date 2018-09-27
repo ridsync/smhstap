@@ -14,10 +14,11 @@
     <string name="btn_completed">완료</string>
 
     // ADVISOR_SURVEYS_TITLE
-    <string name="diag_txt_asset_sell">부동산 재테크_매도</string>
-    <string name="diag_txt_asset_buy">부동산 재테크_매수</string>
+    <string name="diag_txt_asset_sell">부동산 재테크 매도</string>
+    <string name="diag_txt_asset_buy">부동산 재테크 매수</string>
     <string name="diag_txt_md">토지/개발(MD)</string>
-    <string name="diag_txt_tax">부동산 세금</string>
+    <string name="diag_txt_tax">주택/수익형부동산 분야</string>
+    <string name="diag_txt_tax_2">농지절세분야</string>
     <string name="diag_txt_home_inte">홈스테이징/인테리어</string>
     <string name="diag_txt_cm">건축/리모델링(CM)</string>
     <string name="diag_txt_management">주택임대관리</string>
