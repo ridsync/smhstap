@@ -3,22 +3,12 @@ package com.rasset.shmstab.ui.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetBuyInfo
-import com.rasset.shmstab.model.DiagnoseBaseInfo
-import com.rasset.shmstab.model.DiagnoseInfo
-import com.rasset.shmstab.network.res.BaseModel
-import com.rasset.shmstab.utils.Logger
-import kotlinx.android.synthetic.main.fragment_diag_step_second.*
-import java.util.HashMap
+import kotlinx.android.synthetic.main.fragment_diag_survey_asset_buy.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -71,8 +61,25 @@ class DiagSurveyAssetBuyFragment : SurveyBaseFragment(){
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseAssetBuyInfo {
+    override fun getDiagDatas(): DiagnoseAssetBuyInfo? {
 
+        val estateType = RG_DIAG_RESTATE_TYPE.checkedItem?.tag.toString()
+        val location = RG_BUY_LOCATION.checkedItem?.tag.toString()
+        val buyTiming = RG_BUY_TIMING.checkedItem?.tag.toString()
+        val investPurpose = RG_INVEST_PURPOSE.checkedItem?.tag.toString()
+        val investScale = RG_INVEST_SCALE.checkedItem?.tag.toString()
+        val investConsider = RG_INVEST_CONSIDER.checkedItem?.tag.toString()
+
+        val cbBuyLocation = if (CB_BUY_CON_LOCATION.isChecked) 1 else 0
+        val cbBuyDev = if (CB_BUY_CON_DEV.isChecked) 1 else 0
+        val cbBuyMargin = if (CB_BUY_CON_MARGIN.isChecked) 1 else 0
+        val cbBuyRevenue = if (CB_BUY_CON_REVENUE.isChecked) 1 else 0
+        val cbBuyEtc = if (CB_BUY_CON_ETC.isChecked) 1 else 0
+
+        if (estateType.isNullOrEmpty() || location.isNullOrEmpty() || buyTiming.isNullOrEmpty()
+                || investPurpose.isNullOrEmpty() || investScale.isNullOrEmpty() || investConsider.isNullOrEmpty()){
+            return null
+        }
 
         return DiagnoseAssetBuyInfo()
     }

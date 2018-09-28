@@ -65,6 +65,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_TAX_FIELD_INHERITANCE"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -78,6 +79,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_TAX_FIELD_PROPERTY"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -91,6 +93,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:id="@+id/RB_TAX_FIELD_ASSINGN"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -111,6 +114,7 @@
                             android:orientation="horizontal">
 
                             <RadioButton
+                                android:tag="41"
                                 android:id="@+id/RB_TAX_FIELD_LEASE"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -123,6 +127,7 @@
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
                             <RadioButton
+                                android:tag="51"
                                 android:id="@+id/RB_TAX_FIELD_VAT"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -136,6 +141,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="61"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
@@ -186,6 +192,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_SELL_HOUSING_1"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -199,6 +206,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_SELL_HOUSING_2"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -212,6 +220,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:id="@+id/RB_SELL_HOUSING_3"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -226,6 +235,7 @@
 
 
                             <RadioButton
+                                android:tag="41"
                                 android:id="@+id/RB_SELL_HOUSING_4"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -275,6 +285,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_TAX_CONTROL_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -288,6 +299,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_TAX_CONTROL_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -339,6 +351,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_OWN_PERIOD_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -352,6 +365,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_OWN_PERIOD_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -403,6 +417,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_HIGHER_PRICE_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -416,6 +431,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_HIGHER_PRICE_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -612,6 +628,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_NEED_CONSULT_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -625,6 +642,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_NEED_CONSULT_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"

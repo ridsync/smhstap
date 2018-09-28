@@ -132,6 +132,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_AREA_SIZE_1"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -145,6 +146,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_AREA_SIZE_2"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -158,6 +160,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:id="@+id/RB_AREA_SIZE_3"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -172,6 +175,7 @@
 
 
                             <RadioButton
+                                android:tag="41"
                                 android:id="@+id/RB_AREA_SIZE_4"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -221,6 +225,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_TOTAL_COST_1"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -234,6 +239,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_TOTAL_COST_2"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -247,6 +253,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:id="@+id/RB_TOTAL_COST_3"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -261,6 +268,7 @@
 
 
                             <RadioButton
+                                android:tag="41"
                                 android:id="@+id/RB_TOTAL_COST_4"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -310,6 +318,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_STYLE_1"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -323,6 +332,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_STYLE_2"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -336,6 +346,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:id="@+id/RB_STYLE_3"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -386,6 +397,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_CONSTRUCT_DATE_1"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -399,6 +411,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_CONSTRUCT_DATE_2"
                                 android:layout_width="0dp"
                                 android:layout_weight="1.2"
@@ -412,6 +425,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:id="@+id/RB_CONSTRUCT_DATE_3"
                                 android:layout_width="0dp"
                                 android:layout_weight="1.2"
@@ -426,6 +440,7 @@
 
 
                             <RadioButton
+                                android:tag="41"
                                 android:id="@+id/RB_CONSTRUCT_DATE_4"
                                 android:layout_width="0dp"
                                 android:layout_weight="1.2"
@@ -475,6 +490,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_INVEST_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -488,6 +504,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_INVEST_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"

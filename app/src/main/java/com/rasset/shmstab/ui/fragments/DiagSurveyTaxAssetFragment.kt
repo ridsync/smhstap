@@ -3,22 +3,13 @@ package com.rasset.shmstab.ui.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
-import com.rasset.shmstab.model.DiagnoseAssetSellInfo
-import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.model.DiagnoseTaxAssetInfo
-import com.rasset.shmstab.network.res.BaseModel
-import com.rasset.shmstab.utils.Logger
-import kotlinx.android.synthetic.main.fragment_diag_step_second.*
-import java.util.HashMap
+import kotlinx.android.synthetic.main.fragment_diag_survey_asset_buy.*
+import kotlinx.android.synthetic.main.fragment_diag_survey_tax_asset.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -71,7 +62,29 @@ class DiagSurveyTaxAssetFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseTaxAssetInfo{
+    override fun getDiagDatas(): DiagnoseTaxAssetInfo?{
+
+        val taxField = RG_DIAG_TAX_FIELD.checkedItem?.tag.toString()
+        val housing = RG_DIAG_SELL_HOUSING.checkedItem?.tag.toString()
+        val controlLocation = RG_CONTROL.checkedItem?.tag.toString()
+        val ownPeriod = RG_OWN_PERIOD.checkedItem?.tag.toString()
+        val higherPrice = RG_HIGHER_PRICE.checkedItem?.tag.toString()
+
+        val ownRassetStore = if (RB_OWN_RASSET_STORE.isChecked) 1 else 0
+        val ownRassetParcel = if (RB_OWN_RASSET_PARCEL.isChecked) 1 else 0
+        val ownRassetResidence = if (RB_OWN_RASSET_RESIDENCE.isChecked) 1 else 0
+        val ownRassetOfficetel = if (RB_OWN_RASSET_OFFICETEL.isChecked) 1 else 0
+        val ownRassetLand = if (RB_OWN_RASSET_LAND.isChecked) 1 else 0
+        val ownRassetEtc = if (RB_OWN_RASSET_ETC.isChecked) 1 else 0
+        val ownRassetEtcContents = ET_OWN_RASSET_ETC.text.toString().trim()
+
+        val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
+
+        if (taxField.isNullOrEmpty() || housing.isNullOrEmpty() || controlLocation.isNullOrEmpty()
+                || ownPeriod.isNullOrEmpty() || higherPrice.isNullOrEmpty() || needConsult.isNullOrEmpty()){
+            return null
+        }
+
         return DiagnoseTaxAssetInfo()
     }
 

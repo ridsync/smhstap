@@ -189,8 +189,8 @@ class DiagSurveyAssetSellFragment : SurveyBaseFragment() {
         val cbSellMethod = if (CB_SELL_CON_METHOD.isChecked) 1 else 0
         val cbSellEtc = if (CB_SELL_CON_ETC.isChecked) 1 else 0
 
-        if (estateType.isEmpty() || address.isEmpty() || sellPurpose.isEmpty()
-         || lowerPrice?.isNullOrEmpty() || higherPrice?.isNullOrEmpty() || sellTiming?.isNullOrEmpty()){
+        if (estateType.isNullOrEmpty() || address.isNullOrEmpty() || sellPurpose.isNullOrEmpty()
+         || lowerPrice.isNullOrEmpty() || higherPrice.isNullOrEmpty() || sellTiming.isNullOrEmpty()){
             return null
         }
 

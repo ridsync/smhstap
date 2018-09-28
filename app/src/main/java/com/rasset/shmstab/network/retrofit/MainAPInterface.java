@@ -13,6 +13,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 /**
@@ -23,10 +24,10 @@ public interface MainAPInterface {
     @POST("userLogin")
     Call<ResUserLogin> reqPostUserLogin(@Body Map<String, Object> params);
 
-    @GET("internListCustomers")
-    Call<ResCustomerList> reqGetDiagnoseList(@QueryMap Map<String, Object> params);
+    @GET("internListCustomers/{userId}")
+    Call<ResCustomerList> reqGetDiagnoseList(@Path("userId") String userId);
 
-    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @Headers("Content-Type: application/json")
     @POST("updateDiagInfos")
     Call<BaseModel>  reqPostDiagnoseUpdate(@Body Map<String, Object> params);
 

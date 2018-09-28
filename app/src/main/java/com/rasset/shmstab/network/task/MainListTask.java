@@ -2,6 +2,7 @@ package com.rasset.shmstab.network.task;
 
 import android.content.Context;
 
+import com.rasset.shmstab.network.protocol.ParamKey;
 import com.rasset.shmstab.network.res.BaseModel;
 import com.google.gson.JsonElement;
 import  com.rasset.shmstab.network.OnNetworkListener;
@@ -38,7 +39,7 @@ public class MainListTask extends NetworkTask<BaseModel> {
         if (ReqType.REQUEST_TYPE_POST_USER_LOGIN == mRequestType) {
             return service.reqPostUserLogin(mParams);
         }  else if (ReqType.REQUEST_TYPE_GET_DIAGNOSE_LIST == mRequestType) {
-            return service.reqGetDiagnoseList(mParams);
+            return service.reqGetDiagnoseList(mParams.get(ParamKey.PARAM_USERID).toString());
         } else if (ReqType.REQUEST_TYPE_POST_DIAGNOSE_UPDATE == mRequestType) {
             return service.reqPostDiagnoseUpdate(mParams);
         } else {

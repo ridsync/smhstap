@@ -65,6 +65,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_USAGE_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -78,6 +79,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_USAGE_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -129,6 +131,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_FARMLAND_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -142,6 +145,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_FARMLAND_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -193,6 +197,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_USE_PURPOSE_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -206,6 +211,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_USE_PURPOSE_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -257,6 +263,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_EXECPT_FARMLAND_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -270,6 +277,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_EXECPT_FARMLAND_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -321,6 +329,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_RESIDENCED_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -334,6 +343,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_RESIDENCE_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -386,6 +396,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_URBAN_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -399,6 +410,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_URBAN_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -450,6 +462,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_NEED_CONSULT_YES"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -463,6 +476,7 @@
                                 android:textSize="@dimen/main_text_body1"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_NEED_CONSULT_NO"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"

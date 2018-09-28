@@ -114,7 +114,7 @@
                             android:textColor="@color/main_text_primary"
                             android:gravity="center_vertical"/>
 
-                        <LinearLayout
+                        <com.rasset.shmstab.ui.components.RecursiveRadioGroup
                             android:id="@+id/RG_CONSULT_TYPE"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -132,6 +132,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
                                     <RadioButton
+                                        android:tag="11"
                                         android:id="@+id/RB_CONSULT_TYPE_IMDAE"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -145,6 +146,7 @@
                                         android:textSize="@dimen/main_text_body1"/>
 
                                     <RadioButton
+                                        android:tag="21"
                                         android:id="@+id/RB_CONSULT_TYPE_STORE"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -158,6 +160,7 @@
                                         android:textSize="@dimen/main_text_body1"/>
 
                                     <RadioButton
+                                        android:tag="31"
                                         android:id="@+id/RB_CONSULT_TYPE_BUILDING"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -172,6 +175,7 @@
 
 
                                     <RadioButton
+                                        android:tag="41"
                                         android:id="@+id/RB_CONSULT_TYPE_PARCEL_STORE"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -197,6 +201,7 @@
                                         android:orientation="horizontal">
 
                                         <RadioButton
+                                            android:tag="51"
                                             android:id="@+id/RB_CONSULT_TYPE_ETC"
                                             android:layout_width="wrap_content"
                                             android:layout_height="match_parent"
@@ -226,7 +231,7 @@
 
                                 </LinearLayout>
                             </LinearLayout>
-                        </LinearLayout>
+                        </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
 
                     </RelativeLayout>
 
@@ -244,7 +249,7 @@
                             android:textColor="@color/main_text_primary"
                             android:gravity="center_vertical"/>
 
-                        <LinearLayout
+                        <com.rasset.shmstab.ui.components.RecursiveRadioGroup
                             android:id="@+id/RG_CONSULT_FIELD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -262,6 +267,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
                                     <RadioButton
+                                        android:tag="11"
                                         android:id="@+id/RB_CONSULT_FIELD_EMPTY"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -275,6 +281,7 @@
                                         android:textSize="@dimen/main_text_body1"/>
 
                                     <RadioButton
+                                        android:tag="21"
                                         android:id="@+id/RB_CONSULT_FIELD_MINWON"
                                         android:layout_width="0dp"
                                         android:layout_weight="1.1"
@@ -288,6 +295,7 @@
                                         android:textSize="@dimen/main_text_body1"/>
 
                                     <RadioButton
+                                        android:tag="31"
                                         android:id="@+id/RB_CONSULT_FIELD_PAYMENT"
                                         android:layout_width="0dp"
                                         android:layout_weight="1.1"
@@ -302,6 +310,7 @@
 
 
                                     <RadioButton
+                                        android:tag="41"
                                         android:id="@+id/RB_CONSULT_FIELD_REVENUE"
                                         android:layout_width="0dp"
                                         android:layout_weight="1.4"
@@ -327,6 +336,7 @@
                                         android:orientation="horizontal">
 
                                         <RadioButton
+                                            android:tag="51"
                                             android:id="@+id/RB_CONSULT_FIELD_ETC"
                                             android:layout_width="wrap_content"
                                             android:layout_height="match_parent"
@@ -356,7 +366,7 @@
 
                                 </LinearLayout>
                             </LinearLayout>
-                        </LinearLayout>
+                        </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
                     </RelativeLayout>
 
 
@@ -374,7 +384,7 @@
                             android:textColor="@color/main_text_primary"
                             android:gravity="center_vertical"/>
 
-                        <LinearLayout
+                        <com.rasset.shmstab.ui.components.RecursiveRadioGroup
                             android:id="@+id/RG_LESSEE"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -392,6 +402,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
                                     <RadioButton
+                                        android:tag="11"
                                         android:id="@+id/RB_LESSEE_COUNT_1"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -405,6 +416,7 @@
                                         android:textSize="@dimen/main_text_body1"/>
 
                                     <RadioButton
+                                        android:tag="21"
                                         android:id="@+id/RB_LESSEE_COUNT_2"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -418,6 +430,7 @@
                                         android:textSize="@dimen/main_text_body1"/>
 
                                     <RadioButton
+                                        android:tag="31"
                                         android:id="@+id/RB_LESSEE_COUNT_3"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -432,6 +445,7 @@
 
 
                                     <RadioButton
+                                        android:tag="41"
                                         android:id="@+id/RB_LESSEE_COUNT_4"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -445,7 +459,7 @@
                                 </LinearLayout>
 
                             </LinearLayout>
-                        </LinearLayout>
+                        </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
 
                     </RelativeLayout>
 
@@ -482,6 +496,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
                                     <RadioButton
+                                        android:tag="11"
                                         android:id="@+id/RB_ESTIMATE_YES"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -495,6 +510,7 @@
                                         android:textSize="@dimen/main_text_body1"/>
 
                                     <RadioButton
+                                        android:tag="21"
                                         android:id="@+id/RB_ESTIMATE_NO"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -547,6 +563,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
                                     <RadioButton
+                                        android:tag="11"
                                         android:id="@+id/RB_LEASE_YES"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -560,6 +577,7 @@
                                         android:textSize="@dimen/main_text_body1"/>
 
                                     <RadioButton
+                                        android:tag="21"
                                         android:id="@+id/RB_LEASE_NO"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"

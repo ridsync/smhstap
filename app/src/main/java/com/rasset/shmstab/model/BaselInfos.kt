@@ -1,5 +1,6 @@
 package com.rasset.shmstab.model
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
@@ -7,7 +8,7 @@ import java.util.*
  * Created by devok on 2018-08-31.
  */
 open class BaseInfo {
-    var seq: Int = 0
+//    @Expose var seq: Int = 0
 }
 
 
@@ -19,8 +20,7 @@ data class ContentsInfo(var title: String = "",
                         var imgPath: String = "",
                         var regDate: Long) : BaseInfo()
 
-open class DiagnoseBaseInfo(var idx: Int = 0,
-                            @SerializedName("dianoseId")
+open class DiagnoseBaseInfo(@SerializedName("dianoseId")
                             var diagnoseId: Long=0,
                             @SerializedName("dianoseDetailId")
                             var diagnoseDetailId: Long=0,

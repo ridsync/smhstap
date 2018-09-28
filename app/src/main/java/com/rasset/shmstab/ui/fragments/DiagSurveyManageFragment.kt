@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
 import com.rasset.shmstab.model.DiagnoseInfo
+import kotlinx.android.synthetic.main.fragment_diag_survey_management.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -63,7 +64,27 @@ class DiagSurveyManageFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseAssetSellInfo {
+    override fun getDiagDatas(): DiagnoseAssetSellInfo? {
+
+        val address = TV_LOCATION_ADDRESS.text.toString().trim()
+        val addressDetail = ET_LOCATION_ADDRESS_DETAIL.text.toString().trim()
+
+        val investConsider = RG_CONSULT_TYPE.checkedItem?.tag.toString()
+        val consultTypeEtc = ET_CONSULT_TYPE_ETC.text.toString().trim()
+
+        val consultField = RG_CONSULT_FIELD.checkedItem?.tag.toString()
+        val consultFieldEtc = ET_CONSULT_FIELD_ETC.text.toString().trim()
+
+        val isLesseCount = RG_LESSEE.checkedItem?.tag.toString()
+        val isEstimate = RG_ESTIMATE.checkedItem?.tag.toString()
+        val leaseConsider = RG_LEASE.checkedItem?.tag.toString()
+
+        if (address.isNullOrEmpty() || investConsider.isNullOrEmpty() || consultField.isNullOrEmpty()
+                || consultFieldEtc.isNullOrEmpty() || isLesseCount.isNullOrEmpty() || isEstimate.isNullOrEmpty()
+                || leaseConsider.isNullOrEmpty()){
+            return null
+        }
+
         return DiagnoseAssetSellInfo()
     }
 }

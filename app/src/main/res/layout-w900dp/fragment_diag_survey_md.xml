@@ -132,6 +132,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_MD_PURPOSE_MARGIN"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -145,6 +146,7 @@
                                 android:textSize="@dimen/main_text_body2"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_MD_PURPOSE_BENFIT"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -158,6 +160,7 @@
                                 android:textSize="@dimen/main_text_body2"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
@@ -178,6 +181,7 @@
                             android:orientation="horizontal">
 
                             <RadioButton
+                                android:tag="41"
                                 android:id="@+id/RB_MD_PURPOSE_CONSTRUCT"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -190,6 +194,7 @@
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body2"/>
                             <RadioButton
+                                android:tag="51"
                                 android:id="@+id/RB_MD_PURPOSE_SELL"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -231,6 +236,7 @@
                     android:orientation="vertical">
 
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_SELL_WONDER_KEEP"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
@@ -243,6 +249,7 @@
                                 android:textSize="@dimen/main_text_body2"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_SELL_WONDER_WHAT"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
@@ -256,6 +263,7 @@
                                 android:textSize="@dimen/main_text_body2"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:id="@+id/RB_SELL_WONDER_NONE"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
@@ -301,6 +309,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_SELL_HASEXP_IMMEDIATE"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -314,6 +323,7 @@
                                 android:textSize="@dimen/main_text_body2"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_SELL_HASEXP_IN_3MONTHS"
                                 android:layout_width="0dp"
                                 android:layout_weight="1.2"
@@ -327,6 +337,7 @@
                                 android:textSize="@dimen/main_text_body2"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:id="@+id/RB_SELL_HASEXP_IN_6MONTHS"
                                 android:layout_width="0dp"
                                 android:layout_weight="1.2"
@@ -347,6 +358,7 @@
                             android:orientation="horizontal">
 
                             <RadioButton
+                                android:tag="41"
                                 android:id="@+id/RB_SELL_HASEXP_IN_1YEAR"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -359,6 +371,7 @@
                                 android:textSize="@dimen/main_text_body2"/>
 
                             <RadioButton
+                                android:tag="51"
                                 android:id="@+id/RB_SELL_HASEXP_LATER_1YEAR"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -373,6 +386,7 @@
                                 android:visibility="gone"/>
 
                             <RadioButton
+                                android:tag="61"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
@@ -422,6 +436,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <RadioButton
+                                android:tag="11"
                                 android:id="@+id/RB_MD_MOTIVE_TRADING"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -435,6 +450,7 @@
                                 android:textSize="@dimen/main_text_body2"/>
 
                             <RadioButton
+                                android:tag="21"
                                 android:id="@+id/RB_MD_MOTIVE_AUCTION"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -448,6 +464,7 @@
                                 android:textSize="@dimen/main_text_body2"/>
 
                             <RadioButton
+                                android:tag="31"
                                 android:id="@+id/RB_MD_MOTIVE_BUY"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -468,6 +485,7 @@
                             android:orientation="horizontal">
 
                             <RadioButton
+                                android:tag="41"
                                 android:id="@+id/RB_MD_MOTIVE_INHERITANCE"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -480,6 +498,7 @@
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body2"/>
                             <RadioButton
+                                android:tag="51"
                                 android:id="@+id/RB_MD_MOTIVE_ETC"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
@@ -493,6 +512,7 @@
                                 android:textSize="@dimen/main_text_body2"/>
 
                             <RadioButton
+                                android:tag="61"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
@@ -527,7 +547,7 @@
                     android:textColor="@color/main_text_primary"
                     android:gravity="center_vertical"/>
 
-                <LinearLayout
+                <com.rasset.shmstab.ui.components.RecursiveRadioGroup
                     android:id="@+id/RG_SELL_NEED_CONSULTANT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -573,7 +593,7 @@
                         </LinearLayout>
 
                     </LinearLayout>
-                </LinearLayout>
+                </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
 
             </RelativeLayout>
 

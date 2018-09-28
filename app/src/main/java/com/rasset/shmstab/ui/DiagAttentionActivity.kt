@@ -189,7 +189,7 @@ class DiagAttentionActivity : BaseActivity() {
     private fun reqNetUpdateDiagInfos(diagInfo: DiagnoseBaseInfo) {
         val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_DIAGNOSE_UPDATE, this)
         task.addParam(ParamKey.PARAM_USERID, TabApp.userInfo?.userId)
-        task.addParam(ParamKey.PARAM_DIAG_INFO, diagInfo)
+        task.addParam(ParamKey.PARAM_DIAG_INFO, arrayListOf(diagInfo))
         NetManager.startTask(task)
     }
 

@@ -1,14 +1,20 @@
 package com.rasset.shmstab.ui.fragments
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.*
 import com.rasset.shmstab.R
 import com.rasset.shmstab.network.res.BaseModel
-import com.rasset.shmstab.ui.dialog.ProgressLockDialog
+import kotlinx.android.synthetic.main.fragment_main_re_asset.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -54,10 +60,55 @@ class MainSubREAssetFragment : BaseFragment() {
     }
 
     fun initFirst(){
+        WV_REASSET.run {
+            webViewClient = object :  WebViewClient() {
+                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                    super.onPageStarted(view, url, favicon)
+                    Log.d("webView", "onPageStarted $url")
+                }
+                override fun onReceivedHttpError(view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) {
+                    super.onReceivedHttpError(view, request, errorResponse)
+                    Log.d("webView", "onReceivedHttpError ${errorResponse.toString()}")
+                }
+                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                    request?.let {
+                        view?.loadUrl(it.url.toString())
+                        Log.d("webView", "shouldOverrideUrlLoading loadUrl ${it.url}")
+                    }
+                    Log.d("webView", "shouldOverrideUrlLoading $request")
+                    return false
+                }
+                override fun onLoadResource(view: WebView?, url: String?) {
+                    super.onLoadResource(view, url)
+//                Log.d("webView", "onLoadResource $url")
+                }
+
+                override fun onPageFinished(view: WebView, url: String) {
+                    Log.d("webView", "onPageFinished $url")
+                }
+
+            }
+            webChromeClient = object : WebChromeClient() {
+                override fun onProgressChanged(view: WebView, newProgress: Int) {
+                    super.onProgressChanged(view, newProgress)
+                }
+            }
+            clearCache(true)
+            clearHistory()
+            setNetworkAvailable(true)
+            settings.javaScriptEnabled = true
+//        settings.javaScriptCanOpenWindowsAutomatically = true
+            settings.domStorageEnabled = true
+            settings.userAgentString = settings.userAgentString
+            Log.d("webView ", "userAgentString - ${settings.userAgentString}")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                setBackgroundColor(Color.TRANSPARENT)
+            }
+            loadUrl("http://www.smarthaus.co.kr/account/rich/survey/join")
+        }
 
     }
-
-
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
 

@@ -216,7 +216,7 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
 
     private fun getDiagnoseList() {
         val task = MainListTask(mContext, ReqType.REQUEST_TYPE_GET_DIAGNOSE_LIST, this)
-        task.addParam(ParamKey.PARAM_DIAG_ID, TabApp.userInfo?.userId)
+        task.addParam(ParamKey.PARAM_USERID, TabApp.userInfo?.userId)
         NetManager.startTask(task)
     }
 
@@ -229,13 +229,20 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
             spannablecontent.setSpan(RelativeSizeSpan(1.5f), 3,spannablecontent.length - 1, 0)
             TV_CUSTOMER_COUNT.text = spannablecontent
 
-            if (mlastSeq == 0L) {
-                mListAdapter?.data = data.list
-                mListAdapter?.notifyDataSetChanged()
-            } else {
-                mListAdapter?.addItemAll(data.list)
+            data.list?.let {
+                if (mlastSeq == 0L) {
+                    mListAdapter?.data = it
+                    mListAdapter?.notifyDataSetChanged()
+                } else {
+                    mListAdapter?.addItemAll(it)
+                }
+                if (it.isNotEmpty()){
+//                    mlastSeq = it.last().idx.toLong()
+                    TV_EMPTY_MSG.visibility = View.GONE
+                } else {
+                    TV_EMPTY_MSG.visibility = View.VISIBLE
+                }
             }
-            mlastSeq = data.list.last().idx.toLong()
             SR_REFRESH_LAYOUT?.isRefreshing = false  // Refresh Finished
             SR_REFRESH_LAYOUT?.isEnabled = true
         }
@@ -264,7 +271,7 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
             // If you're using your custom handler (as you should of course)
             // you need to cast viewHolder to it.
             val diagnoseInfo = data[i]
-            diagnoseInfo.idx = i
+//            diagnoseInfo.idx = i
 
             // View Set
             val strProfileURL = diagnoseInfo.photoImgPath

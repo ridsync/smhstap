@@ -3,22 +3,12 @@ package com.rasset.shmstab.ui.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
-import com.rasset.shmstab.model.DiagnoseInfo
-import com.rasset.shmstab.model.DiagnoseTaxAssetInfo
 import com.rasset.shmstab.model.DiagnoseTaxFalmInfo
-import com.rasset.shmstab.network.res.BaseModel
-import com.rasset.shmstab.utils.Logger
-import kotlinx.android.synthetic.main.fragment_diag_step_second.*
-import java.util.HashMap
+import kotlinx.android.synthetic.main.fragment_diag_survey_tax_falmland.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -71,7 +61,22 @@ class DiagSurveyTaxFalmLandFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseTaxFalmInfo {
+    override fun getDiagDatas(): DiagnoseTaxFalmInfo? {
+
+        val usage = RG_USAGE.checkedItem?.tag.toString()
+        val isFarmLand = RG_FARMLAND.checkedItem?.tag.toString()
+        val isPurpose = RG_USE_PURPOSE.checkedItem?.tag.toString()
+        val exceptLand = RG_EXECPT_FARMLAND.checkedItem?.tag.toString()
+        val residence = RG_RESIDENCE.checkedItem?.tag.toString()
+        val urban = RG_URBAN.checkedItem?.tag.toString()
+        val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
+
+        if (usage.isNullOrEmpty() || isFarmLand.isNullOrEmpty() || isPurpose.isNullOrEmpty()
+                || exceptLand.isNullOrEmpty() || residence.isNullOrEmpty() || urban.isNullOrEmpty() || needConsult.isNullOrEmpty()){
+            return null
+        }
+
+
         return DiagnoseTaxFalmInfo()
     }
 

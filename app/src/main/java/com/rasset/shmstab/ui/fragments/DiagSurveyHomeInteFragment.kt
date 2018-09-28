@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
 import com.rasset.shmstab.model.DiagnoseInfo
+import kotlinx.android.synthetic.main.fragment_diag_survey_home_inte.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -62,7 +63,24 @@ class DiagSurveyHomeInteFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseAssetSellInfo {
+    override fun getDiagDatas(): DiagnoseAssetSellInfo? {
+
+
+        val address = TV_LOCATION_ADDRESS.text.toString().trim()
+        val addressDetail = ET_LOCATION_ADDRESS_DETAIL.text.toString().trim()
+
+        val diagArea = RG_DIAG_AREA.checkedItem?.tag.toString()
+        val totalCost = RG_TOTAL_COST.checkedItem?.tag.toString()
+        val sellTiming = RG_STYLE.checkedItem?.tag.toString()
+        val buyMotive = RG_CONSTRUCT_DATE.checkedItem?.tag.toString()
+        val needConsult = RG_INVEST_CONSIDER.checkedItem?.tag.toString()
+
+        if (address.isNullOrEmpty() || diagArea.isNullOrEmpty() || totalCost.isNullOrEmpty()
+                || sellTiming.isNullOrEmpty() || buyMotive.isNullOrEmpty() || needConsult.isNullOrEmpty()){
+            return null
+        }
+
+
         return DiagnoseAssetSellInfo()
     }
 }

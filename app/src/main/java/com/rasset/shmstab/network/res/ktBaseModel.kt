@@ -13,7 +13,7 @@ open class BaseModel {
     var resMsg: String? = null
 }
 
-data class ResCustomerList(var userTotalCount: Int, var list: ArrayList<DiagnoseInfo>) : BaseModel()
+data class ResCustomerList(var userTotalCount: Int, var list: ArrayList<DiagnoseInfo>?) : BaseModel()
 
 data class ResDiagnoseInfo(var list: ArrayList<DiagnoseInfo>) : BaseModel()
 
