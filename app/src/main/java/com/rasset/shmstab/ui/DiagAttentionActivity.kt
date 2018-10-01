@@ -17,6 +17,8 @@ import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.network.task.MainListTask
 import com.rasset.shmstab.ui.components.CropCircleTransform
 import com.rasset.shmstab.ui.dialog.BaseDialogFragment
+import com.rasset.shmstab.ui.dialog.PrivacyAgreeDialog
+import com.rasset.shmstab.ui.dialog.SelectSubCategoryDialog
 import com.rasset.shmstab.ui.fragments.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 import kotlinx.android.synthetic.main.activity_diagnose_attention.*
@@ -48,6 +50,7 @@ class DiagAttentionActivity : BaseActivity() {
 
     lateinit var diagnoseInfo:DiagnoseInfo
     var selectedAdviser:DiagSubStepFirstFragment.ADVISOR = DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST
+    var selectedSubCategory:DiagSubStepFirstFragment.SUB_CATEGORY = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_SELL
     var mStackFrags = Stack(mutableListOf<SubFrags>())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -154,9 +157,48 @@ class DiagAttentionActivity : BaseActivity() {
                 if (nextFrag == SubFrags.DIAG_INFO_STEP2) {
                     val fragFirst = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP1.title) as DiagSubStepFirstFragment
                     selectedAdviser = fragFirst.selectedAdvisor
+
+                    when (selectedAdviser) {
+                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST,
+                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
+                            val dialog = SelectSubCategoryDialog.newInstance(mContext).apply {
+                                setOnPositveListener { dialog ->
+                                    when (dialog.recGroup.checkedItem.tag.toString()) {
+                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_SELL.wCode -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_SELL
+                                        }
+                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_BUY.wCode -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_BUY
+                                        }
+                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_ALL.wCode -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_ALL
+                                        }
+                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_ASSET.wCode -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_ASSET
+                                        }
+                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_FALM.wCode -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_FALM
+                                        }
+                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_ALL.wCode -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_ALL
+                                        }
+                                    }
+                                    replaceFragment(nextFrag, true)
+                                    setStatAppBarTitlenEtc()
+                                }
+                            }
+                            dialog.show(supportFragmentManager, AppConst.DIALOG_CUSTOMER_INFO_PRIVACY)
+                        }
+                        else -> {
+                            replaceFragment(nextFrag, true)
+                            setStatAppBarTitlenEtc()
+                        }
+                    }
+                } else {
+                    replaceFragment(nextFrag, true)
+                    setStatAppBarTitlenEtc()
                 }
-                replaceFragment(nextFrag, true)
-                setStatAppBarTitlenEtc()
+
             }
         }
         IB_APPBAR_BACK.visibility = View.VISIBLE

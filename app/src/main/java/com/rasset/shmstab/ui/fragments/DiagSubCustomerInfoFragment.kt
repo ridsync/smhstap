@@ -109,18 +109,28 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
                 ET_CUSTOMER_LEVEL.setText(getCustomerLevelStr(it))
             }
             when(diagnoseInfo.applyPart){
-                11L -> RB_DIAG_INVEST.isChecked = true
-                12L -> RB_DIAG_MD.isChecked = true
-                13L -> RB_DIAG_TAX.isChecked = true
-                14L -> RB_DIAG_HOME_INTE.isChecked = true
-                15L -> RB_DIAG_CM.isChecked = true
-                16L -> RB_DIAG_MANAGEMENT.isChecked = true
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST.wCode -> RB_DIAG_INVEST.isChecked = true
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MD.wCode -> RB_DIAG_MD.isChecked = true
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX.wCode -> RB_DIAG_TAX.isChecked = true
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_HOME_INTE.wCode -> RB_DIAG_HOME_INTE.isChecked = true
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_CM.wCode -> RB_DIAG_CM.isChecked = true
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MANAGEMENT.wCode -> RB_DIAG_MANAGEMENT.isChecked = true
             }
             diagnoseInfo.customerLevel.let {
                 ET_CUSTOMER_QUESTION.setText(diagnoseInfo.contents)
             }
         }
 
+        ET_CUSTOMER_NAME.isEnabled = false
+        ET_CUSTOMER_PHONE.isEnabled = false
+        ET_CUSTOMER_LEVEL.isEnabled = false
+        RB_DIAG_INVEST.isClickable = false
+        RB_DIAG_CM.isClickable = false
+        RB_DIAG_TAX.isClickable = false
+        RB_DIAG_HOME_INTE.isClickable = false
+        RB_DIAG_MD.isClickable = false
+        RB_DIAG_MANAGEMENT.isClickable = false
+        ET_CUSTOMER_QUESTION.isEnabled = false
 //
 //        RG_DIAG_FIELD.setOnCheckedChangeListener{ _: RecursiveRadioGroup, checkedId: Int ->
 //

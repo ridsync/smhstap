@@ -21,13 +21,21 @@ import kotlinx.android.synthetic.main.fragment_diag_step_first.*
 class DiagSubStepFirstFragment : BaseFragment() {
 
     private object Holder { val INSTANCE = DiagSubStepFirstFragment() }
-    enum class ADVISOR(val wCode: Int, val wewon: String) {
-        ADVISOR_NAME_INVEST(0, AppConst.ADVISOR_NAME_INVEST)
-        , ADVISOR_NAME_MD(1, AppConst.ADVISOR_NAME_MD)
-        , ADVISOR_NAME_TAX(2, AppConst.ADVISOR_NAME_TAX)
-        , ADVISOR_NAME_HOME_INTE(3, AppConst.ADVISOR_NAME_HOME_INTE)
-        , ADVISOR_NAME_MANAGEMENT(4, AppConst.ADVISOR_NAME_MANAGEMENT)
-        , ADVISOR_NAME_CM(5, AppConst.ADVISOR_NAME_CM)
+    enum class ADVISOR(val wCode: Long, val wewon: String) {
+        ADVISOR_NAME_INVEST(11, AppConst.ADVISOR_NAME_INVEST)
+        , ADVISOR_NAME_MD(21, AppConst.ADVISOR_NAME_MD)
+        , ADVISOR_NAME_TAX(31, AppConst.ADVISOR_NAME_TAX)
+        , ADVISOR_NAME_HOME_INTE(41, AppConst.ADVISOR_NAME_HOME_INTE)
+        , ADVISOR_NAME_CM(51, AppConst.ADVISOR_NAME_CM)
+        , ADVISOR_NAME_MANAGEMENT(61, AppConst.ADVISOR_NAME_MANAGEMENT)
+    }
+    enum class SUB_CATEGORY(val wCode: String) {
+        SUB_CATEGORY_INVEST_SELL("11")
+        , SUB_CATEGORY_INVEST_BUY("21")
+        , SUB_CATEGORY_INVEST_ALL("31")
+        , SUB_CATEGORY_TAX_ASSET("11")
+        , SUB_CATEGORY_TAX_FALM("21")
+        , SUB_CATEGORY_TAX_ALL("31")
     }
     companion object {
         val singleTone: DiagSubStepFirstFragment by lazy { Holder.INSTANCE }
@@ -70,27 +78,27 @@ class DiagSubStepFirstFragment : BaseFragment() {
 
         (activity as DiagAttentionActivity).diagnoseInfo.let { diagnoseInfo ->
             when(diagnoseInfo.applyPart){
-                11L -> {
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST.wCode -> {
                     setCheckCardViews(RL_ADVISOR_INVEST)
                     selectedAdvisor = ADVISOR.ADVISOR_NAME_INVEST
                 }
-                12L -> {
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MD.wCode -> {
                     setCheckCardViews(RL_ADVISOR_MD)
                     selectedAdvisor = ADVISOR.ADVISOR_NAME_MD
                 }
-                13L ->  {
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX.wCode ->  {
                     setCheckCardViews(RL_ADVISOR_TAX)
                     selectedAdvisor = ADVISOR.ADVISOR_NAME_TAX
                 }
-                14L ->  {
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_HOME_INTE.wCode ->  {
                     setCheckCardViews(RL_ADVISOR_HOME_INTE)
                     selectedAdvisor = ADVISOR.ADVISOR_NAME_HOME_INTE
                 }
-                15L -> {
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_CM.wCode -> {
                     setCheckCardViews(RL_ADVISOR_CM)
                     selectedAdvisor = ADVISOR.ADVISOR_NAME_CM
                 }
-                16L -> {
+                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_MANAGEMENT.wCode -> {
                     setCheckCardViews(RL_ADVISOR_MANAGEMENT)
                     selectedAdvisor = ADVISOR.ADVISOR_NAME_MANAGEMENT
                 }
