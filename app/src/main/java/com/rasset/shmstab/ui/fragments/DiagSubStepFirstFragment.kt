@@ -29,13 +29,13 @@ class DiagSubStepFirstFragment : BaseFragment() {
         , ADVISOR_NAME_CM(51, AppConst.ADVISOR_NAME_CM)
         , ADVISOR_NAME_MANAGEMENT(61, AppConst.ADVISOR_NAME_MANAGEMENT)
     }
-    enum class SUB_CATEGORY(val wCode: String) {
-        SUB_CATEGORY_INVEST_SELL("11")
-        , SUB_CATEGORY_INVEST_BUY("21")
-        , SUB_CATEGORY_INVEST_ALL("31")
-        , SUB_CATEGORY_TAX_ASSET("11")
-        , SUB_CATEGORY_TAX_FALM("21")
-        , SUB_CATEGORY_TAX_ALL("31")
+    enum class SURV_DIAGTYPE(val diagType: String) {
+        SURV_TYPE_INVEST_SELL("11")
+        , SURV_TYPE_INVEST_BUY("21")
+        , SURV_TYPE_INVEST_ALL("31")
+        , SURV_TYPE_TAX_ASSET("11")
+        , SURV_TYPE_TAX_FALM("21")
+        , SURV_TYPE_TAX_ALL("31")
     }
     companion object {
         val singleTone: DiagSubStepFirstFragment by lazy { Holder.INSTANCE }

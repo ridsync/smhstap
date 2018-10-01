@@ -49,7 +49,7 @@ class DiagSubStepSecondFragment : BaseFragment() {
     lateinit var tabLayout: TabLayout
     var fragments: HashMap<Int, SurveyBaseFragment> = HashMap()
     var selectedAdviser:DiagSubStepFirstFragment.ADVISOR = DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST
-    var selectedSubCategory:DiagSubStepFirstFragment.SUB_CATEGORY = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_SELL
+    var selectedSubCategory:DiagSubStepFirstFragment.SURV_DIAGTYPE = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_SELL
 
     private var previousVPposition: Int = 0
 
@@ -110,9 +110,9 @@ class DiagSubStepSecondFragment : BaseFragment() {
 
         when (selectedAdviser) {
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST -> {
-                if (selectedSubCategory == DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_SELL){
+                if (selectedSubCategory == DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_SELL){
                     tabLayout.addTab(tabLayout.newTab().setText(digCategorise[0]))
-                } else if (selectedSubCategory == DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_BUY ) {
+                } else if (selectedSubCategory == DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_BUY ) {
                     tabLayout.addTab(tabLayout.newTab().setText(digCategorise[1]))
                 } else {
                     tabLayout.addTab(tabLayout.newTab().setText(digCategorise[0]))
@@ -123,9 +123,9 @@ class DiagSubStepSecondFragment : BaseFragment() {
                 tabLayout.addTab(tabLayout.newTab().setText(digCategorise[2]))
             }
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX-> {
-                if (selectedSubCategory == DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_ASSET){
+                if (selectedSubCategory == DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET){
                     tabLayout.addTab(tabLayout.newTab().setText(digCategorise[3]))
-                } else if (selectedSubCategory == DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_FALM ) {
+                } else if (selectedSubCategory == DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM ) {
                     tabLayout.addTab(tabLayout.newTab().setText(digCategorise[4]))
                 } else {
                     tabLayout.addTab(tabLayout.newTab().setText(digCategorise[3]))
@@ -197,7 +197,7 @@ class DiagSubStepSecondFragment : BaseFragment() {
     fun getFragmentEachAdvisor(index:Int) = when (selectedAdviser) {
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST -> {
                 if(index == 0 ) {
-                    if (selectedSubCategory == DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_BUY){
+                    if (selectedSubCategory == DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_BUY){
                         DiagSurveyAssetBuyFragment()
                     } else {
                         DiagSurveyAssetSellFragment()
@@ -211,7 +211,7 @@ class DiagSubStepSecondFragment : BaseFragment() {
             }
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX-> {
                 if(index == 0 ) {
-                    if (selectedSubCategory == DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_FALM){
+                    if (selectedSubCategory == DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM){
                         DiagSurveyTaxFalmLandFragment()
                     } else {
                         DiagSurveyTaxAssetFragment()

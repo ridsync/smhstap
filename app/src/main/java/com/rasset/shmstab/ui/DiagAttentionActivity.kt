@@ -16,8 +16,6 @@ import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.network.task.MainListTask
 import com.rasset.shmstab.ui.components.CropCircleTransform
-import com.rasset.shmstab.ui.dialog.BaseDialogFragment
-import com.rasset.shmstab.ui.dialog.PrivacyAgreeDialog
 import com.rasset.shmstab.ui.dialog.SelectSubCategoryDialog
 import com.rasset.shmstab.ui.fragments.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
@@ -50,7 +48,7 @@ class DiagAttentionActivity : BaseActivity() {
 
     lateinit var diagnoseInfo:DiagnoseInfo
     var selectedAdviser:DiagSubStepFirstFragment.ADVISOR = DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST
-    var selectedSubCategory:DiagSubStepFirstFragment.SUB_CATEGORY = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_SELL
+    var selectedSubCategory:DiagSubStepFirstFragment.SURV_DIAGTYPE = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_SELL
     var mStackFrags = Stack(mutableListOf<SubFrags>())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -164,23 +162,23 @@ class DiagAttentionActivity : BaseActivity() {
                             val dialog = SelectSubCategoryDialog.newInstance(mContext).apply {
                                 setOnPositveListener { dialog ->
                                     when (dialog.recGroup.checkedItem.tag.toString()) {
-                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_SELL.wCode -> {
-                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_SELL
+                                        DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_SELL.diagType -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_SELL
                                         }
-                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_BUY.wCode -> {
-                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_BUY
+                                        DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_BUY.diagType -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_BUY
                                         }
-                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_ALL.wCode -> {
-                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_ALL
+                                        DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_ALL.diagType -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_ALL
                                         }
-                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_ASSET.wCode -> {
-                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_ASSET
+                                        DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET.diagType -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET
                                         }
-                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_FALM.wCode -> {
-                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_TAX_FALM
+                                        DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM.diagType -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM
                                         }
-                                        DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_ALL.wCode -> {
-                                            selectedSubCategory = DiagSubStepFirstFragment.SUB_CATEGORY.SUB_CATEGORY_INVEST_ALL
+                                        DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_ALL.diagType -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_ALL
                                         }
                                     }
                                     replaceFragment(nextFrag, true)
@@ -211,24 +209,28 @@ class DiagAttentionActivity : BaseActivity() {
 
         val fragSecond = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP2.title) as DiagSubStepSecondFragment
         val fragments = fragSecond.getSubFragments()
-        val surveyFragment = fragments[0]
-        surveyFragment?.getDiagDatas()?.let { diagInfo ->
-                    //API 전송
-                    diagInfo.diagnoseId = diagnoseInfo.diagnoseId
-                    diagInfo.diagnoseDetailId = diagnoseInfo.diagnoseDetailId
-                    diagInfo.applyPart = diagnoseInfo.applyPart
-                    diagInfo.diagnoseType = diagnoseInfo.diagnoseType
-                    reqNetUpdateDiagInfos(diagInfo)
-        }
-        if (surveyFragment?.getDiagDatas() == null){
-            showToast {
-                "질문항목을 모두 선택해주세요."
+        var diagInfos = arrayListOf<DiagnoseBaseInfo>()
+        for (fragment in fragments) {
+            if (fragment.value.getDiagDatas() == null){
+                showToast {
+                    "질문항목을 모두 선택해주세요."
+                }
+                break
+            }
+            fragment.value.getDiagDatas()?.let { diagInfo ->
+                //API 전송
+                diagInfo.diagnoseId = diagnoseInfo.diagnoseId
+                diagInfo.diagnoseDetailId = diagnoseInfo.diagnoseDetailId
+                diagInfo.applyPart = diagnoseInfo.applyPart
+                diagInfos.add(diagInfo)
             }
         }
+
+        reqNetUpdateDiagInfos(diagInfos)
         Logger.d("postCustomerDiagInfos  ")
     }
 
-    private fun reqNetUpdateDiagInfos(diagInfo: DiagnoseBaseInfo) {
+    private fun reqNetUpdateDiagInfos(diagInfo: ArrayList<DiagnoseBaseInfo>) {
         val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_DIAGNOSE_UPDATE, this)
         task.addParam(ParamKey.PARAM_USERID, TabApp.userInfo?.userId)
         task.addParam(ParamKey.PARAM_DIAG_INFO, arrayListOf(diagInfo))

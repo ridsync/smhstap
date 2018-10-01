@@ -25,8 +25,7 @@ open class DiagnoseBaseInfo(@SerializedName("dianoseId")
                             @SerializedName("dianoseDetailId")
                             var diagnoseDetailId: Long=0,
                             var applyPart:Long = 0, // (11:부동산재테크 (매도/매수), 21: 토지/개발(MD), 31: 부동산 세금, 41:홈스테이징/인테리어, 51: 건축/리모델링(CM), 61: 주
-                            var diagnoseType: Long=0
-                            ) : BaseInfo()
+                            var diagnoseType: String?=null)
 
 // 진단정보List
 data class DiagnoseInfo(var customerId: Long=0,
@@ -44,17 +43,17 @@ data class DiagnoseInfo(var customerId: Long=0,
 
 // Update Diaginfos
 data class DiagnoseAssetSellInfo(var itemType: String?=null,
-                                var address: String?=null,
-                                var buyYear: String?=null,
-                                var sellPurpose:String?=null,
-                                var minAmount:String?=null,
-                                var maxAmount:String?=null,
-                                var sellTime:String?=null,
-                                var consultPart01:Long=0,
-                                var consultPart02:Long=0,
-                                var consultPart03:Long=0,
-                                var consultPart04:Long=0,
-                                var consultPart05:Long=0) : DiagnoseBaseInfo()
+                                 var address: String?=null,
+                                 var buyYear: String?=null,
+                                 var sellPurpose:Long = 0,
+                                 var minAmount:String?=null,
+                                 var maxAmount:String?=null,
+                                 var sellTime:String?=null,
+                                 var consultPart01:Long=0,
+                                 var consultPart02:Long=0,
+                                 var consultPart03:Long=0,
+                                 var consultPart04:Long=0,
+                                 var consultPart05:Long=0) : DiagnoseBaseInfo()
 
 data class DiagnoseAssetBuyInfo(var customerId: Long=0,
                                 var customerName: String?=null,

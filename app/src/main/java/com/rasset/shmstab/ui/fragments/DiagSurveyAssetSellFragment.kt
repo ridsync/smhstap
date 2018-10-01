@@ -12,9 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
-import com.rasset.shmstab.model.DiagnoseAssetBuyInfo
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
-import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.ui.dialog.BaseDialogFragment
 import com.rasset.shmstab.ui.dialog.SearchAddressDialog
 import com.rasset.shmstab.utils.hideIME
@@ -193,14 +191,15 @@ class DiagSurveyAssetSellFragment : SurveyBaseFragment() {
          || lowerPrice.isNullOrEmpty() || higherPrice.isNullOrEmpty() || sellTiming.isNullOrEmpty()){
             return null
         }
-
-        return DiagnoseAssetSellInfo(itemType=estateType,address="$address $addressDetail",buyYear=mPurchasedYear,
-                                    sellPurpose = sellPurpose,minAmount = lowerPrice,maxAmount = higherPrice,sellTime = sellTiming
+        val diagInfo = DiagnoseAssetSellInfo(itemType=estateType,address="$address $addressDetail",buyYear=mPurchasedYear,
+                sellPurpose = sellPurpose.toLong(),minAmount = lowerPrice,maxAmount = higherPrice,sellTime = sellTiming
                 ,consultPart01 = cbSellTiming.toLong()
                 ,consultPart02 = cbSellPrice.toLong()
                 ,consultPart03 = cbSellRequest.toLong()
                 ,consultPart04 = cbSellMethod.toLong()
                 ,consultPart05 = cbSellEtc.toLong())
+        diagInfo.diagnoseType = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_SELL.diagType
+        return diagInfo
     }
 
 }
