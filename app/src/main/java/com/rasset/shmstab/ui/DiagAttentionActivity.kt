@@ -16,7 +16,7 @@ import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.network.task.MainListTask
 import com.rasset.shmstab.ui.components.CropCircleTransform
-import com.rasset.shmstab.ui.dialog.SelectSubCategoryDialog
+import com.rasset.shmstab.ui.dialog.SelectSubDiagTypeDialog
 import com.rasset.shmstab.ui.fragments.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 import kotlinx.android.synthetic.main.activity_diagnose_attention.*
@@ -159,7 +159,7 @@ class DiagAttentionActivity : BaseActivity() {
                     when (selectedAdviser) {
                         DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST,
                         DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
-                            val dialog = SelectSubCategoryDialog.newInstance(mContext).apply {
+                            val dialog = SelectSubDiagTypeDialog.newInstance(mContext).apply {
                                 setOnPositveListener { dialog ->
                                     when (dialog.recGroup.checkedItem.tag.toString()) {
                                         DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_SELL.diagType -> {
@@ -177,12 +177,19 @@ class DiagAttentionActivity : BaseActivity() {
                                         DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM.diagType -> {
                                             selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM
                                         }
-                                        DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_ALL.diagType -> {
-                                            selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_ALL
+                                        DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ALL.diagType -> {
+                                            selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ALL
                                         }
                                     }
                                     replaceFragment(nextFrag, true)
                                     setStatAppBarTitlenEtc()
+                                }
+                            }
+                            when(selectedAdviser){
+                                DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET,
+                                DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM,
+                                DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ALL -> {
+                                    dialog.isTypeTax = false
                                 }
                             }
                             dialog.show(supportFragmentManager, AppConst.DIALOG_CUSTOMER_INFO_PRIVACY)

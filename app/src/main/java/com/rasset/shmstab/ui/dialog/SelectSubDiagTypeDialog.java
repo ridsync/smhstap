@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 
 import com.rasset.shmstab.R;
 import com.rasset.shmstab.ui.components.RecursiveRadioGroup;
@@ -14,9 +15,9 @@ import com.rasset.shmstab.ui.components.RecursiveRadioGroup;
 /**
  * Created by andman on 2016-01-12.
  */
-public class SelectSubCategoryDialog extends BaseDialogFragment   implements View.OnClickListener{
+public class SelectSubDiagTypeDialog extends BaseDialogFragment   implements View.OnClickListener{
 
-    private static volatile SelectSubCategoryDialog sFag;
+    private static volatile SelectSubDiagTypeDialog sFag;
 
     public void setOnDismissListener() {
 
@@ -26,21 +27,25 @@ public class SelectSubCategoryDialog extends BaseDialogFragment   implements Vie
     }
 
     public interface OnPositveListener {
-        void onClickPositive(SelectSubCategoryDialog dialog);
+        void onClickPositive(SelectSubDiagTypeDialog dialog);
     }
 
-    public static SelectSubCategoryDialog newInstance(Context context) {
-        SelectSubCategoryDialog mFag = new SelectSubCategoryDialog();
+    public static SelectSubDiagTypeDialog newInstance(Context context) {
+        SelectSubDiagTypeDialog mFag = new SelectSubDiagTypeDialog();
         mFag.mContext = context;
         return mFag;
     }
 
-    public SelectSubCategoryDialog() {
+    public SelectSubDiagTypeDialog() {
     }
 
     boolean isCancelable = true;
     OnPositveListener positiveListener ;
+    public Boolean isTypeTax = true;
     public RecursiveRadioGroup recGroup;
+    public RadioButton rbCatNo1;
+    public RadioButton rbCatNo2;
+    public RadioButton rbCatNo3;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -50,6 +55,16 @@ public class SelectSubCategoryDialog extends BaseDialogFragment   implements Vie
 
         mBtnPositive = (mRootView.findViewById(R.id.BTN_DONE));
         recGroup = (mRootView.findViewById(R.id.RG_DIAG_RESTATE_TYPE));
+        rbCatNo1 = (mRootView.findViewById(R.id.RB_CAT_NO1));
+        rbCatNo2 = (mRootView.findViewById(R.id.RB_CAT_NO2));
+        rbCatNo3 = (mRootView.findViewById(R.id.RB_CAT_NO3));
+
+        if (isTypeTax) {
+            rbCatNo1.setText("주택/수익형부동산 분야");
+            rbCatNo2.setText("농지절세 분야");
+            rbCatNo3.setText("모두 선택");
+        }
+
         mBtnPositive.setOnClickListener(this);
 
         builder.setView(mRootView);
