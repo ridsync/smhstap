@@ -41,7 +41,7 @@ public class SelectSubDiagTypeDialog extends BaseDialogFragment   implements Vie
 
     boolean isCancelable = true;
     OnPositveListener positiveListener ;
-    public Boolean isTypeTax = true;
+    public Boolean isTypeTax = false;
     public RecursiveRadioGroup recGroup;
     public RadioButton rbCatNo1;
     public RadioButton rbCatNo2;

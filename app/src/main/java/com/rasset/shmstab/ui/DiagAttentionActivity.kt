@@ -186,10 +186,8 @@ class DiagAttentionActivity : BaseActivity() {
                                 }
                             }
                             when(selectedAdviser){
-                                DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET,
-                                DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM,
-                                DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ALL -> {
-                                    dialog.isTypeTax = false
+                                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
+                                    dialog.isTypeTax = true
                                 }
                             }
                             dialog.show(supportFragmentManager, AppConst.DIALOG_CUSTOMER_INFO_PRIVACY)
@@ -217,11 +215,13 @@ class DiagAttentionActivity : BaseActivity() {
         val fragSecond = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP2.title) as DiagSubStepSecondFragment
         val fragments = fragSecond.getSubFragments()
         var diagInfos = arrayListOf<DiagnoseBaseInfo>()
+        var isAllFill = true
         for (fragment in fragments) {
             if (fragment.value.getDiagDatas() == null){
                 showToast {
                     "질문항목을 모두 선택해주세요."
                 }
+                isAllFill = false
                 break
             }
             fragment.value.getDiagDatas()?.let { diagInfo ->
@@ -232,15 +232,15 @@ class DiagAttentionActivity : BaseActivity() {
                 diagInfos.add(diagInfo)
             }
         }
-
-        reqNetUpdateDiagInfos(diagInfos)
+        if (isAllFill)
+            reqNetUpdateDiagInfos(diagInfos)
         Logger.d("postCustomerDiagInfos  ")
     }
 
     private fun reqNetUpdateDiagInfos(diagInfo: ArrayList<DiagnoseBaseInfo>) {
         val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_DIAGNOSE_UPDATE, this)
         task.addParam(ParamKey.PARAM_USERID, TabApp.userInfo?.userId)
-        task.addParam(ParamKey.PARAM_DIAG_INFO, arrayListOf(diagInfo))
+        task.addParam(ParamKey.PARAM_DIAG_INFO,diagInfo)
         NetManager.startTask(task)
     }
 
