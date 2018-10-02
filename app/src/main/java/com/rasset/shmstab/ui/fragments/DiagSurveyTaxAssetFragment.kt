@@ -70,12 +70,12 @@ class DiagSurveyTaxAssetFragment : SurveyBaseFragment() {
         val ownPeriod = RG_OWN_PERIOD.checkedItem?.tag.toString()
         val higherPrice = RG_HIGHER_PRICE.checkedItem?.tag.toString()
 
-        val ownRassetStore = if (RB_OWN_RASSET_STORE.isChecked) 1 else 0
-        val ownRassetParcel = if (RB_OWN_RASSET_PARCEL.isChecked) 1 else 0
-        val ownRassetResidence = if (RB_OWN_RASSET_RESIDENCE.isChecked) 1 else 0
-        val ownRassetOfficetel = if (RB_OWN_RASSET_OFFICETEL.isChecked) 1 else 0
-        val ownRassetLand = if (RB_OWN_RASSET_LAND.isChecked) 1 else 0
-        val ownRassetEtc = if (RB_OWN_RASSET_ETC.isChecked) 1 else 0
+        val ownRassetStore = if (RB_OWN_RASSET_STORE.isChecked) 1L else 0
+        val ownRassetParcel = if (RB_OWN_RASSET_PARCEL.isChecked) 1L else 0
+        val ownRassetResidence = if (RB_OWN_RASSET_RESIDENCE.isChecked) 1L else 0
+        val ownRassetOfficetel = if (RB_OWN_RASSET_OFFICETEL.isChecked) 1L else 0
+        val ownRassetLand = if (RB_OWN_RASSET_LAND.isChecked) 1L else 0
+        val ownRassetEtc = if (RB_OWN_RASSET_ETC.isChecked) 1L else 0
         val ownRassetEtcContents = ET_OWN_RASSET_ETC.text.toString().trim()
 
         val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
@@ -85,7 +85,20 @@ class DiagSurveyTaxAssetFragment : SurveyBaseFragment() {
             return null
         }
 
-        return DiagnoseTaxAssetInfo()
+        return DiagnoseTaxAssetInfo(itemType=taxField,
+                ownerHouse=housing,
+                areaType = controlLocation,
+                holdType = ownPeriod,
+                priceType = higherPrice,
+                consultPart01 = ownRassetStore,
+                consultPart02 = ownRassetParcel,
+                consultPart03 = ownRassetResidence,
+                consultPart04 = ownRassetOfficetel,
+                consultPart05 = ownRassetLand,
+                consultPart06 = ownRassetEtc,
+                consultEtc01 = ownRassetEtcContents,
+                consultYn = needConsult.toLong()
+                )
     }
 
 }

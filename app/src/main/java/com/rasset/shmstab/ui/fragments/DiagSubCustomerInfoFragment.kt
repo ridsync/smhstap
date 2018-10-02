@@ -119,6 +119,15 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
             diagnoseInfo.customerLevel.let {
                 ET_CUSTOMER_QUESTION.setText(diagnoseInfo.contents)
             }
+            diagnoseInfo.consultingDate.let {
+                TV_CONSULTING_DATE_YMD.text = it
+            }
+            diagnoseInfo.consultingTime.let {
+                TV_CONSULTING_DATE_START_HOUR.text = it
+            }
+            diagnoseInfo.consultingTimeStart.let {
+                TV_CONSULTING_DATE_END_HOUR.text = it
+            }
         }
 
         ET_CUSTOMER_NAME.isEnabled = false

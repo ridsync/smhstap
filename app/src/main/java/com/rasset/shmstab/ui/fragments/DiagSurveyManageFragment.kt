@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
 import com.rasset.shmstab.model.DiagnoseInfo
+import com.rasset.shmstab.model.DiagnoseManagementInfo
 import kotlinx.android.synthetic.main.fragment_diag_survey_management.*
 
 /**
@@ -64,12 +65,12 @@ class DiagSurveyManageFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseAssetSellInfo? {
+    override fun getDiagDatas(): DiagnoseManagementInfo? {
 
         val address = TV_LOCATION_ADDRESS.text.toString().trim()
         val addressDetail = ET_LOCATION_ADDRESS_DETAIL.text.toString().trim()
 
-        val investConsider = RG_CONSULT_TYPE.checkedItem?.tag.toString()
+        val consultType = RG_CONSULT_TYPE.checkedItem?.tag.toString()
         val consultTypeEtc = ET_CONSULT_TYPE_ETC.text.toString().trim()
 
         val consultField = RG_CONSULT_FIELD.checkedItem?.tag.toString()
@@ -78,13 +79,23 @@ class DiagSurveyManageFragment : SurveyBaseFragment() {
         val isLesseCount = RG_LESSEE.checkedItem?.tag.toString()
         val isEstimate = RG_ESTIMATE.checkedItem?.tag.toString()
         val leaseConsider = RG_LEASE.checkedItem?.tag.toString()
+        val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
 
-        if (address.isNullOrEmpty() || investConsider.isNullOrEmpty() || consultField.isNullOrEmpty()
+        if (address.isNullOrEmpty() || consultType.isNullOrEmpty() || consultField.isNullOrEmpty()
                 || consultFieldEtc.isNullOrEmpty() || isLesseCount.isNullOrEmpty() || isEstimate.isNullOrEmpty()
-                || leaseConsider.isNullOrEmpty()){
+                || leaseConsider.isNullOrEmpty()|| needConsult.isNullOrEmpty()){
             return null
         }
 
-        return DiagnoseAssetSellInfo()
+        return DiagnoseManagementInfo(address="$address $addressDetail",
+                itemType=consultField,
+                propertyType=consultType,
+                hlCountType=isLesseCount,
+                estimateType=isEstimate,
+                leaseType=consultField,
+                consultYn=leaseConsider.toLong(),
+                consultEtc01=consultFieldEtc,
+                consultEtc02=consultTypeEtc
+                )
     }
 }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetBuyInfo
+import com.rasset.shmstab.model.DiagnoseAssetSellInfo
 import kotlinx.android.synthetic.main.fragment_diag_survey_asset_buy.*
 
 /**
@@ -70,18 +71,26 @@ class DiagSurveyAssetBuyFragment : SurveyBaseFragment(){
         val investScale = RG_INVEST_SCALE.checkedItem?.tag.toString()
         val investConsider = RG_INVEST_CONSIDER.checkedItem?.tag.toString()
 
-        val cbBuyLocation = if (CB_BUY_CON_LOCATION.isChecked) 1 else 0
-        val cbBuyDev = if (CB_BUY_CON_DEV.isChecked) 1 else 0
-        val cbBuyMargin = if (CB_BUY_CON_MARGIN.isChecked) 1 else 0
-        val cbBuyRevenue = if (CB_BUY_CON_REVENUE.isChecked) 1 else 0
-        val cbBuyEtc = if (CB_BUY_CON_ETC.isChecked) 1 else 0
+        val cbBuyLocation = if (CB_BUY_CON_LOCATION.isChecked) 1L else 0
+        val cbBuyDev = if (CB_BUY_CON_DEV.isChecked) 1L else 0
+        val cbBuyMargin = if (CB_BUY_CON_MARGIN.isChecked) 1L else 0
+        val cbBuyRevenue = if (CB_BUY_CON_REVENUE.isChecked) 1L else 0
+        val cbBuyEtc = if (CB_BUY_CON_ETC.isChecked) 1L else 0
 
         if (estateType.isNullOrEmpty() || location.isNullOrEmpty() || buyTiming.isNullOrEmpty()
                 || investPurpose.isNullOrEmpty() || investScale.isNullOrEmpty() || investConsider.isNullOrEmpty()){
             return null
         }
 
-        return DiagnoseAssetBuyInfo()
+        val diagInfo = DiagnoseAssetBuyInfo(buyItemType=estateType,buyArea=location,
+                buyTime=buyTiming,investPurpose=investPurpose,cashAmount=investScale,considerations=investConsider
+                ,consultPart11 = cbBuyLocation
+                ,consultPart12 = cbBuyDev
+                ,consultPart13 = cbBuyMargin
+                ,consultPart14 = cbBuyRevenue
+                ,consultPart15 = cbBuyEtc)
+        diagInfo.diagnoseType = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_BUY.diagType
+        return diagInfo
     }
 
 

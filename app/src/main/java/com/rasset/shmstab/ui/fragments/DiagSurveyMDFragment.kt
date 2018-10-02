@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
+import com.rasset.shmstab.model.DiagnoseMDInfo
 import kotlinx.android.synthetic.main.fragment_diag_survey_md.*
 
 /**
@@ -61,23 +62,30 @@ class DiagSurveyMDFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseAssetSellInfo? {
+    override fun getDiagDatas(): DiagnoseMDInfo? {
 
         val address = TV_LOCATION_ADDRESS.text.toString().trim()
         val addressDetail = ET_LOCATION_ADDRESS_DETAIL.text.toString().trim()
 
-        val investConsider = RG_DIAG_MD_PURPOSE.checkedItem?.tag.toString()
+        val investPurpose = RG_DIAG_MD_PURPOSE.checkedItem?.tag.toString()
         val sellWonder = RG_DIAG_SELL_WONDER.checkedItem?.tag.toString()
-        val sellTiming = RG_SELL_TIMING.checkedItem?.tag.toString()
+        val investScale = RG_INVEST_SCALE.checkedItem?.tag.toString()
+        val sellhasExp = RG_SELL_HASEXP.checkedItem?.tag.toString()
         val buyMotive = RG_DIAG_MD_MOTIVE.checkedItem?.tag.toString()
         val needConsult = RG_SELL_NEED_CONSULTANT.checkedItem?.tag.toString()
 
-        if (address.isNullOrEmpty() || investConsider.isNullOrEmpty() || sellWonder.isNullOrEmpty()
-                || sellTiming.isNullOrEmpty() || buyMotive.isNullOrEmpty() || needConsult.isNullOrEmpty()){
+        if (address.isNullOrEmpty() || investPurpose.isNullOrEmpty() || sellWonder.isNullOrEmpty()
+                || investScale.isNullOrEmpty()  || sellhasExp.isNullOrEmpty() || buyMotive.isNullOrEmpty() || needConsult.isNullOrEmpty()){
             return null
         }
 
-        return DiagnoseAssetSellInfo()
+        return DiagnoseMDInfo(address="$address $addressDetail"
+                ,mdReason=investPurpose
+                ,mdQuestion=sellWonder
+                ,mdBuyCash=investScale
+                ,mdExperienced=sellhasExp
+                ,mdPurchase=buyMotive
+                ,consultYn=needConsult)
     }
 
 }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
+import com.rasset.shmstab.model.DiagnoseCMInfo
 import com.rasset.shmstab.model.DiagnoseInfo
 import kotlinx.android.synthetic.main.fragment_diag_survey_cm.*
 
@@ -62,7 +63,7 @@ class DiagSurveyCMFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseAssetSellInfo? {
+    override fun getDiagDatas(): DiagnoseCMInfo? {
 
         val estateField = RG_CONSULT_FIELD.checkedItem?.tag.toString()
         val etcFieldContent = ET_CONSULT_FIELD_ETC.text.toString()
@@ -70,6 +71,7 @@ class DiagSurveyCMFragment : SurveyBaseFragment() {
         val addressDetail = ET_LOCATION_ADDRESS_DETAIL.text.toString().trim()
         val construct = RG_DIAG_CONSTRUCT.checkedItem?.tag.toString()
         val purpose = RG_PURPOSE.checkedItem?.tag.toString()
+        val purposeEtc = ET_PURPOSE_ETC.text.toString().trim()
         val totalCost = RG_DIAG_TOTAL_COST.checkedItem?.tag.toString()
         val diagConsider = RG_DIAG_CONSIDER.checkedItem?.tag.toString()
         val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
@@ -80,6 +82,14 @@ class DiagSurveyCMFragment : SurveyBaseFragment() {
             return null
         }
 
-        return DiagnoseAssetSellInfo()
+        return DiagnoseCMInfo(itemType=estateField,
+                address="$address $addressDetail",
+                purposeType=purpose,
+                expenseType=totalCost,
+                troubleType=diagConsider,
+                consultYn=needConsult.toLong(),
+                consultEtc01=etcFieldContent,
+                consultEtc02=purposeEtc
+                )
     }
 }

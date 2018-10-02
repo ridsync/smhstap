@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
+import com.rasset.shmstab.model.DiagnoseHomeInteInfo
 import com.rasset.shmstab.model.DiagnoseInfo
 import kotlinx.android.synthetic.main.fragment_diag_survey_home_inte.*
 
@@ -63,7 +64,7 @@ class DiagSurveyHomeInteFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseAssetSellInfo? {
+    override fun getDiagDatas(): DiagnoseHomeInteInfo? {
 
 
         val address = TV_LOCATION_ADDRESS.text.toString().trim()
@@ -71,16 +72,21 @@ class DiagSurveyHomeInteFragment : SurveyBaseFragment() {
 
         val diagArea = RG_DIAG_AREA.checkedItem?.tag.toString()
         val totalCost = RG_TOTAL_COST.checkedItem?.tag.toString()
-        val sellTiming = RG_STYLE.checkedItem?.tag.toString()
-        val buyMotive = RG_CONSTRUCT_DATE.checkedItem?.tag.toString()
+        val style = RG_STYLE.checkedItem?.tag.toString()
+        val date = RG_CONSTRUCT_DATE.checkedItem?.tag.toString()
         val needConsult = RG_INVEST_CONSIDER.checkedItem?.tag.toString()
 
         if (address.isNullOrEmpty() || diagArea.isNullOrEmpty() || totalCost.isNullOrEmpty()
-                || sellTiming.isNullOrEmpty() || buyMotive.isNullOrEmpty() || needConsult.isNullOrEmpty()){
+                || style.isNullOrEmpty() || date.isNullOrEmpty() || needConsult.isNullOrEmpty()){
             return null
         }
 
-
-        return DiagnoseAssetSellInfo()
+        return DiagnoseHomeInteInfo(address="$address $addressDetail",
+                sizeType=diagArea,
+                costType=totalCost,
+                styleType=style,
+                buildType=date,
+                consultYn=needConsult.toLong()
+                )
     }
 }
