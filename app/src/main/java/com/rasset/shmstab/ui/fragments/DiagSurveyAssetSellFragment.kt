@@ -182,23 +182,24 @@ class DiagSurveyAssetSellFragment : SurveyBaseFragment() {
         val lowerPrice = ET_SELL_LOWER.text.toString().trim()
         val higherPrice = ET_SELL_HIGHER.text.toString().trim()
         val sellTiming = RG_SELL_TIMING.checkedItem?.tag.toString()
-        val cbSellTiming = if (CB_SELL_CON_TIMING.isChecked) 1 else 0
-        val cbSellPrice = if (CB_SELL_CON_PRICE.isChecked) 1 else 0
-        val cbSellRequest = if (CB_SELL_CON_REQUEST.isChecked) 1 else 0
-        val cbSellMethod = if (CB_SELL_CON_METHOD.isChecked) 1 else 0
-        val cbSellEtc = if (CB_SELL_CON_ETC.isChecked) 1 else 0
+        val cbSellTiming = if (CB_SELL_CON_TIMING.isChecked) 1L else 0
+        val cbSellPrice = if (CB_SELL_CON_PRICE.isChecked) 1L else 0
+        val cbSellRequest = if (CB_SELL_CON_REQUEST.isChecked) 1L else 0
+        val cbSellMethod = if (CB_SELL_CON_METHOD.isChecked) 1L else 0
+        val cbSellEtc = if (CB_SELL_CON_ETC.isChecked) 1L else 0
 
         if (estateType.isStrNullOrEmpty() || address.isStrNullOrEmpty() || sellPurpose.isStrNullOrEmpty()
-         || lowerPrice.isStrNullOrEmpty() || higherPrice.isStrNullOrEmpty() || sellTiming.isStrNullOrEmpty()){
+         || lowerPrice.isStrNullOrEmpty() || higherPrice.isStrNullOrEmpty() || sellTiming.isStrNullOrEmpty()
+                || (cbSellTiming == 0L && cbSellPrice == 0L && cbSellRequest == 0L && cbSellMethod == 0L && cbSellEtc == 0L)){
             return null
         }
         val diagInfo = DiagnoseAssetSellInfo(itemType=estateType,address="$address $addressDetail",buyYear=mPurchasedYear,
                 sellPurpose = sellPurpose.toLong(),minAmount = lowerPrice,maxAmount = higherPrice,sellTime = sellTiming
-                ,consultPart01 = cbSellTiming.toLong()
-                ,consultPart02 = cbSellPrice.toLong()
-                ,consultPart03 = cbSellRequest.toLong()
-                ,consultPart04 = cbSellMethod.toLong()
-                ,consultPart05 = cbSellEtc.toLong())
+                ,consultPart01 = cbSellTiming
+                ,consultPart02 = cbSellPrice
+                ,consultPart03 = cbSellRequest
+                ,consultPart04 = cbSellMethod
+                ,consultPart05 = cbSellEtc)
         diagInfo.diagnoseType = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_SELL.diagType
         return diagInfo
     }

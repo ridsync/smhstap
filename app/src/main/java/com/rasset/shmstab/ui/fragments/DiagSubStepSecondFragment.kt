@@ -212,12 +212,12 @@ class DiagSubStepSecondFragment : BaseFragment() {
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX-> {
                 if(index == 0 ) {
                     if (selectedSubCategory == DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM){
-                        DiagSurveyTaxFalmLandFragment()
+                        DiagSurveyTaxFarmLandFragment()
                     } else {
                         DiagSurveyTaxAssetFragment()
                     }
                 } else {
-                    DiagSurveyTaxFalmLandFragment()
+                    DiagSurveyTaxFarmLandFragment()
                 }
             }
             DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_HOME_INTE-> {

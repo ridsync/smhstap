@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
-import com.rasset.shmstab.model.DiagnoseAssetSellInfo
+import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.model.DiagnoseMDInfo
+import com.rasset.shmstab.ui.dialog.BaseDialogFragment
+import com.rasset.shmstab.ui.dialog.SearchAddressDialog
 import com.rasset.shmstab.utils.isStrNullOrEmpty
 import kotlinx.android.synthetic.main.fragment_diag_survey_md.*
 
@@ -57,6 +59,25 @@ class DiagSurveyMDFragment : SurveyBaseFragment() {
 
     fun initFirst(){
 
+        BTN_SEARCH_ADDRESS_SHOW.setOnClickListener {
+            showDialog()
+        }
+
+    }
+
+    private fun showDialog(){
+
+        val dialog = SearchAddressDialog.newInstance(mContext).apply {
+            setOnDismissListener(object : BaseDialogFragment.OnDismissListener{
+                override fun onDismiss(dialog: BaseDialogFragment) {
+                    val result = dialog as SearchAddressDialog
+                    result.mSelectedAddress?.let {
+                        this@DiagSurveyMDFragment.TV_LOCATION_ADDRESS.text = result.mSelectedAddress
+                    }
+                }
+            })
+        }
+        dialog.show(fragmentManager, AppConst.DIALOG_CUSTOMER_INFO_PRIVACY)
     }
 
     override fun isValidDiagInputs(): Boolean {

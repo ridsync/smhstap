@@ -90,7 +90,13 @@ data class DiagnoseTaxAssetInfo(var itemType: String?=null,
                                 var consultYn:Long=0) : DiagnoseBaseInfo()
 
 
-data class DiagnoseTaxFalmInfo(var itemType:String?=null) : DiagnoseBaseInfo()
+data class DiagnoseTaxFarmInfo(var farmRealType: String?=null,
+                               var farmUnchangeType: String?=null,
+                               var farmPurposeType: String?=null,
+                               var farmExcludeTye:String?=null,
+                               var farmPeriodType:String?=null,
+                               var farmTransType: String?=null,
+                               var farmConsultYn:String?=null) : DiagnoseBaseInfo()
 
 data class DiagnoseHomeInteInfo(var address:String?=null,
                                 var sizeType:String?=null,

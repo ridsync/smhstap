@@ -7,26 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
-import com.rasset.shmstab.model.DiagnoseTaxAssetInfo
-import com.rasset.shmstab.model.DiagnoseTaxFalmInfo
+import com.rasset.shmstab.model.DiagnoseTaxFarmInfo
 import com.rasset.shmstab.utils.isStrNullOrEmpty
-import kotlinx.android.synthetic.main.fragment_diag_survey_tax_falmland.*
+import kotlinx.android.synthetic.main.fragment_diag_survey_tax_farmland.*
 
 /**
  * Created by devok on 2018-09-05.
  */
 
-class DiagSurveyTaxFalmLandFragment : SurveyBaseFragment() {
+class DiagSurveyTaxFarmLandFragment : SurveyBaseFragment() {
 
-    private object Holder { val INSTANCE = DiagSurveyTaxFalmLandFragment() }
+    private object Holder { val INSTANCE = DiagSurveyTaxFarmLandFragment() }
 
     companion object {
-        val singleTone: DiagSurveyTaxFalmLandFragment by lazy { Holder.INSTANCE }
+        val singleTone: DiagSurveyTaxFarmLandFragment by lazy { Holder.INSTANCE }
 
-        val instance: DiagSurveyTaxFalmLandFragment by lazy { DiagSurveyTaxFalmLandFragment() }
+        val instance: DiagSurveyTaxFarmLandFragment by lazy { DiagSurveyTaxFarmLandFragment() }
 
         fun newInstance(context: Context): Intent {
-            val intent = Intent(context, DiagSurveyTaxFalmLandFragment::class.java)
+            val intent = Intent(context, DiagSurveyTaxFarmLandFragment::class.java)
             return intent
         }
     }
@@ -37,7 +36,7 @@ class DiagSurveyTaxFalmLandFragment : SurveyBaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
-            mRootView = inflater.inflate(R.layout.fragment_diag_survey_tax_falmland, container, false)
+            mRootView = inflater.inflate(R.layout.fragment_diag_survey_tax_farmland, container, false)
         }
         return mRootView
     }
@@ -63,7 +62,7 @@ class DiagSurveyTaxFalmLandFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseTaxFalmInfo? {
+    override fun getDiagDatas(): DiagnoseTaxFarmInfo? {
 
         val usage = RG_USAGE.checkedItem?.tag.toString()
         val isFarmLand = RG_FARMLAND.checkedItem?.tag.toString()
@@ -78,24 +77,16 @@ class DiagSurveyTaxFalmLandFragment : SurveyBaseFragment() {
             return null
         }
 
-
-        return DiagnoseTaxFalmInfo()
-//        val diagInfo = DiagnoseTaxFalmInfo(itemType=taxField,
-//                ownerHouse=housing,
-//                areaType = controlLocation,
-//                holdType = ownPeriod,
-//                priceType = higherPrice,
-//                consultPart01 = ownRassetStore,
-//                consultPart02 = ownRassetParcel,
-//                consultPart03 = ownRassetResidence,
-//                consultPart04 = ownRassetOfficetel,
-//                consultPart05 = ownRassetLand,
-//                consultPart06 = ownRassetEtc,
-//                consultEtc01 = ownRassetEtcContents,
-//                consultYn = needConsult.toLong()
-//        )
-//        diagInfo.diagnoseType = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM.diagType
-//        return diagInfo
+        val diagInfo = DiagnoseTaxFarmInfo(farmRealType=usage,
+                farmUnchangeType=isFarmLand,
+                farmPurposeType = isPurpose,
+                farmExcludeTye = exceptLand,
+                farmPeriodType = residence,
+                farmTransType = urban,
+                farmConsultYn = needConsult
+        )
+        diagInfo.diagnoseType = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM.diagType
+        return diagInfo
     }
 
 }

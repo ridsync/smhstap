@@ -151,14 +151,25 @@ class DiagAttentionActivity : BaseActivity() {
             val nextFrag = getNextFragInfo()
             if (nextFrag == SubFrags.DIAG_COMPLETE) {
                 postCustomerDiagInfos()
-            } else {
+            } else if (nextFrag == SubFrags.DIAG_INFO_STEP1) {
+                val fragment = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_CUSTOER_INFO.title) as DiagSubCustomerInfoFragment
+                if(fragment.acbPrivacyAgree.isChecked){
+                    replaceFragment(nextFrag, true)
+                    setStatAppBarTitlenEtc()
+                } else {
+                    showToast {
+                        "개인정보취급방침항목에 동의해주세요."
+                    }
+                }
+            }else {
                 if (nextFrag == SubFrags.DIAG_INFO_STEP2) {
                     val fragFirst = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP1.title) as DiagSubStepFirstFragment
                     selectedAdviser = fragFirst.selectedAdvisor
 
                     when (selectedAdviser) {
-                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST,
-                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
+                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST -> {
+//                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST,
+//                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> { TODO 농지세금은 추후에
                             val dialog = SelectSubDiagTypeDialog.newInstance(mContext).apply {
                                 setOnPositveListener { dialog ->
                                     when (dialog.recGroup.checkedItem.tag.toString()) {
@@ -192,7 +203,12 @@ class DiagAttentionActivity : BaseActivity() {
                             }
                             dialog.show(supportFragmentManager, AppConst.DIALOG_CUSTOMER_INFO_PRIVACY)
                         }
-                        else -> {
+                        // TODO 임시 세금은 수익형부동산만
+                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
+                            selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET
+                            replaceFragment(nextFrag, true)
+                            setStatAppBarTitlenEtc()
+                        } else -> {
                             replaceFragment(nextFrag, true)
                             setStatAppBarTitlenEtc()
                         }

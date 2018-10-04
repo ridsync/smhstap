@@ -79,7 +79,8 @@ class DiagSurveyAssetBuyFragment : SurveyBaseFragment(){
         val cbBuyEtc = if (CB_BUY_CON_ETC.isChecked) 1L else 0
 
         if (estateType.isStrNullOrEmpty() || location.isStrNullOrEmpty() || buyTiming.isStrNullOrEmpty()
-                || investPurpose.isStrNullOrEmpty() || investScale.isStrNullOrEmpty() || investConsider.isStrNullOrEmpty()){
+                || investPurpose.isStrNullOrEmpty() || investScale.isStrNullOrEmpty() || investConsider.isStrNullOrEmpty()
+                || (cbBuyLocation == 0L && cbBuyDev == 0L && cbBuyMargin == 0L && cbBuyRevenue == 0L && cbBuyEtc == 0L)){
             return null
         }
 

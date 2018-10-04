@@ -122,10 +122,10 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
             diagnoseInfo.consultingDate.let {
                 TV_CONSULTING_DATE_YMD.text = it
             }
-            diagnoseInfo.consultingTime.let {
+            diagnoseInfo.consultingTimeStart.let {
                 TV_CONSULTING_DATE_START_HOUR.text = it
             }
-            diagnoseInfo.consultingTimeStart.let {
+            diagnoseInfo.consultingTime.let {
                 TV_CONSULTING_DATE_END_HOUR.text = it
             }
         }

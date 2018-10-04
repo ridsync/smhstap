@@ -82,7 +82,9 @@ class DiagSurveyTaxAssetFragment : SurveyBaseFragment() {
         val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
 
         if (taxField.isStrNullOrEmpty() || housing.isStrNullOrEmpty() || controlLocation.isStrNullOrEmpty()
-                || ownPeriod.isStrNullOrEmpty() || higherPrice.isStrNullOrEmpty() || needConsult.isStrNullOrEmpty()){
+                || ownPeriod.isStrNullOrEmpty() || higherPrice.isStrNullOrEmpty() || needConsult.isStrNullOrEmpty()
+                || (ownRassetStore == 0L && ownRassetParcel == 0L && ownRassetResidence == 0L && ownRassetOfficetel == 0L
+                        && ownRassetLand == 0L && ownRassetEtc == 0L)){
             return null
         }
 
