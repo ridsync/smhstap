@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetBuyInfo
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
+import com.rasset.shmstab.utils.isStrNullOrEmpty
 import kotlinx.android.synthetic.main.fragment_diag_survey_asset_buy.*
 
 /**
@@ -77,8 +78,8 @@ class DiagSurveyAssetBuyFragment : SurveyBaseFragment(){
         val cbBuyRevenue = if (CB_BUY_CON_REVENUE.isChecked) 1L else 0
         val cbBuyEtc = if (CB_BUY_CON_ETC.isChecked) 1L else 0
 
-        if (estateType.isNullOrEmpty() || location.isNullOrEmpty() || buyTiming.isNullOrEmpty()
-                || investPurpose.isNullOrEmpty() || investScale.isNullOrEmpty() || investConsider.isNullOrEmpty()){
+        if (estateType.isStrNullOrEmpty() || location.isStrNullOrEmpty() || buyTiming.isStrNullOrEmpty()
+                || investPurpose.isStrNullOrEmpty() || investScale.isStrNullOrEmpty() || investConsider.isStrNullOrEmpty()){
             return null
         }
 

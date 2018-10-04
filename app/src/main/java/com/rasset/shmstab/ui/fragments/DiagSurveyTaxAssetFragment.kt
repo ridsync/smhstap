@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseTaxAssetInfo
+import com.rasset.shmstab.utils.isStrNullOrEmpty
 import kotlinx.android.synthetic.main.fragment_diag_survey_asset_buy.*
 import kotlinx.android.synthetic.main.fragment_diag_survey_tax_asset.*
 
@@ -80,8 +81,8 @@ class DiagSurveyTaxAssetFragment : SurveyBaseFragment() {
 
         val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
 
-        if (taxField.isNullOrEmpty() || housing.isNullOrEmpty() || controlLocation.isNullOrEmpty()
-                || ownPeriod.isNullOrEmpty() || higherPrice.isNullOrEmpty() || needConsult.isNullOrEmpty()){
+        if (taxField.isStrNullOrEmpty() || housing.isStrNullOrEmpty() || controlLocation.isStrNullOrEmpty()
+                || ownPeriod.isStrNullOrEmpty() || higherPrice.isStrNullOrEmpty() || needConsult.isStrNullOrEmpty()){
             return null
         }
 

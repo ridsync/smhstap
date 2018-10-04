@@ -10,6 +10,7 @@ import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
 import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.model.DiagnoseManagementInfo
+import com.rasset.shmstab.utils.isStrNullOrEmpty
 import kotlinx.android.synthetic.main.fragment_diag_survey_management.*
 
 /**
@@ -81,9 +82,9 @@ class DiagSurveyManageFragment : SurveyBaseFragment() {
         val leaseConsider = RG_LEASE.checkedItem?.tag.toString()
         val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
 
-        if (address.isNullOrEmpty() || consultType.isNullOrEmpty() || consultField.isNullOrEmpty()
-                || consultFieldEtc.isNullOrEmpty() || isLesseCount.isNullOrEmpty() || isEstimate.isNullOrEmpty()
-                || leaseConsider.isNullOrEmpty()|| needConsult.isNullOrEmpty()){
+        if (address.isStrNullOrEmpty() || consultType.isStrNullOrEmpty() || consultField.isStrNullOrEmpty()
+                || consultFieldEtc.isStrNullOrEmpty() || isLesseCount.isStrNullOrEmpty() || isEstimate.isStrNullOrEmpty()
+                || leaseConsider.isStrNullOrEmpty()|| needConsult.isStrNullOrEmpty()){
             return null
         }
 

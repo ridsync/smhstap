@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseTaxFalmInfo
+import com.rasset.shmstab.utils.isStrNullOrEmpty
 import kotlinx.android.synthetic.main.fragment_diag_survey_tax_falmland.*
 
 /**
@@ -71,8 +72,8 @@ class DiagSurveyTaxFalmLandFragment : SurveyBaseFragment() {
         val urban = RG_URBAN.checkedItem?.tag.toString()
         val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
 
-        if (usage.isNullOrEmpty() || isFarmLand.isNullOrEmpty() || isPurpose.isNullOrEmpty()
-                || exceptLand.isNullOrEmpty() || residence.isNullOrEmpty() || urban.isNullOrEmpty() || needConsult.isNullOrEmpty()){
+        if (usage.isStrNullOrEmpty() || isFarmLand.isStrNullOrEmpty() || isPurpose.isStrNullOrEmpty()
+                || exceptLand.isStrNullOrEmpty() || residence.isStrNullOrEmpty() || urban.isStrNullOrEmpty() || needConsult.isStrNullOrEmpty()){
             return null
         }
 

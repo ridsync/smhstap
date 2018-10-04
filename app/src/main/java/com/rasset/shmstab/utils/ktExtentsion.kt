@@ -18,6 +18,10 @@ inline fun Context.showToast(message: () -> String) {
     toast.show()
 }
 
+inline fun String.isStrNullOrEmpty():Boolean {
+    return this@isStrNullOrEmpty == null || this.isEmpty() || this.equals("null",true)
+}
+
 fun hideIME(context: Context?, view: View): Boolean {
     if (context == null) return false
 

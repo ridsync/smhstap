@@ -16,6 +16,7 @@ import com.rasset.shmstab.model.DiagnoseAssetSellInfo
 import com.rasset.shmstab.ui.dialog.BaseDialogFragment
 import com.rasset.shmstab.ui.dialog.SearchAddressDialog
 import com.rasset.shmstab.utils.hideIME
+import com.rasset.shmstab.utils.isStrNullOrEmpty
 import kotlinx.android.synthetic.main.fragment_diag_survey_asset_sell.*
 import java.util.*
 
@@ -187,8 +188,8 @@ class DiagSurveyAssetSellFragment : SurveyBaseFragment() {
         val cbSellMethod = if (CB_SELL_CON_METHOD.isChecked) 1 else 0
         val cbSellEtc = if (CB_SELL_CON_ETC.isChecked) 1 else 0
 
-        if (estateType.isNullOrEmpty() || address.isNullOrEmpty() || sellPurpose.isNullOrEmpty()
-         || lowerPrice.isNullOrEmpty() || higherPrice.isNullOrEmpty() || sellTiming.isNullOrEmpty()){
+        if (estateType.isStrNullOrEmpty() || address.isStrNullOrEmpty() || sellPurpose.isStrNullOrEmpty()
+         || lowerPrice.isStrNullOrEmpty() || higherPrice.isStrNullOrEmpty() || sellTiming.isStrNullOrEmpty()){
             return null
         }
         val diagInfo = DiagnoseAssetSellInfo(itemType=estateType,address="$address $addressDetail",buyYear=mPurchasedYear,

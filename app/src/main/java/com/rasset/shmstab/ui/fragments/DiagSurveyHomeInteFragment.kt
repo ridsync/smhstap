@@ -10,6 +10,7 @@ import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
 import com.rasset.shmstab.model.DiagnoseHomeInteInfo
 import com.rasset.shmstab.model.DiagnoseInfo
+import com.rasset.shmstab.utils.isStrNullOrEmpty
 import kotlinx.android.synthetic.main.fragment_diag_survey_home_inte.*
 
 /**
@@ -76,8 +77,8 @@ class DiagSurveyHomeInteFragment : SurveyBaseFragment() {
         val date = RG_CONSTRUCT_DATE.checkedItem?.tag.toString()
         val needConsult = RG_INVEST_CONSIDER.checkedItem?.tag.toString()
 
-        if (address.isNullOrEmpty() || diagArea.isNullOrEmpty() || totalCost.isNullOrEmpty()
-                || style.isNullOrEmpty() || date.isNullOrEmpty() || needConsult.isNullOrEmpty()){
+        if (address.isStrNullOrEmpty() || diagArea.isStrNullOrEmpty() || totalCost.isStrNullOrEmpty()
+                || style.isStrNullOrEmpty() || date.isStrNullOrEmpty() || needConsult.isStrNullOrEmpty()){
             return null
         }
 

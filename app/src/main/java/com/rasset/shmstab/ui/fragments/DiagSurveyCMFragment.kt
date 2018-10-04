@@ -10,6 +10,7 @@ import com.rasset.shmstab.R
 import com.rasset.shmstab.model.DiagnoseAssetSellInfo
 import com.rasset.shmstab.model.DiagnoseCMInfo
 import com.rasset.shmstab.model.DiagnoseInfo
+import com.rasset.shmstab.utils.isStrNullOrEmpty
 import kotlinx.android.synthetic.main.fragment_diag_survey_cm.*
 
 /**
@@ -76,9 +77,9 @@ class DiagSurveyCMFragment : SurveyBaseFragment() {
         val diagConsider = RG_DIAG_CONSIDER.checkedItem?.tag.toString()
         val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
 
-        if (estateField.isNullOrEmpty() || address.isNullOrEmpty() || construct.isNullOrEmpty()
-                || purpose.isNullOrEmpty() || totalCost.isNullOrEmpty() || diagConsider.isNullOrEmpty()
-                || needConsult.isNullOrEmpty()){
+        if (estateField.isStrNullOrEmpty() || address.isStrNullOrEmpty() || construct.isStrNullOrEmpty()
+                || purpose.isStrNullOrEmpty() || totalCost.isStrNullOrEmpty() || diagConsider.isStrNullOrEmpty()
+                || needConsult.isStrNullOrEmpty()){
             return null
         }
 
