@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
+import com.rasset.shmstab.model.DiagnoseTaxAssetInfo
 import com.rasset.shmstab.model.DiagnoseTaxFalmInfo
 import com.rasset.shmstab.utils.isStrNullOrEmpty
 import kotlinx.android.synthetic.main.fragment_diag_survey_tax_falmland.*
@@ -79,6 +80,22 @@ class DiagSurveyTaxFalmLandFragment : SurveyBaseFragment() {
 
 
         return DiagnoseTaxFalmInfo()
+//        val diagInfo = DiagnoseTaxFalmInfo(itemType=taxField,
+//                ownerHouse=housing,
+//                areaType = controlLocation,
+//                holdType = ownPeriod,
+//                priceType = higherPrice,
+//                consultPart01 = ownRassetStore,
+//                consultPart02 = ownRassetParcel,
+//                consultPart03 = ownRassetResidence,
+//                consultPart04 = ownRassetOfficetel,
+//                consultPart05 = ownRassetLand,
+//                consultPart06 = ownRassetEtc,
+//                consultEtc01 = ownRassetEtcContents,
+//                consultYn = needConsult.toLong()
+//        )
+//        diagInfo.diagnoseType = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_FALM.diagType
+//        return diagInfo
     }
 
 }

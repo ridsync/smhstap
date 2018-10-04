@@ -86,8 +86,8 @@ class DiagSurveyTaxAssetFragment : SurveyBaseFragment() {
             return null
         }
 
-        return DiagnoseTaxAssetInfo(itemType=taxField,
-                ownerHouse=housing,
+        val diagInfo = DiagnoseTaxAssetInfo(itemType=taxField,
+                ownerHouse = housing,
                 areaType = controlLocation,
                 holdType = ownPeriod,
                 priceType = higherPrice,
@@ -100,6 +100,8 @@ class DiagSurveyTaxAssetFragment : SurveyBaseFragment() {
                 consultEtc01 = ownRassetEtcContents,
                 consultYn = needConsult.toLong()
                 )
+        diagInfo.diagnoseType = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET.diagType
+        return diagInfo
     }
 
 }

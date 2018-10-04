@@ -8,6 +8,7 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.rasset.shmstab.R;
@@ -39,6 +40,8 @@ public class MainCustomDialog extends BaseDialogFragment   implements View.OnCli
     int mResTitle;
     SpannableString mSpanContents;
     String mStrContents;
+    Button mBtnAloneDone = null;
+    int mResIdAloneDone = -1;
     int mResIdpositive = -1;
     int mResIdNegative = -1;
     boolean isCancelable = true;
@@ -69,6 +72,12 @@ public class MainCustomDialog extends BaseDialogFragment   implements View.OnCli
         }
 
         // 버튼
+        mBtnAloneDone = (mRootView.findViewById(R.id.BTN_ALONE_DONE));
+        mBtnAloneDone.setOnClickListener(this);
+        if(mResIdAloneDone !=-1) {
+            mBtnAloneDone.setVisibility(View.VISIBLE);
+            mBtnAloneDone.setText(mResIdAloneDone);
+        }
         mBtnNegative = (mRootView.findViewById(R.id.BTN_CANCEL));
         mBtnNegative.setOnClickListener(this);
         if(mResIdNegative !=-1) {
@@ -106,7 +115,10 @@ public class MainCustomDialog extends BaseDialogFragment   implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.BTN_CANCEL){
+         if (v.getId() == R.id.BTN_ALONE_DONE) {
+            if (positiveListener !=null)
+                positiveListener.onClickPositive(this);
+        }else if (v.getId() == R.id.BTN_CANCEL){
             if (negativeListener !=null)
                 negativeListener.onClickNegative(this);
         } else if (v.getId() == R.id.BTN_DONE) {
@@ -139,6 +151,11 @@ public class MainCustomDialog extends BaseDialogFragment   implements View.OnCli
     }
     public void setMsgContents(SpannableString mStrContents) {
         this.mSpanContents = mStrContents;
+    }
+
+    public void setAloneDoneButton(int mResIdAloneDone, OnPositvelListener listener) {
+        this.mResIdAloneDone = mResIdAloneDone;
+        this.positiveListener = listener;
     }
 
     public void setPositiveButton(int mResIdpositive, OnPositvelListener listener) {

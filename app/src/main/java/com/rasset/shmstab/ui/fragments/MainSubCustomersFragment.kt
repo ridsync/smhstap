@@ -30,13 +30,16 @@ import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.network.res.ResCustomerList
 import com.rasset.shmstab.network.task.MainListTask
+import com.rasset.shmstab.ui.LoginActivity
 import com.rasset.shmstab.ui.MainActivity
 import com.rasset.shmstab.ui.adapter.BaseRecyclerExtendsAdapter
 import com.rasset.shmstab.ui.adapter.ReloadRecyclerViewScrollListner
 import com.rasset.shmstab.ui.components.CropCircleTransform
+import com.rasset.shmstab.ui.dialog.MainCustomDialog
 import com.rasset.shmstab.utils.JUtil
 import com.rasset.shmstab.utils.JUtil.isDoubleClick
 import com.rasset.shmstab.utils.Logger
+import com.rasset.shmstab.utils.Prefer
 import com.rasset.shmstab.utils.getCustomerLevelStr
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
 import kotlinx.android.synthetic.main.fragment_main_customer.*
@@ -297,9 +300,21 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
 //                    viewHolder.ibProfileImage.isSelected = false
 //                    notifyItemChanged(i)
 //                },300)
-                if (mActivity is MainActivity) {
-                    (mActivity as MainActivity).startDiagAttentionActivity(diagnoseInfo,viewHolder.civProfileImage)
+                if (diagnoseInfo.diagnoseId > 0){
+                    if (mActivity is MainActivity) {
+                        (mActivity as MainActivity).startDiagAttentionActivity(diagnoseInfo,viewHolder.civProfileImage)
+                    }
+                } else {
+                    val dialog = MainCustomDialog.newInstance(mContext).apply {
+                        setTitle(R.string.common_alert)
+                        setMsgContents("부동산자산관리 상담 신청 내역이 없습니다.")
+                        setAloneDoneButton(R.string.btn_confirm, MainCustomDialog.OnPositvelListener { dialog ->
+                            if (JUtil.isDoubleClick(dialog.view)) return@OnPositvelListener
+                        })
+                    }
+                    dialog.show(fragmentManager, AppConst.DIALOG_ALERT_EMPTY_DIAG)
                 }
+
             })
 
         }

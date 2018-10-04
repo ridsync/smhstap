@@ -76,6 +76,7 @@ public class AppConst {
 
     // Dialog
     public static final String DIALOG_LOGIN_FAIL = "DIALOG_LOGIN_FAIL";
+    public static final String DIALOG_ALERT_EMPTY_DIAG = "DIALOG_ALERT_EMPTY_DIAG";
     public static final String DIALOG_CUSTOMER_INFO_PRIVACY = "DIALOG_CUSTOMER_INFO_PRIVACY";
 
 
