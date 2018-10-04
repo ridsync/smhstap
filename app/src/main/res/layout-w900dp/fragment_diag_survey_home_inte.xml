@@ -91,6 +91,7 @@
                     android:layout_alignRight="@+id/TV_LOCATION_ADDRESS"
                     android:layout_marginTop="30dp"
                     android:hint="상세주소"
+                    android:maxLength="50"
                     android:textColorHint="@color/main_text_secondary"
                     android:imeOptions="actionNext"
                     android:paddingBottom="12dp"

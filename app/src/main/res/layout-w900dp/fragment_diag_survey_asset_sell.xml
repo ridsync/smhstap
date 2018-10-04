@@ -237,6 +237,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignRight="@+id/TV_LOCATION_ADDRESS"
                     android:layout_marginTop="30dp"
+                    android:maxLength="50"
                     android:hint="상세주소"
                     android:textColorHint="@color/main_text_input_hint"
                     android:imeOptions="actionNext"
@@ -444,6 +445,7 @@
                         android:layout_toRightOf="@+id/TV_SELL_LABEL_LOWER"
                         android:hint="5천만원"
                         android:textSize="@dimen/main_text_body1"
+                        android:maxLength="10"
                         android:textColor="@color/main_text_secondary"
                         android:gravity="center_vertical|right"
                         android:paddingRight="20dp"/>
@@ -483,6 +485,7 @@
                         android:layout_toRightOf="@+id/TV_SELL_LABEL_HIGHER"
                         android:hint="100억원"
                         android:textSize="@dimen/main_text_body1"
+                        android:maxLength="10"
                         android:textColor="@color/main_text_secondary"
                         android:paddingRight="20dp"
                         android:gravity="center_vertical|right"/>

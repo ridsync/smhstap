@@ -85,6 +85,7 @@ class DiagSurveyCMFragment : SurveyBaseFragment() {
 
         return DiagnoseCMInfo(itemType=estateField,
                 address="$address $addressDetail",
+                constructType=construct,
                 purposeType=purpose,
                 expenseType=totalCost,
                 troubleType=diagConsider,

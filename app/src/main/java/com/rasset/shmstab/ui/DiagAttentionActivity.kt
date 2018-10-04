@@ -161,7 +161,7 @@ class DiagAttentionActivity : BaseActivity() {
                         "개인정보취급방침항목에 동의해주세요."
                     }
                 }
-            }else {
+            } else {
                 if (nextFrag == SubFrags.DIAG_INFO_STEP2) {
                     val fragFirst = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_INFO_STEP1.title) as DiagSubStepFirstFragment
                     selectedAdviser = fragFirst.selectedAdvisor
@@ -203,7 +203,7 @@ class DiagAttentionActivity : BaseActivity() {
                             }
                             dialog.show(supportFragmentManager, AppConst.DIALOG_CUSTOMER_INFO_PRIVACY)
                         }
-                        // TODO 임시 세금은 수익형부동산만
+                        // TODO 임시 세금은 수익형부동산만 보이도록
                         DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
                             selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET
                             replaceFragment(nextFrag, true)

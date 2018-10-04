@@ -258,9 +258,10 @@
         android:id="@+id/TV_EMPTY_MSG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
         android:layout_centerInParent="true"
         android:textColor="@color/main_text_secondary"
         android:textSize="@dimen/main_text_body1"
-        android:text="데이터 없음"
+        android:text="회원정보 없음"
         android:visibility="gone"/>
 </RelativeLayout>

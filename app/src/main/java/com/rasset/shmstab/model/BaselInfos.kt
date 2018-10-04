@@ -107,6 +107,7 @@ data class DiagnoseHomeInteInfo(var address:String?=null,
 
 data class DiagnoseCMInfo(var itemType:String?=null,
                           var address:String?=null,
+                          var constructType:String?=null,
                           var purposeType:String?=null,
                           var expenseType:String?=null,
                           var troubleType:String?=null,
