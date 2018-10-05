@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.model.DiagnoseMDInfo
 import com.rasset.shmstab.ui.dialog.BaseDialogFragment
 import com.rasset.shmstab.ui.dialog.SearchAddressDialog
+import com.rasset.shmstab.utils.hideIME
 import com.rasset.shmstab.utils.isStrNullOrEmpty
 import kotlinx.android.synthetic.main.fragment_diag_survey_md.*
 
@@ -63,6 +65,12 @@ class DiagSurveyMDFragment : SurveyBaseFragment() {
             showDialog()
         }
 
+        ET_LOCATION_ADDRESS_DETAIL.setOnEditorActionListener { v, actionId, event ->
+            if (v?.id === ET_LOCATION_ADDRESS_DETAIL.id && actionId === EditorInfo.IME_ACTION_NEXT) {
+                hideIME(mContext,ET_LOCATION_ADDRESS_DETAIL)
+            }
+            false
+        }
     }
 
     private fun showDialog(){

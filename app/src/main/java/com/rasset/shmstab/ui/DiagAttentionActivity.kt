@@ -16,6 +16,7 @@ import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.network.task.MainListTask
 import com.rasset.shmstab.ui.components.CropCircleTransform
+import com.rasset.shmstab.ui.dialog.MainCustomDialog
 import com.rasset.shmstab.ui.dialog.SelectSubDiagTypeDialog
 import com.rasset.shmstab.ui.fragments.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
@@ -148,6 +149,7 @@ class DiagAttentionActivity : BaseActivity() {
         setStatAppBarTitlenEtc()
         IB_APPBAR_ACTION.visibility = View.VISIBLE
         IB_APPBAR_ACTION.setOnClickListener{
+            if (JUtil.isDoubleClick(it)) return@setOnClickListener
             val nextFrag = getNextFragInfo()
             if (nextFrag == SubFrags.DIAG_COMPLETE) {
                 postCustomerDiagInfos()
@@ -306,11 +308,12 @@ class DiagAttentionActivity : BaseActivity() {
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
         Logger.d("onNetSuccess  ")
         // TODO
-        finish()
-        overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
-        showToast {
-            "[ 서버 전송 완료 ]"
-        }
+//        finish()
+//        overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+//        showToast {
+//            "[ 서버 전송 완료 ]"
+//        }
+        showDialog()
     }
 
     override fun onNetFail(retCode: Int, strErrorMsg: String, nReqType: Int) {
@@ -320,10 +323,25 @@ class DiagAttentionActivity : BaseActivity() {
 
     override fun onProgresStart(nReqType: Int) {
         Logger.d("onProgresStart  ")
+        mLockDialog.show()
     }
 
     override fun onProgresStop(nReqType: Int) {
         Logger.d("onProgresStop  ")
+        mLockDialog.cancel()
+    }
+
+    private fun showDialog(){
+        val dialog = MainCustomDialog.newInstance(mContext).apply {
+            setTitle(R.string.common_alert)
+            setMsgContents("진단정보 전송 완료되었습니다.")
+            setAloneDoneButton(R.string.btn_confirm, MainCustomDialog.OnPositvelListener { dialog ->
+                if (JUtil.isDoubleClick(dialog.view)) return@OnPositvelListener
+                finish()
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+            })
+        }
+        dialog.show(supportFragmentManager, AppConst.DIALOG_ALERT_EMPTY_DIAG)
     }
 
 }
