@@ -23,14 +23,17 @@ android {
     }
     buildTypes {
         release {
-            debuggable false
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "boolean", "LOG_MODE", "false"
+            manifestPlaceholders = [appName: "@string/app_name"]
+            applicationIdSuffix ".prod"
+            debuggable true
+            signingConfig signingConfigs.debug
+            buildConfigField "boolean", "LOG_MODE", "true"
             buildConfigField "String", "API_MODE_PATH", '"prod"'
             buildConfigField "String", "API_BASE_URL",  apiMainUrl_prod
         }
         debug {
+            manifestPlaceholders = [appName: "smhsTabApp(Debug)"]
+            applicationIdSuffix ".debug"
             debuggable true
             signingConfig signingConfigs.debug
             buildConfigField "boolean", "LOG_MODE", "true"

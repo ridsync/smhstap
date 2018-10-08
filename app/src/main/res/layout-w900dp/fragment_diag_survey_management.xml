@@ -633,6 +633,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
                                     <RadioButton
+                                        android:tag="11"
                                         android:id="@+id/RB_NEED_CONSULT_YES"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
@@ -646,6 +647,7 @@
                                         android:textSize="@dimen/main_text_body1"/>
 
                                     <RadioButton
+                                        android:tag="21"
                                         android:id="@+id/RB_NEED_CONSULT_NO"
                                         android:layout_width="0dp"
                                         android:layout_weight="1"

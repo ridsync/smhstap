@@ -112,7 +112,7 @@ class DiagSurveyManageFragment : SurveyBaseFragment() {
         val needConsult = RG_NEED_CONSULT.checkedItem?.tag.toString()
 
         if (address.isStrNullOrEmpty() || consultType.isStrNullOrEmpty() || consultField.isStrNullOrEmpty()
-                || consultFieldEtc.isStrNullOrEmpty() || isLesseCount.isStrNullOrEmpty() || isEstimate.isStrNullOrEmpty()
+                || isLesseCount.isStrNullOrEmpty() || isEstimate.isStrNullOrEmpty()
                 || leaseConsider.isStrNullOrEmpty()|| needConsult.isStrNullOrEmpty()){
             return null
         }
