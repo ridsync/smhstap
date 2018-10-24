@@ -73,7 +73,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:background="@color/main_primary_color"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:visibility="invisible">
 
                 <ImageView
                     android:layout_width="wrap_content"

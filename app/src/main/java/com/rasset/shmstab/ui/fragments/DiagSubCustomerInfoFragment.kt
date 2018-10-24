@@ -17,6 +17,7 @@ import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.ui.DiagAttentionActivity
+import com.rasset.shmstab.ui.DiagRichSurveyActivity
 import com.rasset.shmstab.ui.components.RecursiveRadioGroup
 import com.rasset.shmstab.ui.dialog.BaseDialogFragment
 import com.rasset.shmstab.ui.dialog.PrivacyAgreeDialog
@@ -97,8 +98,14 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
         }
         ET_CUSTOMER_PHONE.addTextChangedListener(mContactWatcher)
 
+        var diagnoseInfo = DiagnoseInfo()
+        if (activity is DiagAttentionActivity) {
+            diagnoseInfo = (activity as DiagAttentionActivity).diagnoseInfo
+        } else if (activity is DiagRichSurveyActivity){
+            diagnoseInfo = (activity as DiagRichSurveyActivity).diagnoseInfo
+        }
+        diagnoseInfo.let { diagnoseInfo ->
 
-        (activity as DiagAttentionActivity).diagnoseInfo.let { diagnoseInfo ->
             diagnoseInfo.customerName?.let {
                 ET_CUSTOMER_NAME.setText(it)
             }
@@ -130,6 +137,7 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
             }
         }
 
+        // Display뷰로 전락해서 막음...BS
         ET_CUSTOMER_NAME.isEnabled = false
         ET_CUSTOMER_PHONE.isEnabled = false
         ET_CUSTOMER_LEVEL.isEnabled = false

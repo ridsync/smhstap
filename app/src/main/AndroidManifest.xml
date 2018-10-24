@@ -43,6 +43,13 @@
             android:screenOrientation="sensorLandscape">
         </activity>
 
+        <activity
+            android:name=".ui.DiagRichSurveyActivity"
+            android:label="${appName}"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="sensorLandscape">
+        </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -15,6 +15,14 @@ import android.webkit.*
 import com.rasset.shmstab.R
 import com.rasset.shmstab.network.res.BaseModel
 import kotlinx.android.synthetic.main.fragment_main_re_asset.*
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.components.Description
+
 
 /**
  * Created by devok on 2018-09-05.
@@ -35,13 +43,15 @@ class MainSubREAssetFragment : BaseFragment() {
         }
     }
 
+    lateinit var pieChart: PieChart
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
-            mRootView = inflater?.inflate(R.layout.fragment_main_re_asset, container, false)
+            mRootView = inflater.inflate(R.layout.fragment_main_re_asset, container, false)
         }
         return mRootView
     }
@@ -51,6 +61,7 @@ class MainSubREAssetFragment : BaseFragment() {
         if (!isFirstInit){
             isFirstInit = true
             initFirst()
+//            setPieChart()
         }
 
     }
@@ -109,6 +120,58 @@ class MainSubREAssetFragment : BaseFragment() {
         }
 
     }
+
+
+    private fun setPieChart() {
+        pieChart = MP_PIECHART
+
+        pieChart.apply {
+            setUsePercentValues(true)
+            description.isEnabled = false
+            setExtraOffsets(5f, 10f, 5f, 5f)
+
+            setDragDecelerationFrictionCoef(0.95f)
+
+            setDrawHoleEnabled(true)
+            setHoleColor(Color.WHITE)
+            setHoleRadius(58f)
+            setTransparentCircleRadius(61f)
+            centerText = "Revenue"
+            centerTextRadiusPercent = 30f
+            setTransparentCircleColor(Color.WHITE)
+            setTransparentCircleAlpha(110)
+
+            val yValues = ArrayList<PieEntry>()
+
+            yValues.add(PieEntry(34f, "Japen"))
+            yValues.add(PieEntry(23f, "USA"))
+            yValues.add(PieEntry(14f, "UK"))
+            yValues.add(PieEntry(35f, "India"))
+            yValues.add(PieEntry(40f, "Russia"))
+            yValues.add(PieEntry(40f, "Korea"))
+
+            val desc = Description()
+            desc.text = "세계 국가" //라벨
+            desc.textSize = 15f
+            description = desc
+
+            animateY(1000, Easing.EasingOption.EaseInOutCubic) //애니메이션
+
+            val dataSet = PieDataSet(yValues, "Countries")
+            dataSet.sliceSpace = 3f
+            dataSet.selectionShift = 5f
+            dataSet.setColors(*ColorTemplate.PASTEL_COLORS)
+
+            val piedata = PieData(dataSet)
+            piedata.setValueTextSize(13f)
+            piedata.setValueTextColor(Color.YELLOW)
+
+            data = piedata
+        }
+
+
+    }
+
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
 

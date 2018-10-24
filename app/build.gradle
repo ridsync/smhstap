@@ -97,5 +97,6 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'de.greenrobot:eventbus:2.4.0'
     implementation 'jp.wasabeef:recyclerview-animators:2.2.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
 }

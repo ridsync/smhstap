@@ -74,12 +74,12 @@ class MainActivity : BaseActivity() {
         }
 
         LL_MAIN_RE_ASSET.setOnClickListener {
-//            if (currentFragment != SubFrags.REASSET.idx){
-//                currentFragment = SubFrags.REASSET.idx
-//                mapSubFragments[currentFragment]?.let { it -> replaceFragment(it) }
-//            }
-//            LL_MAIN_CUSTOMER.setBackgroundResource(R.color.main_primary_color)
-//            LL_MAIN_RE_ASSET.setBackgroundResource(R.color.main_nav_menu_selected_color)
+            if (currentFragment != SubFrags.REASSET.idx){
+                currentFragment = SubFrags.REASSET.idx
+                mapSubFragments[currentFragment]?.let { it -> replaceFragment(it) }
+            }
+            LL_MAIN_CUSTOMER.setBackgroundResource(R.color.main_primary_color)
+            LL_MAIN_RE_ASSET.setBackgroundResource(R.color.main_nav_menu_selected_color)
             showToast {
                 "준비중입니다."
             }
@@ -94,6 +94,17 @@ class MainActivity : BaseActivity() {
             startActivity(DiagAttentionActivity.newIntent(mContext,diagnoseInfo),options.toBundle())
         } else {
             startActivity(DiagAttentionActivity.newIntent(mContext,diagnoseInfo))
+        }
+        EventBus.getDefault().postSticky(diagnoseInfo)
+        overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out)
+    }
+
+    fun startDiagRichSurveyActivity(diagnoseInfo: DiagnoseInfo, imgView:View? ){
+        if (imgView!=null) {
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imgView, "profile")
+            startActivity(DiagRichSurveyActivity.newIntent(mContext,diagnoseInfo),options.toBundle())
+        } else {
+            startActivity(DiagRichSurveyActivity.newIntent(mContext,diagnoseInfo))
         }
         EventBus.getDefault().postSticky(diagnoseInfo)
         overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out)

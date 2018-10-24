@@ -12,6 +12,7 @@
     <string name="btn_cancel">취소</string>
     <string name="btn_next">다음</string>
     <string name="btn_completed">완료</string>
+    <string name="btn_goto_main">메인화면</string>
 
     // ADVISOR_SURVEYS_TITLE
     <string name="diag_txt_asset_sell">부동산 재테크 매도</string>

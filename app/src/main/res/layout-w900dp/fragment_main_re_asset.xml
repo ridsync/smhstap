@@ -18,4 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/MP_PIECHART">
+
+    </com.github.mikephil.charting.charts.PieChart>
 </RelativeLayout>

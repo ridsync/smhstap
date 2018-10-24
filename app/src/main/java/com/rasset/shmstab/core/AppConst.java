@@ -36,6 +36,13 @@ public class AppConst {
     public static final String FRAG_NAME_DIAG_INFO_STEP2 = "회원 예진정보2";
     public static final String FRAG_NAME_DIAG_COMPLETED = "FRAG_NAME_DIAG_COMPLETED";
 
+    public static final String FRAG_NAME_DIAG_RICH_STEP1 = "기본정보";
+    public static final String FRAG_NAME_DIAG_RICH_STEP2 = "부동산 성공마인드";
+    public static final String FRAG_NAME_DIAG_RICH_STEP3 = "부동산 성공기법";
+    public static final String FRAG_NAME_DIAG_RICH_STEP4 = "리스크 관리";
+    public static final String FRAG_NAME_DIAG_RICH_STEP5 = "포트폴리오 기법";
+    public static final String FRAG_NAME_DIAG_RICH_RESULT = "부자지수 진단결과";
+
     public static final String ADVISOR_NAME_INVEST = "김민수";
     public static final String ADVISOR_NAME_MD = "고상철";
     public static final String ADVISOR_NAME_TAX = "김윤석";
@@ -75,6 +82,7 @@ public class AppConst {
     public static final String BUNDLE_USERID = "BUNDLE_USERID";
 
     // Dialog
+    public static final String DIALOG_DEFAULT = "DIALOG_DEFAULT";
     public static final String DIALOG_LOGIN_FAIL = "DIALOG_LOGIN_FAIL";
     public static final String DIALOG_ALERT_EMPTY_DIAG = "DIALOG_ALERT_EMPTY_DIAG";
     public static final String DIALOG_CUSTOMER_INFO_PRIVACY = "DIALOG_CUSTOMER_INFO_PRIVACY";

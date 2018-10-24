@@ -36,6 +36,7 @@ import com.rasset.shmstab.ui.adapter.BaseRecyclerExtendsAdapter
 import com.rasset.shmstab.ui.adapter.ReloadRecyclerViewScrollListner
 import com.rasset.shmstab.ui.components.CropCircleTransform
 import com.rasset.shmstab.ui.dialog.MainCustomDialog
+import com.rasset.shmstab.ui.dialog.SelectServiceTypeDialog
 import com.rasset.shmstab.utils.JUtil
 import com.rasset.shmstab.utils.JUtil.isDoubleClick
 import com.rasset.shmstab.utils.Logger
@@ -300,10 +301,26 @@ class MainSubCustomersFragment : BaseFragment() , SwipeRefreshLayout.OnRefreshLi
 //                    viewHolder.ibProfileImage.isSelected = false
 //                    notifyItemChanged(i)
 //                },300)
-                if (diagnoseInfo.diagnoseId > 0){
-                    if (mActivity is MainActivity) {
-                        (mActivity as MainActivity).startDiagAttentionActivity(diagnoseInfo,viewHolder.civProfileImage)
+                if (diagnoseInfo.diagnoseId > 0 || diagnoseInfo.richSurveyId > 0){
+                    val dialog = SelectServiceTypeDialog.newInstance(mContext,diagnoseInfo).apply {
+                        setOnPositveListener { dialog ->
+                            when (dialog.recGroup.checkedItem.tag.toString()) {
+                                "11" -> {
+                                    // 자산관리 진단
+                                    if (mActivity is MainActivity) {
+                                        (mActivity as MainActivity).startDiagAttentionActivity(diagnoseInfo,null)
+                                    }
+                                }
+                                "21" -> {
+                                    // 부자지수 진단
+                                    if (mActivity is MainActivity) {
+                                        (mActivity as MainActivity).startDiagRichSurveyActivity(diagnoseInfo,null)
+                                    }
+                                }
+                            }
+                        }
                     }
+                    dialog.show(fragmentManager, AppConst.DIALOG_DEFAULT)
                 } else {
                     val dialog = MainCustomDialog.newInstance(mContext).apply {
                         setTitle(R.string.common_alert)
