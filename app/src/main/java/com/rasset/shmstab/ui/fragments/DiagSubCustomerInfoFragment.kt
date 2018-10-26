@@ -103,6 +103,9 @@ class DiagSubCustomerInfoFragment : BaseFragment() {
             diagnoseInfo = (activity as DiagAttentionActivity).diagnoseInfo
         } else if (activity is DiagRichSurveyActivity){
             diagnoseInfo = (activity as DiagRichSurveyActivity).diagnoseInfo
+            LL_DIAG_FIELD.visibility = View.GONE
+            TV_CUSTOMER_QUESTION.text = "상담내용"
+            ET_CUSTOMER_QUESTION.hint = "상담내용"
         }
         diagnoseInfo.let { diagnoseInfo ->
 

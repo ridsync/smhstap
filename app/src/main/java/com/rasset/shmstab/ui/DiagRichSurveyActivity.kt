@@ -17,7 +17,6 @@ import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.network.task.MainListTask
 import com.rasset.shmstab.ui.components.CropCircleTransform
 import com.rasset.shmstab.ui.dialog.MainCustomDialog
-import com.rasset.shmstab.ui.dialog.SelectSubDiagTypeDialog
 import com.rasset.shmstab.ui.fragments.*
 import kotlinx.android.synthetic.main.custom_appbarlayout.*
 import kotlinx.android.synthetic.main.activity_diagnose_attention.*
@@ -137,16 +136,14 @@ class DiagRichSurveyActivity : BaseActivity() {
             SubFrags.DIAG_RICH_STEP3 -> DiagRichStepSecondFragment()
             SubFrags.DIAG_RICH_STEP4 -> DiagRichStepSecondFragment()
             SubFrags.DIAG_RICH_STEP5 -> DiagRichStepSecondFragment()
-            SubFrags.DIAG_RICH_COMPLETE -> DiagRichStepSecondFragment()
+            SubFrags.DIAG_RICH_COMPLETE -> DiagRichResultFragment()
         }
         nextFrag.fragment = fragment
         return nextFrag
     }
 
     override fun onBackPressed() {
-        // TODO 결과화면 나온후 막기 return.,,
-
-        if (mStackFrags.count() == 1){
+        if (mStackFrags.count() == 1 || mStackFrags.peek() == SubFrags.DIAG_RICH_COMPLETE){
             supportFinishAfterTransition()
             overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
         } else {
@@ -158,22 +155,27 @@ class DiagRichSurveyActivity : BaseActivity() {
     private fun setAppBars(){
         setStatAppBarTitlenEtc()
         IB_APPBAR_ACTION.visibility = View.VISIBLE
+        IB_APPBAR_BACK.visibility = View.VISIBLE
+        IB_APPBAR_BACK.setOnClickListener{
+            onBackPressed()
+        }
         IB_APPBAR_ACTION.setOnClickListener{
             if (JUtil.isDoubleClick(it)) return@setOnClickListener
-            val nextFrag = getNextFragInfo()
-            if (nextFrag.fragment == null){
-                // 메인이동
+
+            if (mStackFrags.peek() == SubFrags.DIAG_RICH_COMPLETE){
                 finish()
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
-            } else if (nextFrag == SubFrags.DIAG_RICH_COMPLETE) {
+                return@setOnClickListener
+            }
+
+            val nextFrag = getNextFragInfo()
+            if (nextFrag == SubFrags.DIAG_RICH_COMPLETE) {
 //                postCustomerDiagInfos()
                 replaceFragment(nextFrag, true)
-                setStatAppBarTitlenEtc()
             } else if (nextFrag == SubFrags.DIAG_RICH_STEP1) {
                 val fragment = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_CUSTOER_INFO.title) as DiagSubCustomerInfoFragment
                 if(fragment.acbPrivacyAgree.isChecked){
                     replaceFragment(nextFrag, true)
-                    setStatAppBarTitlenEtc()
                 } else {
                     showToast {
                         "개인정보취급방침항목에 동의해주세요."
@@ -181,17 +183,9 @@ class DiagRichSurveyActivity : BaseActivity() {
                 }
             } else {
                 replaceFragment(nextFrag, true)
-                setStatAppBarTitlenEtc()
             }
+            setStatAppBarTitlenEtc()
 
-            if (nextFrag == SubFrags.DIAG_RICH_COMPLETE){
-                IB_APPBAR_BACK.visibility = View.GONE
-            } else {
-                IB_APPBAR_BACK.visibility = View.VISIBLE
-                IB_APPBAR_BACK.setOnClickListener{
-                    onBackPressed()
-                }
-            }
         }
 
     }
@@ -239,6 +233,7 @@ class DiagRichSurveyActivity : BaseActivity() {
         mStackFrags.peek()?.let {
             TV_APPBAR_TEXT.text =  it.title
             setVisibleEachStep(it)
+            IB_APPBAR_BACK.visibility = View.VISIBLE
             when (it){
                 SubFrags.DIAG_CUSTOER_INFO -> {
                     IB_APPBAR_ACTION.text = resources.getText(R.string.btn_next)
@@ -261,6 +256,7 @@ class DiagRichSurveyActivity : BaseActivity() {
                     IB_APPBAR_ACTION.text = resources.getText(R.string.btn_completed)
                 }
                 SubFrags.DIAG_RICH_COMPLETE -> {
+                    IB_APPBAR_BACK.visibility = View.GONE
                     IB_APPBAR_SMS.visibility = View.VISIBLE
                     IB_APPBAR_ACTION.text = resources.getText(R.string.btn_goto_main)
                 }
