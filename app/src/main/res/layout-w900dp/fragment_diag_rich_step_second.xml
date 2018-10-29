@@ -38,7 +38,7 @@
                 <TextView
                     android:id="@+id/TV_DIAG_TYPE_LABEL_AGE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="1. 귀하가 부동산투자를 한다면 투자 결정시 가장 최우선으로 고민하는 분야는?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -164,7 +164,7 @@
                 <TextView
                     android:id="@+id/TV_DIAG_TYPE_LABEL_ASSET"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="2. 귀하의 부동산자산관리(재테크)에 가장 도움이 된다고 생각하는 방법은?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -292,7 +292,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_ASSET_RATE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="3. 귀하가 평생 살면서 필요하다고 생각하는 부동산 투자(매수) 횟수는?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -418,7 +418,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_ASSET_SCALE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="4. 귀하가 부동산자산관리 성공으로 희망하는\n    노후(60대 이후) 자산(현금+부동산) 규모는?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -544,7 +544,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_FINTECH_EDU"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="5. 귀하는 지금까지 부동산자산관리(재테크) 교육을 받은 적이 있나요?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -671,7 +671,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_BUY_RASSET"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="6. 귀하는 내집 마련을 언제 하였나요?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -798,7 +798,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_HOME_TYPE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="7. 귀하가 내집 마련을 하였다면 소유하고 있는 내집 유형은?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"

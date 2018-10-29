@@ -34,7 +34,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_LOAN_RATE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="1. 귀하가 부동산 투자시 적절하다고 생각하는 시세대비 담보대출 비율은?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -161,7 +161,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_CONCEN_TYPE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="2. 귀하가 부동산 투자 후 매도시 타이밍 결정시 최우선으로 고민하는 것은?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"

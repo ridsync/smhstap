@@ -13,13 +13,166 @@
     android:showDividers="middle"
     tools:context=".ui.fragments.DiagRichResultFragment">
 
-    <com.github.mikephil.charting.charts.BarChart
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        android:id="@+id/MP_BARCHART">
+        android:layout_height="match_parent">
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    </com.github.mikephil.charting.charts.BarChart>
+        <com.github.mikephil.charting.charts.BarChart
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="200dp"
+            android:id="@+id/MP_BARCHART">
+
+        </com.github.mikephil.charting.charts.BarChart>
+
+
+        <LinearLayout
+            android:id="@+id/LL_CHART_DESC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginRight="250dp"
+            android:layout_below="@+id/MP_BARCHART"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shape_circle_bg_yellow"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="1 부동산자산관리성공마인드"
+                    android:textSize="@dimen/main_text_caption"
+                    android:textColor="#000000"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shape_circle_bg_green"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="2 부동산부자필수능력"
+                    android:textSize="@dimen/main_text_caption"
+                    android:textColor="#000000"/>
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shape_circle_bg_blue"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="3 부동산투자성공테크닉"
+                    android:textSize="@dimen/main_text_caption"
+                    android:textColor="#000000"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shape_circle_bg_indigo"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="4 부동산리스관리능력"
+                    android:textSize="@dimen/main_text_caption"
+                    android:textColor="#000000"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shape_circle_bg_purple"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="5 노후 상가빌딩 소유가능성"
+                    android:textSize="@dimen/main_text_caption"
+                    android:textColor="#000000"/>
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shape_circle_bg_yellow"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text=""
+                    android:textSize="@dimen/main_text_caption"
+                    android:textColor="#000000"
+                    android:visibility="invisible"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LL_RESULT_FORMS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginRight="120dp"
+            android:layout_below="@+id/LL_CHART_DESC"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="당신은 부동산 부자 성공형입니다."
+                android:textSize="@dimen/main_text_title1"
+                android:textColor="#000000"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    </ScrollView>
+
 </RelativeLayout>

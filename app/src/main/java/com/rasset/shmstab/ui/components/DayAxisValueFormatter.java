@@ -11,7 +11,7 @@ public class DayAxisValueFormatter implements IAxisValueFormatter
 {
 
     protected String[] mMonths = new String[]{
-            "부동산자산관리성공마인드", "부동산부자필수능력", "부동산투자성공테크닉", "부동산리스관리능력", "노후 상가빌딩 소유가능성"
+            "1 자산관리", "2 필수능력", "3 성공테크닉", "4 리스크관리", "5 노후빌딩"
     };
 
     private BarLineChartBase<?> chart;

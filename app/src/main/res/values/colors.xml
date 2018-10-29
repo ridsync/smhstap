@@ -54,4 +54,15 @@
     <color name="color_black_54">#89000000</color>
     <color name="color_black_70">#B2000000</color>
     <color name="color_black_87">#dd000000</color>
+
+    <!-- Chart Color -->
+    <color name="chart_yellow_light">#FFFFCF06</color>
+    <!-- A light chart shade of gray -->
+    <color name="chart_green_light">#FF3DA589</color>
+    <!-- A light chart shade of green -->
+    <color name="chart_blue_light">#FF3CBADB</color>
+    <!-- A light chart shade of red -->
+    <color name="chart_indigo_light">#FF0B66BE</color>
+    <!-- A dark chart shade of blue -->
+    <color name="chart_purple_dark">#FF7C4AB5</color>
 </resources>

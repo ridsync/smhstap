@@ -226,11 +226,11 @@ class DiagRichSurveyActivity : BaseActivity() {
 //            }
 //        }
         if (isAllFill)
-            reqNetUpdateDiagInfos(diagInfos)
+            reqNetUplodRichSurveys(diagInfos)
         Logger.d("postCustomerDiagInfos  ")
     }
 
-    private fun reqNetUpdateDiagInfos(diagInfo: ArrayList<DiagnoseBaseInfo>) {
+    private fun reqNetUplodRichSurveys(diagInfo: ArrayList<DiagnoseBaseInfo>) {
         val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_RICHSURVEY_UPLOAD, this)
         task.addParam(ParamKey.PARAM_USERID, TabApp.userInfo?.userId)
         task.addParam(ParamKey.PARAM_DIAG_INFO,diagInfo)

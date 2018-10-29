@@ -164,7 +164,7 @@
                 <TextView
                     android:id="@+id/TV_DIAG_TYPE_LABEL_ASSET"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="2. 귀하의 현재 총 보유자산(현금+부동산) 총액은 어느 정도인가요?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -292,7 +292,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_ASSET_RATE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="3. 귀하의 현재 총 보유자산(현금+부동산) 중 부동산자산의 비율은?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"

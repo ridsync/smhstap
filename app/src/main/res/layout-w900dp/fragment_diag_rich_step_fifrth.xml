@@ -34,7 +34,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_TRY_ESTATE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="1. 귀하에게 현금 1억이 있다면 꼭 구입하고 싶은 부동산은?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -161,7 +161,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_LOTTO_TYPE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="2. 귀하가 로또에 당첨되어 현금 20억이 생긴다면 꼭 구입하고 싶은 부동산은?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"

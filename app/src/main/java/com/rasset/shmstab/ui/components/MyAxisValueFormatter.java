@@ -16,6 +16,8 @@ public class MyAxisValueFormatter implements IAxisValueFormatter
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        return mFormat.format(value) + " 점";
+        if(axis!=null)
+            axis.setTextSize(16f);
+        return mFormat.format(value);
     }
 }

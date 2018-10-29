@@ -38,7 +38,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_BUY_RASSET"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="1. 귀하는 내집 마련을 언제 하였나요?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -165,7 +165,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_HOME_TYPE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="2. 귀하가 내집 마련을 하였다면 소유하고 있는 내집 유형은?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -291,7 +291,7 @@
                 <TextView
                     android:id="@+id/TV_DIAG_TYPE_LABEL_AGE"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="3. 귀하가 부동산투자를 한다면 투자 결정시 가장 최우선으로 고민하는 분야는?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -417,7 +417,7 @@
                 <TextView
                     android:id="@+id/TV_DIAG_TYPE_LABEL_EXP_EDU"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="4 . 귀하는 부동산을 저렴하게 구입할 수 있는 부동산경매자산관리 교육을 받아본 적이 있습니까?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -530,7 +530,7 @@
                 <TextView
                     android:id="@+id/TV_DIAG_TYPE_LABEL_TAX_EDU"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="5 . 귀하는 부동산 세금 절세할 수 있는 교육을 받아본 적이 있습니까?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -643,7 +643,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_TAX_FILED"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="6 . 귀하가 꼭 알아두면 좋을 것 같은 부동산세금 절세 분야는?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -769,7 +769,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_FIN_LOCATION"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="7. 귀하가 여유자금이 생겨 토지에 투자한다면 다음 지역 중 최우선으로 투자가치가 있다고 생각하는 지역은?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"
@@ -895,7 +895,7 @@
                 <TextView
                     android:id="@+id/TV_LABEL_INVEST_METHOD"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:text="8. 귀하가 토지에 투자를 한다면 투자시 꼭 배워야 할 투자기법은?"
                     android:textSize="30dp"
                     android:textColor="@color/main_text_primary"

@@ -52,6 +52,7 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
     }
 
     lateinit var barChart: BarChart
+    val chartXaxis = arrayOf("", "", "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +85,7 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
     private fun setBarChart() {
         barChart = MP_BARCHART
 
-        barChart.animateXY(1200,1700,Easing.EasingOption.EaseInCubic,Easing.EasingOption.EaseInOutBounce)
+        barChart.animateXY(1200,1700,Easing.EasingOption.EaseInCubic,Easing.EasingOption.Linear)
         barChart.setOnChartValueSelectedListener(this)
         barChart.setDrawBarShadow(false)
         barChart.setDrawValueAboveBar(true)
@@ -120,6 +121,7 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
 //        leftAxis.setTypeface(mTfLight)
         leftAxis.setLabelCount(8, false)
         leftAxis.valueFormatter = custom
+        leftAxis.granularity = 20f
         leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART)
         leftAxis.spaceTop = 95f
         leftAxis.axisMaximum = 100f
@@ -189,30 +191,24 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
 
             set1.setDrawIcons(false)
 
-            set1.colors =ColorTemplate.MATERIAL_COLORS.asList()
+//            set1.colors =ColorTemplate.MATERIAL_COLORS.asList()
 
             /*int startColor = ContextCompat.getColor(this, android.R.color.holo_blue_dark);
             int endColor = ContextCompat.getColor(this, android.R.color.holo_blue_bright);
             set1.setGradientColor(startColor, endColor);*/
 
-            val startColor1 = ContextCompat.getColor(mContext, android.R.color.holo_orange_light)
-            val startColor2 = ContextCompat.getColor(mContext, android.R.color.holo_blue_light)
-            val startColor3 = ContextCompat.getColor(mContext, android.R.color.holo_orange_light)
-            val startColor4 = ContextCompat.getColor(mContext, android.R.color.holo_green_light)
-            val startColor5 = ContextCompat.getColor(mContext, android.R.color.holo_red_light)
-            val endColor1 = ContextCompat.getColor(mContext, android.R.color.holo_blue_dark)
-            val endColor2 = ContextCompat.getColor(mContext, android.R.color.holo_purple)
-            val endColor3 = ContextCompat.getColor(mContext, android.R.color.holo_green_dark)
-            val endColor4 = ContextCompat.getColor(mContext, android.R.color.holo_red_dark)
-            val endColor5 = ContextCompat.getColor(mContext, android.R.color.holo_orange_dark)
+            val startColor1 = ContextCompat.getColor(mContext, R.color.chart_yellow_light)
+            val startColor2 = ContextCompat.getColor(mContext, R.color.chart_green_light)
+            val startColor3 = ContextCompat.getColor(mContext, R.color.chart_blue_light)
+            val startColor4 = ContextCompat.getColor(mContext, R.color.chart_indigo_light)
+            val startColor5 = ContextCompat.getColor(mContext,R.color.chart_purple_dark)
 
-//            set1.resetColors()
-//            set1.addColor(startColor1)
-//            set1.addColor(startColor2)
-//            set1.addColor(startColor3)
-//            set1.addColor(startColor4)
-//            set1.addColor(startColor5)
-//            set1.addColor(endColor1)
+            set1.resetColors()
+            set1.addColor(startColor1)
+            set1.addColor(startColor2)
+            set1.addColor(startColor3)
+            set1.addColor(startColor4)
+            set1.addColor(startColor5)
 
             val dataSets = ArrayList<IBarDataSet>()
             dataSets.add(set1)
