@@ -7,7 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rasset.shmstab.R
+import com.rasset.shmstab.model.DiagRichStepFirst
 import com.rasset.shmstab.model.DiagnoseAssetBuyInfo
+import com.rasset.shmstab.utils.isStrNullOrEmpty
+import kotlinx.android.synthetic.main.fragment_diag_rich_step_first.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -62,7 +65,19 @@ class DiagRichStepFirstFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagnoseAssetBuyInfo? {
+    override fun getDiagDatas(): DiagRichStepFirst? {
+
+        val estateType = RG_DIAG_RESTATE_TYPE.checkedItem?.tag.toString()
+        val buyLocation = RG_BUY_LOCATION.checkedItem?.tag.toString()
+        val buyTiming = RG_BUY_TIMING.checkedItem?.tag.toString()
+
+        if (estateType.isStrNullOrEmpty()
+                || buyLocation.isStrNullOrEmpty()
+                || buyTiming.isStrNullOrEmpty()) {
             return null
+        }
+
+        return DiagRichStepFirst(estateType=estateType,buyLocation=buyLocation,
+                buyTiming=buyTiming)
     }
 }

@@ -133,9 +133,9 @@ class DiagRichSurveyActivity : BaseActivity() {
             SubFrags.DIAG_CUSTOER_INFO -> DiagSubCustomerInfoFragment()
             SubFrags.DIAG_RICH_STEP1 -> DiagRichStepFirstFragment()
             SubFrags.DIAG_RICH_STEP2 -> DiagRichStepSecondFragment()
-            SubFrags.DIAG_RICH_STEP3 -> DiagRichStepSecondFragment()
-            SubFrags.DIAG_RICH_STEP4 -> DiagRichStepSecondFragment()
-            SubFrags.DIAG_RICH_STEP5 -> DiagRichStepSecondFragment()
+            SubFrags.DIAG_RICH_STEP3 -> DiagRichStepThirdFragment()
+            SubFrags.DIAG_RICH_STEP4 -> DiagRichStepFourthFragment()
+            SubFrags.DIAG_RICH_STEP5 -> DiagRichStepFifthFragment()
             SubFrags.DIAG_RICH_COMPLETE -> DiagRichResultFragment()
         }
         nextFrag.fragment = fragment
@@ -143,9 +143,18 @@ class DiagRichSurveyActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (mStackFrags.count() == 1 || mStackFrags.peek() == SubFrags.DIAG_RICH_COMPLETE){
+        if (mStackFrags.count() == 1){
             supportFinishAfterTransition()
             overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+        } else if(mStackFrags.peek() == SubFrags.DIAG_RICH_COMPLETE){
+            if(JUtil.isDoubleClick(TV_CUSTOMER_NAME,1000)){
+                supportFinishAfterTransition()
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+            } else {
+                showToast {
+                    "한번 더 클릭하면 종료할 수 있습니다."
+                }
+            }
         } else {
             mStackFrags.pop()
             super.onBackPressed()
@@ -193,10 +202,10 @@ class DiagRichSurveyActivity : BaseActivity() {
     private fun postCustomerDiagInfos() {
 
         val fragFirst = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP1.title) as DiagRichStepFirstFragment
-//        val fragSecond = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP2.title) as DiagRichStepSecondFragment
-//        val fragThird = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP3.title) as DiagRichStepSecondFragment
-//        val fragFourth = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP4.title) as DiagRichStepSecondFragment
-//        val fragFifth = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP5.title) as DiagRichStepSecondFragment
+        val fragSecond = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP2.title) as DiagRichStepSecondFragment
+        val fragThird = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP3.title) as DiagRichStepThirdFragment
+        val fragFourth = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP4.title) as DiagRichStepFourthFragment
+        val fragFifth = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP5.title) as DiagRichStepFifthFragment
 //        val fragments = fragFirst.getSubFragments()
         var diagInfos = arrayListOf<DiagnoseBaseInfo>()
         var isAllFill = true
@@ -222,7 +231,7 @@ class DiagRichSurveyActivity : BaseActivity() {
     }
 
     private fun reqNetUpdateDiagInfos(diagInfo: ArrayList<DiagnoseBaseInfo>) {
-        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_DIAGNOSE_UPDATE, this)
+        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_RICHSURVEY_UPLOAD, this)
         task.addParam(ParamKey.PARAM_USERID, TabApp.userInfo?.userId)
         task.addParam(ParamKey.PARAM_DIAG_INFO,diagInfo)
         NetManager.startTask(task)
@@ -306,13 +315,16 @@ class DiagRichSurveyActivity : BaseActivity() {
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
         Logger.d("onNetSuccess  ")
-        // TODO
-//        finish()
-//        overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
-//        showToast {
-//            "[ 서버 전송 완료 ]"
-//        }
-        showDialog()
+        if (nReqType == ReqType.REQUEST_TYPE_POST_RICHSURVEY_UPLOAD){
+            replaceFragment(getNextFragInfo(), true)
+            showToast {
+                "[ 서버 전송 완료 ]"
+            }
+        } else {
+            showToast {
+                "[ SMS 전송 완료 ]"
+            }
+        }
     }
 
     override fun onNetFail(retCode: Int, strErrorMsg: String, nReqType: Int) {
@@ -333,7 +345,7 @@ class DiagRichSurveyActivity : BaseActivity() {
     private fun showDialog(){
         val dialog = MainCustomDialog.newInstance(mContext).apply {
             setTitle(R.string.common_alert)
-            setMsgContents("진단정보 전송 완료되었습니다.")
+            setMsgContents("전송 완료되었습니다.")
             setAloneDoneButton(R.string.btn_confirm, MainCustomDialog.OnPositvelListener { dialog ->
                 if (JUtil.isDoubleClick(dialog.view)) return@OnPositvelListener
                 finish()

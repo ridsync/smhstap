@@ -25,7 +25,8 @@ public class DayAxisValueFormatter implements IAxisValueFormatter
         if (value > mMonths.length || value < 0) return "";
 
         int index = (int) (value);
-        axis.setTextSize(18f);
+        if(axis!=null)
+            axis.setTextSize(18f);
         return  mMonths[index];
     }
 

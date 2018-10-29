@@ -127,3 +127,29 @@ data class DiagnoseManagementInfo(var itemType:String?=null,
                           var consultEtc01:String?=null,
                           var consultEtc02:String?=null) : DiagnoseBaseInfo()
 
+// 부자지수
+data class DiagRichStepFirst(var estateType: String?=null,
+                          var buyLocation:String?=null,
+                          var buyTiming:String?=null) : DiagnoseBaseInfo()
+
+data class DiagRichStepSecond(var estateType: String?=null,
+                             var buyAssetEdu:String?=null,
+                             var buyAssetRate:String?=null,
+                              var buyAssetScale:String?=null,
+                              var buyFintechEdu:String?=null,
+                              var buyRasset:String?=null,
+                              var buyHomeType:String?=null) : DiagnoseBaseInfo()
+
+data class DiagRichStepThird(var buyRassetType: String?=null,
+                             var homeType:String?=null,
+                             var estateType:String?=null,
+                             var expEdu:String?=null,
+                             var taxEdu:String?=null,
+                             var taxField:String?=null,
+                             var taxFintechEdu:String?=null) : DiagnoseBaseInfo()
+
+data class DiagRichStepFourth(var lonRate: String?=null,
+                             var cocernType:String?=null) : DiagnoseBaseInfo()
+
+data class DiagRichStepFifth(var tryEstateType: String?=null,
+                              var lottoEstateType:String?=null) : DiagnoseBaseInfo()

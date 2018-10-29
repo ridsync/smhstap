@@ -42,6 +42,8 @@ public class MainListTask extends NetworkTask<BaseModel> {
             return service.reqGetDiagnoseList(mParams.get(ParamKey.PARAM_USERID).toString());
         } else if (ReqType.REQUEST_TYPE_POST_DIAGNOSE_UPDATE == mRequestType) {
             return service.reqPostDiagnoseUpdate(mParams);
+        }  else if (ReqType.REQUEST_TYPE_POST_RICHSURVEY_UPLOAD == mRequestType) {
+            return service.reqPostUploadRichSurvey(mParams);
         } else {
             return null;
         }

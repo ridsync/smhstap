@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@color/main_bg_color">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            card_view:cardElevation="3dp"
+            card_view:cardBackgroundColor="@color/basic_color_white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="50dp"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp"
+            android:paddingBottom="100dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/TV_LABEL_TRY_ESTATE"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="1. 귀하에게 현금 1억이 있다면 꼭 구입하고 싶은 부동산은?"
+                    android:textSize="30dp"
+                    android:textColor="@color/main_text_primary"
+                    android:gravity="center_vertical"/>
+
+                <com.rasset.shmstab.ui.components.RecursiveRadioGroup
+                    android:id="@+id/RG_TRY_ESTATE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/TV_LABEL_TRY_ESTATE"
+                    android:layout_marginTop="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <RadioButton
+                                android:tag="11"
+                                android:id="@+id/RB_TRY_ESTATE_APT"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="재건축APT"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="21"
+                                android:id="@+id/RB_TRY_ESTATE_APT2"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="분양APT"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="31"
+                                android:id="@+id/RB_TRY_ESTATE_OFFICE"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="오피스텔"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:tag="41"
+                                android:id="@+id/RB_TRY_ESTATE_LAND"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:paddingLeft="10dp"
+                                android:text="토지"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="51"
+                                android:id="@+id/RB_TRY_ESTATE_STORE"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="분양상가"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="61"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text=""
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"
+                                android:visibility="invisible"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp">
+
+                <TextView
+                    android:id="@+id/TV_LABEL_LOTTO_TYPE"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="2. 귀하가 로또에 당첨되어 현금 20억이 생긴다면 꼭 구입하고 싶은 부동산은?"
+                    android:textSize="30dp"
+                    android:textColor="@color/main_text_primary"
+                    android:gravity="center_vertical"/>
+
+                <com.rasset.shmstab.ui.components.RecursiveRadioGroup
+                    android:id="@+id/RG_LOTTO_TYPE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/TV_LABEL_LOTTO_TYPE"
+                    android:layout_marginTop="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <RadioButton
+                                android:tag="11"
+                                android:id="@+id/RB_LOTTO_TYPE_BUILDING"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="상가빌딩"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="21"
+                                android:id="@+id/RB_LOTTO_TYPE_HOUSE"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="단독주택"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="31"
+                                android:id="@+id/RB_LOTTO_TYPE_1ROOM"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="원룸주택"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:tag="41"
+                                android:id="@+id/RB_LOTTO_TYPE_APT"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:paddingLeft="10dp"
+                                android:text="소형임대APT"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="51"
+                                android:id="@+id/RB_LOTTO_TYPE_LAND"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="토지"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="61"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text=""
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"
+                                android:visibility="invisible"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@color/main_bg_color">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            card_view:cardElevation="3dp"
+            card_view:cardBackgroundColor="@color/basic_color_white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="50dp"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp"
+            android:paddingBottom="100dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/TV_LABEL_LOAN_RATE"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="1. 귀하가 부동산 투자시 적절하다고 생각하는 시세대비 담보대출 비율은?"
+                    android:textSize="30dp"
+                    android:textColor="@color/main_text_primary"
+                    android:gravity="center_vertical"/>
+
+                <com.rasset.shmstab.ui.components.RecursiveRadioGroup
+                    android:id="@+id/RG_LOAN_RATE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/TV_LABEL_LOAN_RATE"
+                    android:layout_marginTop="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <RadioButton
+                                android:tag="11"
+                                android:id="@+id/RB_LOAN_RATE_IN30"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="시세30%이내"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="21"
+                                android:id="@+id/RB_LOAN_RATE_IN40"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="시세40%이내"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="31"
+                                android:id="@+id/RB_LOAN_RATE_IN50"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="시세50%이내"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:tag="41"
+                                android:id="@+id/RB_LOAN_RATE_IN60"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:paddingLeft="10dp"
+                                android:text="시세60%이내"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="51"
+                                android:id="@+id/RB_LOAN_RATE_NONE"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="대출안받는다"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="61"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text=""
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"
+                                android:visibility="invisible"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp">
+
+                <TextView
+                    android:id="@+id/TV_LABEL_CONCEN_TYPE"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="2. 귀하가 부동산 투자 후 매도시 타이밍 결정시 최우선으로 고민하는 것은?"
+                    android:textSize="30dp"
+                    android:textColor="@color/main_text_primary"
+                    android:gravity="center_vertical"/>
+
+                <com.rasset.shmstab.ui.components.RecursiveRadioGroup
+                    android:id="@+id/RG_CONCEN_TYPE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/TV_LABEL_CONCEN_TYPE"
+                    android:layout_marginTop="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <RadioButton
+                                android:tag="11"
+                                android:id="@+id/RB_CONCEN_TYPE_DECREASE"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="부동산 거래량 감소"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="21"
+                                android:id="@+id/RB_CONCEN_TYPE_EXT"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="개발호재 소멸"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="31"
+                                android:id="@+id/RB_CONCEN_TYPE_SLOWING"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="시세상승둔화"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:tag="41"
+                                android:id="@+id/RB_CONCEN_TYPE_DEGRADE"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:paddingLeft="10dp"
+                                android:text="부동산경기하락"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="51"
+                                android:id="@+id/RB_CONCEN_TYPE_MARGIN"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="시세차익"
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"/>
+
+                            <RadioButton
+                                android:tag="61"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text=""
+                                android:singleLine="true"
+                                android:textColor="@color/main_text_secondary"
+                                android:textSize="@dimen/main_text_body1"
+                                android:visibility="invisible"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.rasset.shmstab.ui.components.RecursiveRadioGroup>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+</RelativeLayout>

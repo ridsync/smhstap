@@ -31,4 +31,9 @@ public interface MainAPInterface {
     @POST("updateDiagInfos")
     Call<BaseModel>  reqPostDiagnoseUpdate(@Body Map<String, Object> params);
 
+    @Headers("Content-Type: application/json")
+    @POST("uploadRichSurvey")
+    Call<BaseModel>  reqPostUploadRichSurvey(@Body Map<String, Object> params);
+
+
 }

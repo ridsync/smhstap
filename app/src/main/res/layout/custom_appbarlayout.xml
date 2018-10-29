@@ -124,13 +124,15 @@
 
         <Button
             android:id="@+id/IB_APPBAR_SMS"
-            android:layout_width="146dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/IB_APPBAR_ACTION"
             android:layout_marginRight="24dp"
-            android:background="@drawable/selector_appbar_button_trans_color_bg_oval_90dp"
+            android:background="@drawable/selector_appbar_button_border_gray_oval_90dp"
             android:text="SMS전송"
             android:textColor="@drawable/selector_button_login_text_color"
             android:textSize="@dimen/main_text_title2"
@@ -138,8 +140,10 @@
 
         <Button
             android:id="@+id/IB_APPBAR_ACTION"
-            android:layout_width="108dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="21dp"

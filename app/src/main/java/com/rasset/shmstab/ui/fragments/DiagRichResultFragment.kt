@@ -149,9 +149,9 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
         // l.setCustom(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
         // "def", "ghj", "ikl", "mno" });
 
-        val mv = XYMarkerView(mContext, xAxisFormatter)
-        mv.chartView = barChart // For bounds control
-        barChart.marker = mv // Set the marker to the chart
+//        val mv = XYMarkerView(mContext, xAxisFormatter)
+//        mv.chartView = barChart // For bounds control
+//        barChart.marker = mv // Set the marker to the chart
 
         setData(5, 100f)
 

@@ -14,14 +14,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import com.rasset.shmstab.R
-import com.rasset.shmstab.model.DiagRichStepSecond
+import com.rasset.shmstab.model.DiagRichStepFifth
 import com.rasset.shmstab.model.DiagnoseAssetBuyInfo
 import com.rasset.shmstab.model.DiagnoseInfo
 import com.rasset.shmstab.network.res.BaseModel
 import com.rasset.shmstab.utils.Logger
 import com.rasset.shmstab.utils.dpToPx
 import com.rasset.shmstab.utils.isStrNullOrEmpty
-import kotlinx.android.synthetic.main.fragment_diag_rich_step_second.*
+import kotlinx.android.synthetic.main.fragment_diag_rich_step_fifrth.*
 import kotlinx.android.synthetic.main.fragment_diag_step_second.*
 import java.util.HashMap
 
@@ -29,19 +29,19 @@ import java.util.HashMap
  * Created by devok on 2018-09-05.
  */
 
-class DiagRichStepSecondFragment : SurveyBaseFragment() {
+class DiagRichStepFifthFragment : SurveyBaseFragment() {
 
     private object Holder {
-        val INSTANCE = DiagRichStepSecondFragment()
+        val INSTANCE = DiagRichStepFifthFragment()
     }
 
     companion object {
-        val singleTone: DiagRichStepSecondFragment by lazy { Holder.INSTANCE }
+        val singleTone: DiagRichStepFifthFragment by lazy { Holder.INSTANCE }
 
-        val instance: DiagRichStepSecondFragment by lazy { DiagRichStepSecondFragment() }
+        val instance: DiagRichStepFifthFragment by lazy { DiagRichStepFifthFragment() }
 
         fun newInstance(context: Context): Intent {
-            val intent = Intent(context, DiagRichStepSecondFragment::class.java)
+            val intent = Intent(context, DiagRichStepFifthFragment::class.java)
             return intent
         }
     }
@@ -52,7 +52,7 @@ class DiagRichStepSecondFragment : SurveyBaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
-            mRootView = inflater.inflate(R.layout.fragment_diag_rich_step_second, container, false)
+            mRootView = inflater.inflate(R.layout.fragment_diag_rich_step_fifrth, container, false)
         }
         return mRootView
     }
@@ -77,28 +77,16 @@ class DiagRichStepSecondFragment : SurveyBaseFragment() {
         return true
     }
 
-    override fun getDiagDatas(): DiagRichStepSecond? {
+    override fun getDiagDatas(): DiagRichStepFifth? {
+        val tryEstateType = RG_TRY_ESTATE.checkedItem?.tag.toString()
+        val lottoEstateType = RG_LOTTO_TYPE.checkedItem?.tag.toString()
 
-        val estateType = RG_DIAG_RESTATE_TYPE.checkedItem?.tag.toString()
-        val buyAssetEdu = RG_BUY_ASSET_EDU.checkedItem?.tag.toString()
-        val buyAssetRate = RG_ASSET_RATE.checkedItem?.tag.toString()
-        val buyAssetScale = RG_ASSET_SCALE.checkedItem?.tag.toString()
-        val buyFintechEdu = RG_FINTECH_EDU.checkedItem?.tag.toString()
-        val buyRasset = RG_BUY_RASSET.checkedItem?.tag.toString()
-        val buyHomeType = RG_HOME_TYPE.checkedItem?.tag.toString()
-
-        if (estateType.isStrNullOrEmpty()
-                || buyAssetEdu.isStrNullOrEmpty()
-                || buyAssetRate.isStrNullOrEmpty()
-                || buyAssetScale.isStrNullOrEmpty()
-                || buyFintechEdu.isStrNullOrEmpty()
-                || buyRasset.isStrNullOrEmpty()
-                || buyHomeType.isStrNullOrEmpty()) {
+        if (tryEstateType.isStrNullOrEmpty()
+                || lottoEstateType.isStrNullOrEmpty()) {
             return null
         }
 
-        return DiagRichStepSecond(estateType = estateType, buyAssetEdu = buyAssetEdu,
-                buyAssetRate = buyAssetRate, buyAssetScale = buyAssetScale, buyFintechEdu = buyFintechEdu
-                , buyRasset = buyRasset, buyHomeType = buyHomeType)
+        return DiagRichStepFifth(tryEstateType = tryEstateType, lottoEstateType = lottoEstateType)
     }
+
 }
