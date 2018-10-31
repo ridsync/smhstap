@@ -63,12 +63,23 @@
                 android:textColor="@color/main_text_primary"
                 android:textSize="@dimen/main_text_title2" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/IB_APPBAR_ACTION"
+            android:layout_marginRight="36dp">
+
             <ImageView
                 android:id="@+id/IV_APPBAR_STEP1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_step1"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="16dp"
                 android:layout_centerVertical="true"
                 android:visibility="gone"/>
 
@@ -77,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_step2"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="16dp"
                 android:layout_centerVertical="true"
                 android:visibility="gone"/>
 
@@ -95,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_step2"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="16dp"
                 android:layout_centerVertical="true"
                 android:visibility="gone"/>
 
@@ -104,10 +115,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_step2"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="16dp"
                 android:layout_centerVertical="true"
                 android:visibility="gone"/>
+
         </LinearLayout>
+
         <TextView
             android:id="@+id/TV_APPBAR_LOGOUT"
             android:layout_width="wrap_content"
@@ -150,8 +163,7 @@
             android:background="@drawable/selector_appbar_button_trans_color_bg_oval_90dp"
             android:text="다음"
             android:textColor="@drawable/selector_button_login_text_color"
-            android:textSize="@dimen/main_text_title2"
-            android:visibility="gone"/>
+            android:textSize="@dimen/main_text_title2"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

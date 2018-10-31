@@ -3,7 +3,9 @@ package com.rasset.shmstab.ui.fragments
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.RectF
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,16 +23,22 @@ import com.rasset.shmstab.ui.components.XYMarkerView
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import android.support.v4.content.ContextCompat
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.util.Log
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 import kotlinx.android.synthetic.main.fragment_diag_rich_result.*
+import java.util.*
 
 /**
  * Created by devok on 2018-09-05.
@@ -52,7 +60,13 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
     }
 
     lateinit var barChart: BarChart
-    val chartXaxis = arrayOf("", "", "", "", "")
+
+    enum class ResultSurvType(var type:Int, var title:Int,var desc:Int, var ability:Int,var strategy:Int, var advice:Int){
+        RESULT_TYPE_SUCCESS(1,R.string.rich_result_title1,R.string.rich_result_desc1,R.string.rich_result_ability1,R.string.rich_result_stratgey1,R.string.rich_result_advice1),
+        RESULT_TYPE_POSSIBLE(2,R.string.rich_result_title2,R.string.rich_result_desc2,R.string.rich_result_ability2,R.string.rich_result_stratgey2,R.string.rich_result_advice2),
+        RESULT_TYPE_EFFORT(3,R.string.rich_result_title3,R.string.rich_result_desc3,R.string.rich_result_ability3,R.string.rich_result_stratgey3,R.string.rich_result_advice3),
+        RESULT_TYPE_SERIOUS(4,R.string.rich_result_title4,R.string.rich_result_desc4,R.string.rich_result_ability4,R.string.rich_result_stratgey4,R.string.rich_result_advice4)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +93,32 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
     }
 
     fun initFirst(){
-            setBarChart()
+
+        setBarChart()
+        setViewsResultType()
+    }
+
+    private fun setViewsResultType() {
+        var resultType = Random().nextInt(4)
+        var enResult = when (resultType) {
+            ResultSurvType.RESULT_TYPE_SUCCESS.type -> ResultSurvType.RESULT_TYPE_SUCCESS
+            ResultSurvType.RESULT_TYPE_POSSIBLE.type -> ResultSurvType.RESULT_TYPE_POSSIBLE
+            ResultSurvType.RESULT_TYPE_EFFORT.type -> ResultSurvType.RESULT_TYPE_EFFORT
+            ResultSurvType.RESULT_TYPE_SERIOUS.type -> ResultSurvType.RESULT_TYPE_SERIOUS
+            else -> ResultSurvType.RESULT_TYPE_SUCCESS
+        }
+
+        var strTitle = getString(enResult.title)
+        var spanTitle = SpannableString(strTitle)
+        spanTitle.setSpan(ForegroundColorSpan(resources.getColor(R.color.main_accent_color)), 4, strTitle.indexOf("형")+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spanTitle.setSpan(StyleSpan(Typeface.BOLD), 4, strTitle.indexOf("형")+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // make first 4 characters Bold
+
+        TV_RESULT_TYPE_TITLE.text = spanTitle
+        TV_RESULT_DESC.setText(enResult.desc)
+        TV_RESULT_ABILITY.setText(enResult.ability)
+        TV_RESULT_STRATEGY.setText(enResult.strategy)
+        TV_RESULT_ADVICE.setText(enResult.advice)
+
     }
 
     private fun setBarChart() {
@@ -97,6 +136,7 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
 
         // scaling can now only be done on x- and y-axis separately
         barChart.setPinchZoom(false)
+        barChart.isDoubleTapToZoomEnabled = false
         barChart.clipToPadding = false
         barChart.extraBottomOffset = 30f
         barChart.extraTopOffset = 30f
@@ -172,7 +212,7 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
             val `val` = (Math.random() * mult).toFloat()
 
             if (Math.random() * 100 < 25) {
-                yVals1.add(BarEntry(i.toFloat(), `val`, resources.getDrawable(R.drawable.star)))
+                yVals1.add(BarEntry(i.toFloat(), `val`, resources.getDrawable(R.drawable.star,null)))
             } else {
                 yVals1.add(BarEntry(i.toFloat(), `val`.toInt().toFloat()))
             }
@@ -181,8 +221,8 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
 
         val set1: BarDataSet
 
-        if (barChart.getData() != null && barChart.getData().getDataSetCount() > 0) {
-            set1 = barChart.getData().getDataSetByIndex(0) as BarDataSet
+        if (barChart.data != null && barChart.data.dataSetCount > 0) {
+            set1 = barChart.data.getDataSetByIndex(0) as BarDataSet
             set1.values = yVals1
             barChart.data.notifyDataChanged()
             barChart.notifyDataSetChanged()
@@ -215,6 +255,8 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
 
             val data = BarData(dataSets)
             data.setValueTextSize(17f)
+            val formatter = DefaultValueFormatter(0)
+            data.setValueFormatter(formatter)
 //            data.setValueTypeface(mTfLight)
             data.barWidth = 0.7f
 

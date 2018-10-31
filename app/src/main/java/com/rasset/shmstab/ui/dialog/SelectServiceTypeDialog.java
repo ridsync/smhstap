@@ -105,9 +105,9 @@ public class SelectServiceTypeDialog extends BaseDialogFragment   implements Vie
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.BTN_DONE) {
+            dismiss();
             if (positiveListener !=null)
                 positiveListener.onClickPositive(this);
-            dismiss();
         } else  if (v.getId() == R.id.LL_SMHS_DIAG) {
             if(diagnoseInfo.getDiagnoseId() > 0
                      && !rbSMhDiag.isChecked())

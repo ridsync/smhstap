@@ -254,14 +254,14 @@ class DiagRichSurveyActivity : BaseActivity() {
                     IV_APPBAR_STEP2.setImageResource(R.drawable.ic_step2_on)
                 }
                 SubFrags.DIAG_RICH_STEP3 -> {
-                    IV_APPBAR_STEP3.setImageResource(R.drawable.ic_step2_on)
+                    IV_APPBAR_STEP3.setImageResource(R.drawable.ic_step3_on)
                 }
                 SubFrags.DIAG_RICH_STEP4 -> {
-                    IV_APPBAR_STEP4.setImageResource(R.drawable.ic_step2_on)
+                    IV_APPBAR_STEP4.setImageResource(R.drawable.ic_step4_on)
                     IB_APPBAR_ACTION.text = resources.getText(R.string.btn_next)
                 }
                 SubFrags.DIAG_RICH_STEP5 -> {
-                    IV_APPBAR_STEP5.setImageResource(R.drawable.ic_step2_on)
+                    IV_APPBAR_STEP5.setImageResource(R.drawable.ic_step5_on)
                     IB_APPBAR_ACTION.text = resources.getText(R.string.btn_completed)
                 }
                 SubFrags.DIAG_RICH_COMPLETE -> {
@@ -294,9 +294,9 @@ class DiagRichSurveyActivity : BaseActivity() {
 
                 IV_APPBAR_STEP1.setImageResource(R.drawable.ic_step1)
                 IV_APPBAR_STEP2.setImageResource(R.drawable.ic_step2)
-                IV_APPBAR_STEP3.setImageResource(R.drawable.ic_step2)
-                IV_APPBAR_STEP4.setImageResource(R.drawable.ic_step2)
-                IV_APPBAR_STEP5.setImageResource(R.drawable.ic_step2)
+                IV_APPBAR_STEP3.setImageResource(R.drawable.ic_step3)
+                IV_APPBAR_STEP4.setImageResource(R.drawable.ic_step4)
+                IV_APPBAR_STEP5.setImageResource(R.drawable.ic_step5)
             }
         }
     }
