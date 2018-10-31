@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="500dp"
+        android:minWidth="700dp"
         android:background="@drawable/dialog_bg_main_bg_color_rounded_normal"
         android:layout_centerInParent="true"
         android:orientation="vertical"
@@ -71,9 +71,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginTop="10dp"
-                            android:drawablePadding="10dp"
-                            android:gravity="center"
-                            android:text="부동산자산관리"
+                            android:paddingLeft="10dp"
+                            android:gravity="start|center_vertical"
+                            android:text="부동산자산관리\n진단서비스"
                             android:textColor="@color/main_text_secondary"
                             android:textSize="@dimen/main_text_body1"/>
                     </LinearLayout>
@@ -101,9 +101,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginTop="10dp"
-                            android:drawablePadding="10dp"
-                            android:gravity="center"
-                            android:text="부자지수"
+                            android:paddingLeft="10dp"
+                            android:gravity="start|center_vertical"
+                            android:text="부자지수\n진단서비스"
                             android:textColor="@color/main_text_secondary"
                             android:textSize="@dimen/main_text_body1"/>
                     </LinearLayout>
