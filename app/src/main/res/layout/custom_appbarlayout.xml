@@ -163,7 +163,8 @@
             android:background="@drawable/selector_appbar_button_trans_color_bg_oval_90dp"
             android:text="다음"
             android:textColor="@drawable/selector_button_login_text_color"
-            android:textSize="@dimen/main_text_title2"/>
+            android:textSize="@dimen/main_text_title2"
+            android:visibility="gone"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

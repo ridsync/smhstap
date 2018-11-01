@@ -62,15 +62,14 @@
                             android:id="@+id/IV_SMHS_DIAG"
                             android:layout_width="180dp"
                             android:layout_height="180dp"
-                            android:src="@drawable/profile_default"
-                            android:background="@drawable/shape_bg_gray_oval_90dp"/>
+                            android:background="@drawable/selector_image_service1"/>
 
                         <RadioButton
                             android:tag="11"
                             android:id="@+id/RB_SMHS_DIAG"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="16dp"
                             android:paddingLeft="10dp"
                             android:gravity="start|center_vertical"
                             android:text="부동산자산관리\n진단서비스"
@@ -92,15 +91,14 @@
                             android:id="@+id/IV_SMHS_RICH"
                             android:layout_width="180dp"
                             android:layout_height="180dp"
-                            android:src="@drawable/profile_default"
-                            android:background="@drawable/shape_bg_gray_oval_90dp"/>
+                            android:background="@drawable/selector_image_service2"/>
 
                         <RadioButton
                             android:tag="21"
                             android:id="@+id/RB_SMHS_RICH"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="16dp"
                             android:paddingLeft="10dp"
                             android:gravity="start|center_vertical"
                             android:text="부자지수\n진단서비스"

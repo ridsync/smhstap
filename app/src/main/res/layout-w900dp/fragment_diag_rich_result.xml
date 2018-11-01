@@ -200,7 +200,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/shape_circle_bg_yellow"/>
+                    android:src="@drawable/ic_result1"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -255,7 +255,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/shape_circle_bg_yellow"/>
+                    android:src="@drawable/ic_result2"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -299,7 +299,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/shape_circle_bg_yellow"/>
+                        android:src="@drawable/ic_result3"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"

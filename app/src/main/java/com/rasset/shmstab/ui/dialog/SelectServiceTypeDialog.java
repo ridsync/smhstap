@@ -49,6 +49,8 @@ public class SelectServiceTypeDialog extends BaseDialogFragment   implements Vie
     public RecursiveRadioGroup recGroup;
     public LinearLayout llSMhDiag;
     public LinearLayout llSMhRich;
+    public ImageView ivDiag;
+    public ImageView ivRich;
     public RadioButton rbSMhDiag;
     public RadioButton rbSMhRich;
     public DiagnoseInfo diagnoseInfo;
@@ -63,8 +65,8 @@ public class SelectServiceTypeDialog extends BaseDialogFragment   implements Vie
         recGroup = (mRootView.findViewById(R.id.RG_DIAG_SERVICE_TYPE));
         llSMhDiag = (mRootView.findViewById(R.id.LL_SMHS_DIAG));
         llSMhRich = (mRootView.findViewById(R.id.LL_SMHS_RICH));
-        ImageView ivDiag = (mRootView.findViewById(R.id.IV_SMHS_DIAG));
-        ImageView ivRich = (mRootView.findViewById(R.id.IV_SMHS_RICH));
+        ivDiag = (mRootView.findViewById(R.id.IV_SMHS_DIAG));
+        ivRich = (mRootView.findViewById(R.id.IV_SMHS_RICH));
         rbSMhDiag = (mRootView.findViewById(R.id.RB_SMHS_DIAG));
         rbSMhRich = (mRootView.findViewById(R.id.RB_SMHS_RICH));
 
@@ -110,12 +112,18 @@ public class SelectServiceTypeDialog extends BaseDialogFragment   implements Vie
                 positiveListener.onClickPositive(this);
         } else  if (v.getId() == R.id.LL_SMHS_DIAG) {
             if(diagnoseInfo.getDiagnoseId() > 0
-                     && !rbSMhDiag.isChecked())
+                     && !rbSMhDiag.isChecked()){
                 recGroup.check(rbSMhDiag);
+                ivDiag.setEnabled(true);
+                ivRich.setEnabled(false);
+            }
         } else  if (v.getId() == R.id.LL_SMHS_RICH) {
             if(diagnoseInfo.getRichSurveyId() > 0
-                    && !rbSMhRich.isChecked())
+                    && !rbSMhRich.isChecked()){
                 recGroup.check(rbSMhRich);
+                ivDiag.setEnabled(false);
+                ivRich.setEnabled(true);
+            }
         }
     }
 

@@ -23,7 +23,7 @@ data class ContentsInfo(var title: String = "",
 open class DiagnoseBaseInfo(@SerializedName("dianoseId")
                             var diagnoseId: Long=0,
                             @SerializedName("richSurveyId")
-                            var richSurveyId: Long=2222,
+                            var richSurveyId: Long=0,
                             @SerializedName("dianoseDetailId")
                             var diagnoseDetailId: Long=0,
                             var applyPart:Long = 0, // (11:부동산재테크 (매도/매수), 21: 토지/개발(MD), 31: 부동산 세금, 41:홈스테이징/인테리어, 51: 건축/리모델링(CM), 61: 주
