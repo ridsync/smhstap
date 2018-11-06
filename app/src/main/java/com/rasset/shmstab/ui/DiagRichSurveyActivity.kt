@@ -10,10 +10,12 @@ import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.core.TabApp
 import com.rasset.shmstab.model.DiagnoseBaseInfo
 import com.rasset.shmstab.model.DiagnoseInfo
+import com.rasset.shmstab.model.ResultInfo
 import com.rasset.shmstab.network.NetManager
 import com.rasset.shmstab.network.protocol.ParamKey
 import com.rasset.shmstab.network.protocol.ReqType
 import com.rasset.shmstab.network.res.BaseModel
+import com.rasset.shmstab.network.res.ResRichResult
 import com.rasset.shmstab.network.task.MainListTask
 import com.rasset.shmstab.ui.components.CropCircleTransform
 import com.rasset.shmstab.ui.dialog.MainCustomDialog
@@ -39,18 +41,21 @@ class DiagRichSurveyActivity : BaseActivity() {
             return intent
         }
     }
-    enum class SubFrags(val idx: Int,val title: String, var fragment:BaseFragment?) {
-        DIAG_CUSTOER_INFO(0,AppConst.FRAG_NAME_DIAG_CUSTOMER_INFO, null)
-        , DIAG_RICH_STEP1(1,AppConst.FRAG_NAME_DIAG_RICH_STEP1, null)
-        , DIAG_RICH_STEP2(2,AppConst.FRAG_NAME_DIAG_RICH_STEP2, null)
-        , DIAG_RICH_STEP3(3,AppConst.FRAG_NAME_DIAG_RICH_STEP3, null)
-        , DIAG_RICH_STEP4(4,AppConst.FRAG_NAME_DIAG_RICH_STEP4, null)
-        , DIAG_RICH_STEP5(5,AppConst.FRAG_NAME_DIAG_RICH_STEP5, null)
-        , DIAG_RICH_COMPLETE(6,AppConst.FRAG_NAME_DIAG_RICH_RESULT, null)
+    enum class SubFrags(val idx: Int,val paramTitle: String,val title: String, var fragment:BaseFragment?) {
+        DIAG_CUSTOER_INFO(0,"",AppConst.FRAG_NAME_DIAG_CUSTOMER_INFO, null)
+        , DIAG_RICH_STEP1(1,"firstSurvey",AppConst.FRAG_NAME_DIAG_RICH_STEP1, null)
+        , DIAG_RICH_STEP2(2,"secondSurvey",AppConst.FRAG_NAME_DIAG_RICH_STEP2, null)
+        , DIAG_RICH_STEP3(3,"thirdSurvey",AppConst.FRAG_NAME_DIAG_RICH_STEP3, null)
+        , DIAG_RICH_STEP4(4,"fourthSurvey",AppConst.FRAG_NAME_DIAG_RICH_STEP4, null)
+        , DIAG_RICH_STEP5(5,"fifthSurvey",AppConst.FRAG_NAME_DIAG_RICH_STEP5, null)
+        , DIAG_RICH_COMPLETE(6,"",AppConst.FRAG_NAME_DIAG_RICH_RESULT, null)
     }
 
     lateinit var diagnoseInfo:DiagnoseInfo
     var mStackFrags = Stack(mutableListOf<SubFrags>())
+
+    var diagInfos = hashMapOf<String,DiagnoseBaseInfo>()
+    var resultInfo:ResultInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -178,10 +183,7 @@ class DiagRichSurveyActivity : BaseActivity() {
             }
 
             val nextFrag = getNextFragInfo()
-            if (nextFrag == SubFrags.DIAG_RICH_COMPLETE) {
-//                postCustomerDiagInfos()
-                replaceFragment(nextFrag, true)
-            } else if (nextFrag == SubFrags.DIAG_RICH_STEP1) {
+            if (nextFrag == SubFrags.DIAG_RICH_STEP1) {
                 val fragment = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_CUSTOER_INFO.title) as DiagSubCustomerInfoFragment
                 if(fragment.acbPrivacyAgree.isChecked){
                     replaceFragment(nextFrag, true)
@@ -191,50 +193,44 @@ class DiagRichSurveyActivity : BaseActivity() {
                     }
                 }
             } else {
-                replaceFragment(nextFrag, true)
+                if(checkSurveyNpostSurveys(nextFrag)){
+                    replaceFragment(nextFrag, true)
+                }
             }
-            setStatAppBarTitlenEtc()
 
         }
 
     }
 
-    private fun postCustomerDiagInfos() {
 
-        val fragFirst = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP1.title) as DiagRichStepFirstFragment
-        val fragSecond = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP2.title) as DiagRichStepSecondFragment
-        val fragThird = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP3.title) as DiagRichStepThirdFragment
-        val fragFourth = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP4.title) as DiagRichStepFourthFragment
-        val fragFifth = supportFragmentManager.findFragmentByTag(SubFrags.DIAG_RICH_STEP5.title) as DiagRichStepFifthFragment
-//        val fragments = fragFirst.getSubFragments()
-        var diagInfos = arrayListOf<DiagnoseBaseInfo>()
-        var isAllFill = true
-//        for (fragment in fragments) {
-//            if (fragment.value.getDiagDatas() == null){
-//                showToast {
-//                    "질문항목을 모두 선택해주세요."
-//                }
-//                isAllFill = false
-//                break
-//            }
-//            fragment.value.getDiagDatas()?.let { diagInfo ->
-//                //API 전송
-//                diagInfo.diagnoseId = diagnoseInfo.diagnoseId
-//                diagInfo.diagnoseDetailId = diagnoseInfo.diagnoseDetailId
-//                diagInfo.applyPart = diagnoseInfo.applyPart
-//                diagInfos.add(diagInfo)
-//            }
-//        }
-        if (isAllFill)
+    private fun checkSurveyNpostSurveys(nextFrag:SubFrags) : Boolean{
+
+        val fragment = supportFragmentManager.findFragmentById(R.id.FR_DIAG_CONTAINER) as SurveyBaseFragment
+
+        val data = fragment.getDiagDatas()
+        val curFrag = mStackFrags.peek()
+        if (data != null && curFrag !=null){
+            diagInfos[curFrag.paramTitle] = data
+        } else {
+            showToast {
+                "질문항목을 모두 선택해주세요."
+            }
+            return false
+        }
+        if (nextFrag == SubFrags.DIAG_RICH_COMPLETE){
             reqNetUplodRichSurveys(diagInfos)
+            return false
+        }
         Logger.d("postCustomerDiagInfos  ")
+        return true
     }
 
-    private fun reqNetUplodRichSurveys(diagInfo: ArrayList<DiagnoseBaseInfo>) {
+    private fun reqNetUplodRichSurveys(infos: HashMap<String,DiagnoseBaseInfo>) {
         val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_RICHSURVEY_UPLOAD, this)
         task.addParam(ParamKey.PARAM_USERID, TabApp.userInfo?.userId)
-        task.addParam(ParamKey.PARAM_DIAG_INFO,diagInfo)
-        NetManager.startTask(task)
+        task.addParam(ParamKey.PARAM_RICHSURVEYID, diagnoseInfo.richSurveyId)
+        task.addParam(ParamKey.PARAM_SURVEY_INFO, infos)
+        NetManager.startTaskOnDemooo(task,ResRichResult(ResultInfo(1,50,70,80,90,100)))
     }
 
     private fun setStatAppBarTitlenEtc(){
@@ -311,15 +307,18 @@ class DiagRichSurveyActivity : BaseActivity() {
         transaction.replace(R.id.FR_DIAG_CONTAINER, curFrag.fragment,curFrag.title)
         transaction.commitAllowingStateLoss()
         mStackFrags.push(curFrag)
+
+        setStatAppBarTitlenEtc()
+
     }
 
     override fun onNetSuccess(data: BaseModel?, nReqType: Int) {
         Logger.d("onNetSuccess  ")
         if (nReqType == ReqType.REQUEST_TYPE_POST_RICHSURVEY_UPLOAD){
-            replaceFragment(getNextFragInfo(), true)
-            showToast {
-                "[ 서버 전송 완료 ]"
+            if(data is ResRichResult){
+                resultInfo = data.resultInfo
             }
+            showDialog()
         } else {
             showToast {
                 "[ SMS 전송 완료 ]"
@@ -339,7 +338,7 @@ class DiagRichSurveyActivity : BaseActivity() {
 
     override fun onProgresStop(nReqType: Int) {
         Logger.d("onProgresStop  ")
-        mLockDialog.cancel()
+        mLockDialog.dismiss()
     }
 
     private fun showDialog(){
@@ -348,8 +347,7 @@ class DiagRichSurveyActivity : BaseActivity() {
             setMsgContents("전송 완료되었습니다.")
             setAloneDoneButton(R.string.btn_confirm, MainCustomDialog.OnPositvelListener { dialog ->
                 if (JUtil.isDoubleClick(dialog.view)) return@OnPositvelListener
-                finish()
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+                replaceFragment(getNextFragInfo(), true)
             })
         }
         dialog.show(supportFragmentManager, AppConst.DIALOG_ALERT_EMPTY_DIAG)

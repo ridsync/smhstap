@@ -128,21 +128,28 @@ data class DiagnoseManagementInfo(var itemType:String?=null,
                           var consultEtc02:String?=null) : DiagnoseBaseInfo()
 
 // 부자지수
-data class DiagRichStepFirst(var estateType: String?=null,
-                          var buyLocation:String?=null,
-                          var buyTiming:String?=null) : DiagnoseBaseInfo()
+data class ResultInfo(var resultRichType:Int=0,
+                      var firstPoint:Int=0,
+                      var secondPoint:Int=0,
+                      var thirdPoint:Int=0,
+                      var fourthPoint:Int=0,
+                      var fifthPoint:Int=0) : BaseInfo()
 
-data class DiagRichStepSecond(var estateType: String?=null,
-                             var buyAssetEdu:String?=null,
-                             var buyAssetRate:String?=null,
-                              var buyAssetScale:String?=null,
-                              var buyFintechEdu:String?=null,
+data class DiagRichStepFirst(var ages: String?=null,
+                          var totalAsset:String?=null,
+                          var rateAsset:String?=null) : DiagnoseBaseInfo()
+
+data class DiagRichStepSecond(var consider: String?=null,
+                             var assetMethod:String?=null,
+                             var assetRate:String?=null,
+                              var assetScale:String?=null,
+                              var fintechEdu:String?=null,
                               var buyRasset:String?=null,
                               var buyHomeType:String?=null) : DiagnoseBaseInfo()
 
-data class DiagRichStepThird(var buyRassetType: String?=null,
-                             var homeType:String?=null,
-                             var estateType:String?=null,
+data class DiagRichStepThird(var whenBuyRasset: String?=null,
+                             var whenHomeType:String?=null,
+                             var considerType:String?=null,
                              var expEdu:String?=null,
                              var taxEdu:String?=null,
                              var taxField:String?=null,

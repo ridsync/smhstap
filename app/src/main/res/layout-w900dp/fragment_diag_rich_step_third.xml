@@ -298,7 +298,7 @@
                     android:gravity="center_vertical"/>
 
                 <com.rasset.shmstab.ui.components.RecursiveRadioGroup
-                    android:id="@+id/RG_DIAG_RESTATE_TYPE"
+                    android:id="@+id/RG_CONSIDER_FIELD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TV_DIAG_TYPE_LABEL_AGE"
@@ -472,7 +472,7 @@
                                 android:drawablePadding="10dp"
                                 android:gravity="center_vertical"
                                 android:paddingLeft="10dp"
-                                android:text="부동산경매 특강에 참석해 본적이 있다."
+                                android:text="부동산 경매 특강에 참석해 본적이 있다."
                                 android:singleLine="true"
                                 android:textColor="@color/main_text_secondary"
                                 android:textSize="@dimen/main_text_body1"/>
@@ -557,7 +557,7 @@
                             android:drawablePadding="10dp"
                             android:gravity="center_vertical"
                             android:paddingLeft="10dp"
-                            android:text="부동산 경매 오프교육을 받은적이 있다."
+                            android:text="부동산 세금절세 오프교육을 받은 적이 있다."
                             android:singleLine="true"
                             android:textColor="@color/main_text_secondary"
                             android:textSize="@dimen/main_text_body1"/>
@@ -571,7 +571,7 @@
                             android:drawablePadding="10dp"
                             android:gravity="center_vertical"
                             android:paddingLeft="10dp"
-                            android:text="부동산 경매 온라인 교육을 받은 적이 있다."
+                            android:text="부동산 세금절세 온라인 교육을 받은 적이 있다."
                             android:singleLine="true"
                             android:textColor="@color/main_text_secondary"
                             android:textSize="@dimen/main_text_body1"/>
@@ -585,7 +585,7 @@
                             android:drawablePadding="10dp"
                             android:gravity="center_vertical"
                             android:paddingLeft="10dp"
-                            android:text="부동산경매 특강에 참석해 본적이 있다."
+                            android:text="부동산 세금절세 특강에 참석해 본적이 있다."
                             android:singleLine="true"
                             android:textColor="@color/main_text_secondary"
                             android:textSize="@dimen/main_text_body1"/>
@@ -598,7 +598,7 @@
                             android:layout_marginTop="30dp"
                             android:drawablePadding="10dp"
                             android:paddingLeft="10dp"
-                            android:text="부동산 경매 서적을 공부한 적이 있다."
+                            android:text="부동산 세금절세 서적을 공부한 적이 있다."
                             android:singleLine="true"
                             android:textColor="@color/main_text_secondary"
                             android:textSize="@dimen/main_text_body1"/>
@@ -612,7 +612,7 @@
                             android:drawablePadding="10dp"
                             android:gravity="center_vertical"
                             android:paddingLeft="10dp"
-                            android:text="부동산 경매 교육을 받은 적이 없다."
+                            android:text="부동산 세금절세 교육을 받은 적이 없다."
                             android:singleLine="true"
                             android:textColor="@color/main_text_secondary"
                             android:textSize="@dimen/main_text_body1"/>

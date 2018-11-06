@@ -24,8 +24,7 @@
             android:orientation="vertical"
             android:paddingTop="50dp"
             android:paddingLeft="80dp"
-            android:paddingRight="80dp"
-            android:paddingBottom="100dp">
+            android:paddingRight="80dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"

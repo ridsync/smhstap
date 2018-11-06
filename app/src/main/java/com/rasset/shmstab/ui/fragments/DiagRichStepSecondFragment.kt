@@ -79,7 +79,7 @@ class DiagRichStepSecondFragment : SurveyBaseFragment() {
 
     override fun getDiagDatas(): DiagRichStepSecond? {
 
-        val estateType = RG_DIAG_RESTATE_TYPE.checkedItem?.tag.toString()
+        val consider = RG_DIAG_CONSIDER_FIELD.checkedItem?.tag.toString()
         val buyAssetEdu = RG_BUY_ASSET_EDU.checkedItem?.tag.toString()
         val buyAssetRate = RG_ASSET_RATE.checkedItem?.tag.toString()
         val buyAssetScale = RG_ASSET_SCALE.checkedItem?.tag.toString()
@@ -87,7 +87,7 @@ class DiagRichStepSecondFragment : SurveyBaseFragment() {
         val buyRasset = RG_BUY_RASSET.checkedItem?.tag.toString()
         val buyHomeType = RG_HOME_TYPE.checkedItem?.tag.toString()
 
-        if (estateType.isStrNullOrEmpty()
+        if (consider.isStrNullOrEmpty()
                 || buyAssetEdu.isStrNullOrEmpty()
                 || buyAssetRate.isStrNullOrEmpty()
                 || buyAssetScale.isStrNullOrEmpty()
@@ -97,8 +97,8 @@ class DiagRichStepSecondFragment : SurveyBaseFragment() {
             return null
         }
 
-        return DiagRichStepSecond(estateType = estateType, buyAssetEdu = buyAssetEdu,
-                buyAssetRate = buyAssetRate, buyAssetScale = buyAssetScale, buyFintechEdu = buyFintechEdu
+        return DiagRichStepSecond(consider = consider, assetMethod = buyAssetEdu,
+                assetRate = buyAssetRate, assetScale = buyAssetScale, fintechEdu = buyFintechEdu
                 , buyRasset = buyRasset, buyHomeType = buyHomeType)
     }
 }

@@ -18,6 +18,8 @@ class ParamKey {
     const val PARAM_UID = "uId"
     const val PARAM_DIAG_ID = "dianoseId"
     const val PARAM_DIAG_INFO = "diagInfo"
+    const val PARAM_RICHSURVEYID = "richSurveyId"
+    const val PARAM_SURVEY_INFO = "surveyInfo"
     const val PARAM_CHATID = "chatId"
     const val PARAM_CHATMSG = "txtMemo"
     const val PARAM_GENDER = "userGender"

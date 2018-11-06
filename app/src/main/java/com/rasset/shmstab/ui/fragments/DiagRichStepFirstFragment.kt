@@ -62,22 +62,28 @@ class DiagRichStepFirstFragment : SurveyBaseFragment() {
 
 
     override fun isValidDiagInputs(): Boolean {
-        return true
+        val ages = RG_DIAG_AGES.checkedItem?.tag.toString()
+        val totalAsset = RG_TOTAL_ASSET.checkedItem?.tag.toString()
+        val rateAsset = RG_RATE_ASSET.checkedItem?.tag.toString()
+
+        return (ages.isStrNullOrEmpty()
+                || totalAsset.isStrNullOrEmpty()
+                || rateAsset.isStrNullOrEmpty())
     }
 
     override fun getDiagDatas(): DiagRichStepFirst? {
 
-        val estateType = RG_DIAG_RESTATE_TYPE.checkedItem?.tag.toString()
-        val buyLocation = RG_BUY_LOCATION.checkedItem?.tag.toString()
-        val buyTiming = RG_BUY_TIMING.checkedItem?.tag.toString()
+        val ages = RG_DIAG_AGES.checkedItem?.tag.toString()
+        val totalAsset = RG_TOTAL_ASSET.checkedItem?.tag.toString()
+        val rateAsset = RG_RATE_ASSET.checkedItem?.tag.toString()
 
-        if (estateType.isStrNullOrEmpty()
-                || buyLocation.isStrNullOrEmpty()
-                || buyTiming.isStrNullOrEmpty()) {
+        if (ages.isStrNullOrEmpty()
+                || totalAsset.isStrNullOrEmpty()
+                || rateAsset.isStrNullOrEmpty()) {
             return null
         }
 
-        return DiagRichStepFirst(estateType=estateType,buyLocation=buyLocation,
-                buyTiming=buyTiming)
+        return DiagRichStepFirst(ages=ages,totalAsset=totalAsset,
+                rateAsset=rateAsset)
     }
 }

@@ -45,7 +45,7 @@
                     android:gravity="center_vertical"/>
 
                 <com.rasset.shmstab.ui.components.RecursiveRadioGroup
-                    android:id="@+id/RG_DIAG_RESTATE_TYPE"
+                    android:id="@+id/RG_DIAG_AGES"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TV_DIAG_TYPE_LABEL_AGE"
@@ -173,7 +173,7 @@
 
 
                 <com.rasset.shmstab.ui.components.RecursiveRadioGroup
-                    android:id="@+id/RG_BUY_LOCATION"
+                    android:id="@+id/RG_TOTAL_ASSET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TV_DIAG_TYPE_LABEL_ASSET"
@@ -299,7 +299,7 @@
                     android:gravity="center_vertical"/>
 
                 <com.rasset.shmstab.ui.components.RecursiveRadioGroup
-                    android:id="@+id/RG_BUY_TIMING"
+                    android:id="@+id/RG_RATE_ASSET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/TV_LABEL_ASSET_RATE"

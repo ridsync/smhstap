@@ -37,6 +37,8 @@ import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
+import com.rasset.shmstab.model.ResultInfo
+import com.rasset.shmstab.ui.DiagRichSurveyActivity
 import kotlinx.android.synthetic.main.fragment_diag_rich_result.*
 import java.util.*
 
@@ -60,6 +62,8 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
     }
 
     lateinit var barChart: BarChart
+
+    var resultInfo: ResultInfo? = null
 
     enum class ResultSurvType(var type:Int, var title:Int,var desc:Int, var ability:Int,var strategy:Int, var advice:Int){
         RESULT_TYPE_SUCCESS(1,R.string.rich_result_title1,R.string.rich_result_desc1,R.string.rich_result_ability1,R.string.rich_result_stratgey1,R.string.rich_result_advice1),
@@ -94,30 +98,35 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
 
     fun initFirst(){
 
+       if (activity is DiagRichSurveyActivity){
+           val act = activity as DiagRichSurveyActivity
+           this.resultInfo = act.resultInfo
+       }
         setBarChart()
         setViewsResultType()
     }
 
     private fun setViewsResultType() {
-        var resultType = Random().nextInt(4)
-        var enResult = when (resultType) {
-            ResultSurvType.RESULT_TYPE_SUCCESS.type -> ResultSurvType.RESULT_TYPE_SUCCESS
-            ResultSurvType.RESULT_TYPE_POSSIBLE.type -> ResultSurvType.RESULT_TYPE_POSSIBLE
-            ResultSurvType.RESULT_TYPE_EFFORT.type -> ResultSurvType.RESULT_TYPE_EFFORT
-            ResultSurvType.RESULT_TYPE_SERIOUS.type -> ResultSurvType.RESULT_TYPE_SERIOUS
-            else -> ResultSurvType.RESULT_TYPE_SUCCESS
+        resultInfo?.let {
+            var enResult = when (it.resultRichType) {
+                ResultSurvType.RESULT_TYPE_SUCCESS.type -> ResultSurvType.RESULT_TYPE_SUCCESS
+                ResultSurvType.RESULT_TYPE_POSSIBLE.type -> ResultSurvType.RESULT_TYPE_POSSIBLE
+                ResultSurvType.RESULT_TYPE_EFFORT.type -> ResultSurvType.RESULT_TYPE_EFFORT
+                ResultSurvType.RESULT_TYPE_SERIOUS.type -> ResultSurvType.RESULT_TYPE_SERIOUS
+                else -> ResultSurvType.RESULT_TYPE_SUCCESS
+            }
+
+            var strTitle = getString(enResult.title)
+            var spanTitle = SpannableString(strTitle)
+            spanTitle.setSpan(ForegroundColorSpan(resources.getColor(R.color.main_accent_color)), 4, strTitle.indexOf("형")+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spanTitle.setSpan(StyleSpan(Typeface.BOLD), 4, strTitle.indexOf("형")+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // make first 4 characters Bold
+
+            TV_RESULT_TYPE_TITLE.text = spanTitle
+            TV_RESULT_DESC.setText(enResult.desc)
+            TV_RESULT_ABILITY.setText(enResult.ability)
+            TV_RESULT_STRATEGY.setText(enResult.strategy)
+            TV_RESULT_ADVICE.setText(enResult.advice)
         }
-
-        var strTitle = getString(enResult.title)
-        var spanTitle = SpannableString(strTitle)
-        spanTitle.setSpan(ForegroundColorSpan(resources.getColor(R.color.main_accent_color)), 4, strTitle.indexOf("형")+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spanTitle.setSpan(StyleSpan(Typeface.BOLD), 4, strTitle.indexOf("형")+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE); // make first 4 characters Bold
-
-        TV_RESULT_TYPE_TITLE.text = spanTitle
-        TV_RESULT_DESC.setText(enResult.desc)
-        TV_RESULT_ABILITY.setText(enResult.ability)
-        TV_RESULT_STRATEGY.setText(enResult.strategy)
-        TV_RESULT_ADVICE.setText(enResult.advice)
 
     }
 
@@ -195,28 +204,21 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
 //        mv.chartView = barChart // For bounds control
 //        barChart.marker = mv // Set the marker to the chart
 
-        setData(5, 100f)
+        setData()
 
 
     }
 
-    private fun setData(count: Int, range: Float) {
-
-        val start = 0f
+    private fun setData() {
 
         val yVals1 = ArrayList<BarEntry>()
 
-        var i = start.toInt()
-        while (i < start + count.toFloat()) {
-            val mult = range
-            val `val` = (Math.random() * mult).toFloat()
-
-            if (Math.random() * 100 < 25) {
-                yVals1.add(BarEntry(i.toFloat(), `val`, resources.getDrawable(R.drawable.star,null)))
-            } else {
-                yVals1.add(BarEntry(i.toFloat(), `val`.toInt().toFloat()))
-            }
-            i++
+        resultInfo?.let {
+            yVals1.add(BarEntry(0f, it.firstPoint.toFloat()))
+            yVals1.add(BarEntry(1f, it.secondPoint.toFloat()))
+            yVals1.add(BarEntry(2f, it.thirdPoint.toFloat()))
+            yVals1.add(BarEntry(3f, it.fourthPoint.toFloat()))
+            yVals1.add(BarEntry(4f, it.fifthPoint.toFloat()))
         }
 
         val set1: BarDataSet

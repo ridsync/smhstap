@@ -2,6 +2,7 @@ package com.rasset.shmstab.network.res
 
 import com.rasset.shmstab.model.ContentsInfo
 import com.rasset.shmstab.model.DiagnoseInfo
+import com.rasset.shmstab.model.ResultInfo
 import com.rasset.shmstab.model.UserInfo
 import java.util.ArrayList
 
@@ -20,3 +21,5 @@ data class ResDiagnoseInfo(var list: ArrayList<DiagnoseInfo>) : BaseModel()
 data class ResContentList(var list: ArrayList<ContentsInfo>) : BaseModel()
 
 data class ResUserLogin(var userInfo:UserInfo?) : BaseModel()
+
+data class ResRichResult(var resultInfo: ResultInfo?) : BaseModel()
