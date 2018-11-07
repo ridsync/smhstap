@@ -23,7 +23,7 @@ data class ContentsInfo(var title: String = "",
 open class DiagnoseBaseInfo(@SerializedName("dianoseId")
                             var diagnoseId: Long=0,
                             @SerializedName("richSurveyId")
-                            var richSurveyId: Long=0,
+                            var richSurveyId: Long=11111,
                             @SerializedName("dianoseDetailId")
                             var diagnoseDetailId: Long=0,
                             var applyPart:Long = 0, // (11:부동산재테크 (매도/매수), 21: 토지/개발(MD), 31: 부동산 세금, 41:홈스테이징/인테리어, 51: 건축/리모델링(CM), 61: 주
@@ -128,7 +128,7 @@ data class DiagnoseManagementInfo(var itemType:String?=null,
                           var consultEtc02:String?=null) : DiagnoseBaseInfo()
 
 // 부자지수
-data class ResultInfo(var resultRichType:Int=0,
+data class ResultInfo(var resultRichType:String="A",
                       var firstScore:Int=0,
                       var secondScore:Int=0,
                       var thirdScore:Int=0,
@@ -160,3 +160,25 @@ data class DiagRichStepFourth(var lonRate: String?=null,
 
 data class DiagRichStepFifth(var tryEstateType: String?=null,
                               var lottoEstateType:String?=null) : DiagnoseBaseInfo()
+
+data class DiagRichDTO(var item11:Int=0,
+                       var item12:Int=0,
+                       var item13:Int=0,
+                       var item21: Int=0,
+                       var item22:Int=0,
+                       var item23:Int=0,
+                       var item24:Int=0,
+                       var item25:Int=0,
+                       var item26:Int=0,
+                       var item27:Int=0,
+                       var item31: Int=0,
+                       var item32:Int=0,
+                       var item33:Int=0,
+                       var item34:Int=0,
+                       var item35:Int=0,
+                       var item36:Int=0,
+                       var item37:Int=0,
+                       var item41: Int=0,
+                       var item42:Int=0,
+                       var item51: Int=0,
+                       var item52:Int=0) : DiagnoseBaseInfo()

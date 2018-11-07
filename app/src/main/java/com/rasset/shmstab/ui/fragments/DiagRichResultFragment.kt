@@ -65,11 +65,11 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
 
     var resultInfo: ResultInfo? = null
 
-    enum class ResultSurvType(var type:Int, var title:Int,var desc:Int, var ability:Int,var strategy:Int, var advice:Int){
-        RESULT_TYPE_SUCCESS(1,R.string.rich_result_title1,R.string.rich_result_desc1,R.string.rich_result_ability1,R.string.rich_result_stratgey1,R.string.rich_result_advice1),
-        RESULT_TYPE_POSSIBLE(2,R.string.rich_result_title2,R.string.rich_result_desc2,R.string.rich_result_ability2,R.string.rich_result_stratgey2,R.string.rich_result_advice2),
-        RESULT_TYPE_EFFORT(3,R.string.rich_result_title3,R.string.rich_result_desc3,R.string.rich_result_ability3,R.string.rich_result_stratgey3,R.string.rich_result_advice3),
-        RESULT_TYPE_SERIOUS(4,R.string.rich_result_title4,R.string.rich_result_desc4,R.string.rich_result_ability4,R.string.rich_result_stratgey4,R.string.rich_result_advice4)
+    enum class ResultSurvType(var type:String, var title:Int,var desc:Int, var ability:Int,var strategy:Int, var advice:Int){
+        RESULT_TYPE_SUCCESS("A",R.string.rich_result_title1,R.string.rich_result_desc1,R.string.rich_result_ability1,R.string.rich_result_stratgey1,R.string.rich_result_advice1),
+        RESULT_TYPE_POSSIBLE("B",R.string.rich_result_title2,R.string.rich_result_desc2,R.string.rich_result_ability2,R.string.rich_result_stratgey2,R.string.rich_result_advice2),
+        RESULT_TYPE_EFFORT("C",R.string.rich_result_title3,R.string.rich_result_desc3,R.string.rich_result_ability3,R.string.rich_result_stratgey3,R.string.rich_result_advice3),
+        RESULT_TYPE_SERIOUS("D",R.string.rich_result_title4,R.string.rich_result_desc4,R.string.rich_result_ability4,R.string.rich_result_stratgey4,R.string.rich_result_advice4)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

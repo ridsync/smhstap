@@ -8,9 +8,7 @@ import com.bumptech.glide.Glide
 import com.rasset.shmstab.R
 import com.rasset.shmstab.core.AppConst
 import com.rasset.shmstab.core.TabApp
-import com.rasset.shmstab.model.DiagnoseBaseInfo
-import com.rasset.shmstab.model.DiagnoseInfo
-import com.rasset.shmstab.model.ResultInfo
+import com.rasset.shmstab.model.*
 import com.rasset.shmstab.network.NetManager
 import com.rasset.shmstab.network.protocol.ParamKey
 import com.rasset.shmstab.network.protocol.ReqType
@@ -43,11 +41,11 @@ class DiagRichSurveyActivity : BaseActivity() {
     }
     enum class SubFrags(val idx: Int,val paramTitle: String,val title: String, var fragment:BaseFragment?) {
         DIAG_CUSTOER_INFO(0,"",AppConst.FRAG_NAME_DIAG_CUSTOMER_INFO, null)
-        , DIAG_RICH_STEP1(1,"firstSurvey",AppConst.FRAG_NAME_DIAG_RICH_STEP1, null)
-        , DIAG_RICH_STEP2(2,"secondSurvey",AppConst.FRAG_NAME_DIAG_RICH_STEP2, null)
-        , DIAG_RICH_STEP3(3,"thirdSurvey",AppConst.FRAG_NAME_DIAG_RICH_STEP3, null)
-        , DIAG_RICH_STEP4(4,"fourthSurvey",AppConst.FRAG_NAME_DIAG_RICH_STEP4, null)
-        , DIAG_RICH_STEP5(5,"fifthSurvey",AppConst.FRAG_NAME_DIAG_RICH_STEP5, null)
+        , DIAG_RICH_STEP1(1,"item10",AppConst.FRAG_NAME_DIAG_RICH_STEP1, null)
+        , DIAG_RICH_STEP2(2,"item20",AppConst.FRAG_NAME_DIAG_RICH_STEP2, null)
+        , DIAG_RICH_STEP3(3,"item30",AppConst.FRAG_NAME_DIAG_RICH_STEP3, null)
+        , DIAG_RICH_STEP4(4,"item40",AppConst.FRAG_NAME_DIAG_RICH_STEP4, null)
+        , DIAG_RICH_STEP5(5,"item50",AppConst.FRAG_NAME_DIAG_RICH_STEP5, null)
         , DIAG_RICH_COMPLETE(6,"",AppConst.FRAG_NAME_DIAG_RICH_RESULT, null)
     }
 
@@ -200,6 +198,11 @@ class DiagRichSurveyActivity : BaseActivity() {
 
         }
 
+        IB_APPBAR_SMS.setOnClickListener {
+            if (JUtil.isDoubleClick(it)) return@setOnClickListener
+            reqNetSendSmsRichSurvey()
+        }
+
     }
 
 
@@ -217,20 +220,54 @@ class DiagRichSurveyActivity : BaseActivity() {
             }
             return false
         }
-        if (nextFrag == SubFrags.DIAG_RICH_COMPLETE){
-            reqNetUplodRichSurveys(diagInfos)
+        if (nextFrag == SubFrags.DIAG_RICH_COMPLETE){ // 망할 DTO작업
+            var item10 = diagInfos[SubFrags.DIAG_RICH_STEP1.paramTitle] as DiagRichStepFirst
+            var item20 = diagInfos[SubFrags.DIAG_RICH_STEP2.paramTitle] as DiagRichStepSecond
+            var item30 = diagInfos[SubFrags.DIAG_RICH_STEP3.paramTitle] as DiagRichStepThird
+            var item40 = diagInfos[SubFrags.DIAG_RICH_STEP4.paramTitle] as DiagRichStepFourth
+            var item50 = diagInfos[SubFrags.DIAG_RICH_STEP5.paramTitle] as DiagRichStepFifth
+
+            reqNetUplodRichSurveys(DiagRichDTO(item11= item10.ages!!.toInt(),
+                    item12=item10.totalAsset!!.toInt(),
+                    item13=item10.rateAsset!!.toInt(),
+                    item21=item20.consider!!.toInt(),
+                    item22=item20.assetMethod!!.toInt(),
+                    item23=item20.assetRate!!.toInt(),
+                    item24=item20.assetScale!!.toInt(),
+                    item25=item20.fintechEdu!!.toInt(),
+                    item26=item20.buyRasset!!.toInt(),
+                    item27=item20.buyHomeType!!.toInt(),
+                    item31=item30.whenBuyRasset!!.toInt(),
+                    item32=item30.whenHomeType!!.toInt(),
+                    item33=item30.considerType!!.toInt(),
+                    item34=item30.expEdu!!.toInt(),
+                    item35=item30.taxEdu!!.toInt(),
+                    item36=item30.taxField!!.toInt(),
+                    item37=item30.taxFintechEdu!!.toInt(),
+                    item41=item40.lonRate!!.toInt(),
+                    item42=item40.cocernType!!.toInt(),
+                    item51=item50.tryEstateType!!.toInt(),
+                    item52=item50.lottoEstateType!!.toInt()))
             return false
         }
         Logger.d("postCustomerDiagInfos  ")
         return true
     }
 
-    private fun reqNetUplodRichSurveys(infos: HashMap<String,DiagnoseBaseInfo>) {
+    private fun reqNetUplodRichSurveys(infos: DiagRichDTO) {
         val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_RICHSURVEY_UPLOAD, this)
         task.addParam(ParamKey.PARAM_USERID, TabApp.userInfo?.userId)
         task.addParam(ParamKey.PARAM_RICHSURVEYID, diagnoseInfo.richSurveyId)
-        task.addParam(ParamKey.PARAM_SURVEY_INFO, infos)
-        NetManager.startTaskOnDemooo(task,ResRichResult(ResultInfo(1,50,70,80,90,100)))
+//        task.addParam(ParamKey.PARAM_SURVEY_INFO, infos)
+        NetManager.startTaskOnDemooo(task,ResRichResult(ResultInfo("A",50,70,80,90,100)))
+//        NetManager.startTask(task)
+    }
+
+    private fun reqNetSendSmsRichSurvey() {
+        val task = MainListTask(applicationContext, ReqType.REQUEST_TYPE_POST_SEND_SMS_RICHSURVEY, this)
+        task.addParam(ParamKey.PARAM_USERID, TabApp.userInfo?.userId)
+        task.addParam(ParamKey.PARAM_RICHSURVEYID, diagnoseInfo.richSurveyId)
+        NetManager.startTask(task)
     }
 
     private fun setStatAppBarTitlenEtc(){

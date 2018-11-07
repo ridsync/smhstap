@@ -169,8 +169,7 @@ class DiagAttentionActivity : BaseActivity() {
                     selectedAdviser = fragFirst.selectedAdvisor
 
                     when (selectedAdviser) {
-                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST,
-                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
+                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST -> {
                             val dialog = SelectSubDiagTypeDialog.newInstance(mContext).apply {
                                 setOnPositveListener { dialog ->
                                     when (dialog.recGroup.checkedItem.tag.toString()) {
@@ -183,6 +182,17 @@ class DiagAttentionActivity : BaseActivity() {
                                         DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_ALL.diagType -> {
                                             selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_INVEST_ALL
                                         }
+                                    }
+                                    replaceFragment(nextFrag, true)
+                                    setStatAppBarTitlenEtc()
+                                }
+                            }
+                            dialog.show(supportFragmentManager, AppConst.DIALOG_CUSTOMER_INFO_PRIVACY)
+                        }
+                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
+                            val dialog = SelectSubDiagTypeDialog.newInstance(mContext).apply {
+                                setOnPositveListener { dialog ->
+                                    when (dialog.recGroup.checkedItem.tag.toString()) {
                                         DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET.diagType -> {
                                             selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET
                                         }
@@ -197,15 +207,11 @@ class DiagAttentionActivity : BaseActivity() {
                                     setStatAppBarTitlenEtc()
                                 }
                             }
-                            when(selectedAdviser){
-                                DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
-                                    dialog.isTypeTax = true
-                                }
-                            }
+                            dialog.isTypeTax = true
                             dialog.show(supportFragmentManager, AppConst.DIALOG_CUSTOMER_INFO_PRIVACY)
                         } else -> {
-                            replaceFragment(nextFrag, true)
-                            setStatAppBarTitlenEtc()
+                        replaceFragment(nextFrag, true)
+                        setStatAppBarTitlenEtc()
                         }
                     }
                 } else {
