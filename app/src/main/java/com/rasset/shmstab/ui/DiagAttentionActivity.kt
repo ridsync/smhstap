@@ -169,9 +169,8 @@ class DiagAttentionActivity : BaseActivity() {
                     selectedAdviser = fragFirst.selectedAdvisor
 
                     when (selectedAdviser) {
-                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST -> {
-//                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST,
-//                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> { TODO 농지세금은 추후에
+                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_INVEST,
+                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
                             val dialog = SelectSubDiagTypeDialog.newInstance(mContext).apply {
                                 setOnPositveListener { dialog ->
                                     when (dialog.recGroup.checkedItem.tag.toString()) {
@@ -204,12 +203,6 @@ class DiagAttentionActivity : BaseActivity() {
                                 }
                             }
                             dialog.show(supportFragmentManager, AppConst.DIALOG_CUSTOMER_INFO_PRIVACY)
-                        }
-                        // TODO 임시 세금은 수익형부동산만 보이도록
-                        DiagSubStepFirstFragment.ADVISOR.ADVISOR_NAME_TAX -> {
-                            selectedSubCategory = DiagSubStepFirstFragment.SURV_DIAGTYPE.SURV_TYPE_TAX_ASSET
-                            replaceFragment(nextFrag, true)
-                            setStatAppBarTitlenEtc()
                         } else -> {
                             replaceFragment(nextFrag, true)
                             setStatAppBarTitlenEtc()

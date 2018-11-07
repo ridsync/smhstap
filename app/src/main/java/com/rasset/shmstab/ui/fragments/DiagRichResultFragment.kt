@@ -133,7 +133,7 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
     private fun setBarChart() {
         barChart = MP_BARCHART
 
-        barChart.animateXY(1200,1700,Easing.EasingOption.EaseInCubic,Easing.EasingOption.Linear)
+        barChart.animateXY(1200,1700,Easing.EasingOption.Linear,Easing.EasingOption.EaseInOutQuad)
         barChart.setOnChartValueSelectedListener(this)
         barChart.setDrawBarShadow(false)
         barChart.setDrawValueAboveBar(true)
@@ -214,11 +214,11 @@ class DiagRichResultFragment : BaseFragment() , OnChartValueSelectedListener {
         val yVals1 = ArrayList<BarEntry>()
 
         resultInfo?.let {
-            yVals1.add(BarEntry(0f, it.firstPoint.toFloat()))
-            yVals1.add(BarEntry(1f, it.secondPoint.toFloat()))
-            yVals1.add(BarEntry(2f, it.thirdPoint.toFloat()))
-            yVals1.add(BarEntry(3f, it.fourthPoint.toFloat()))
-            yVals1.add(BarEntry(4f, it.fifthPoint.toFloat()))
+            yVals1.add(BarEntry(0f, it.firstScore.toFloat()))
+            yVals1.add(BarEntry(1f, it.secondScore.toFloat()))
+            yVals1.add(BarEntry(2f, it.thirdScore.toFloat()))
+            yVals1.add(BarEntry(3f, it.fourthScore.toFloat()))
+            yVals1.add(BarEntry(4f, it.fifthScore.toFloat()))
         }
 
         val set1: BarDataSet

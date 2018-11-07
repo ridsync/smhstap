@@ -129,11 +129,11 @@ data class DiagnoseManagementInfo(var itemType:String?=null,
 
 // 부자지수
 data class ResultInfo(var resultRichType:Int=0,
-                      var firstPoint:Int=0,
-                      var secondPoint:Int=0,
-                      var thirdPoint:Int=0,
-                      var fourthPoint:Int=0,
-                      var fifthPoint:Int=0) : BaseInfo()
+                      var firstScore:Int=0,
+                      var secondScore:Int=0,
+                      var thirdScore:Int=0,
+                      var fourthScore:Int=0,
+                      var fifthScore:Int=0) : BaseInfo()
 
 data class DiagRichStepFirst(var ages: String?=null,
                           var totalAsset:String?=null,
