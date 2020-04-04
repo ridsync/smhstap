@@ -26,16 +26,16 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        Handler().postDelayed({
-
-            val userId = Prefer.getPreferenceLong(AppConst.PREFERENCE_USERINFO_ID,mContext)
-            if ( userId > 0) {
-                startActivity(MainActivity.newIntent(mContext))
-            } else {
-                startActivity(LoginActivity.newIntent(mContext))
-            }
-            finish()
-        },1700)
+//        Handler().postDelayed({
+//
+//            val userId = Prefer.getPreferenceLong(AppConst.PREFERENCE_USERINFO_ID,mContext)
+//            if ( userId > 0) {
+//                startActivity(MainActivity.newIntent(mContext))
+//            } else {
+//                startActivity(LoginActivity.newIntent(mContext))
+//            }
+//            finish()
+//        },1700)
 
     }
 

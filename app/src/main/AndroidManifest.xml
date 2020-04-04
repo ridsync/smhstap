@@ -19,7 +19,7 @@
         <activity
             android:name=".ui.SplashActivity"
             android:label="${appName}"
-            android:screenOrientation="sensorLandscape">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
