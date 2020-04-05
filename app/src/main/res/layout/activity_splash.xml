@@ -63,15 +63,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="roboto regular in app"
-                android:fontFamily="@font/roboto_main"
+                android:text="roboto regular (inapp)"
+                android:fontFamily="@font/style_main_regular"
                 android:textSize="16sp"
                 android:textColor="@color/main_text_primary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="notosanscjkkr_regular in app"
+                android:text="notosanscjkkr_regular (inapp)"
                 android:fontFamily="@font/notosanscjkkr_regular"
                 android:textSize="16sp"
                 android:textColor="@color/main_text_primary" />
@@ -120,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ABCDEFGHIGKLMNOPQRSTUIVWXYZ"
-                android:fontFamily="@font/roboto_main"
+                android:fontFamily="@font/style_main_regular"
                 android:textSize="20sp"
                 android:textColor="@color/main_text_primary" />
 
@@ -129,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:text="ABCDEFGHIGKLMNOPQRSTUIVWXYZ"
                 android:fontFamily="@font/notosanscjkkr_regular"
+                android:includeFontPadding="false"
                 android:textSize="20sp"
                 android:textColor="@color/main_text_primary" />
             <Space
@@ -139,7 +140,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="20dp" />
 
         <!-- 숫자 -->
 
@@ -179,7 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1234567890"
-                android:fontFamily="@font/roboto_main"
+                android:fontFamily="@font/style_main_regular"
                 android:textSize="20sp"
                 android:textColor="@color/main_text_primary" />
 
@@ -188,6 +189,7 @@
                 android:layout_height="wrap_content"
                 android:text="1234567890"
                 android:fontFamily="@font/notosanscjk_support"
+                android:includeFontPadding="false"
                 android:textSize="20sp"
                 android:textColor="@color/main_text_primary" />
             <Space
@@ -199,7 +201,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="20dp" />
         <!-- 한글 -->
 
         <LinearLayout
@@ -238,7 +240,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="가나다라마바사아자차카타파하"
-            android:fontFamily="@font/roboto_main"
+            android:fontFamily="@font/style_main_regular"
             android:textSize="20sp"
             android:textColor="@color/main_text_primary" />
 
@@ -250,12 +252,105 @@
             android:includeFontPadding="false"
             android:textSize="20sp"
             android:textColor="@color/main_text_primary" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
 
         </LinearLayout>
 
+
+        <!-- roboto weights -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#111111"
+                android:alpha="0.2"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="roboto weights (inapp)"
+                android:fontFamily="@font/notosanscjk_support"
+                android:includeFontPadding="false"
+                android:textSize="15sp"
+                android:textColor="@color/main_text_primary" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가나다라마바사아자차카타파하(thin)"
+                android:fontFamily="@font/style_thin"
+                android:includeFontPadding="false"
+                android:textSize="23sp"
+                android:textColor="@color/main_text_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가나다라마바사아자차카타파하(light)"
+                android:fontFamily="@font/style_light"
+                android:includeFontPadding="false"
+                android:textSize="23sp"
+                android:textColor="@color/main_text_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가나다라마바사아자차카타파하(regular)"
+                android:fontFamily="@font/style_main_regular"
+                android:includeFontPadding="false"
+                android:textSize="23sp"
+                android:textColor="@color/main_text_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가나다라마바사아자차카타파하(medium)"
+                android:fontFamily="@font/style_medium"
+                android:includeFontPadding="false"
+                android:textSize="23sp"
+                android:textColor="@color/main_text_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가나다라마바사아자차카타파하(bold)"
+                android:fontFamily="@font/style_bold"
+                android:includeFontPadding="false"
+                android:textSize="23sp"
+                android:textColor="@color/main_text_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가나다라마바사아자차카타파하(black)"
+                android:fontFamily="@font/style_black"
+                android:includeFontPadding="false"
+                android:textSize="23sp"
+                android:textColor="@color/main_text_primary" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
