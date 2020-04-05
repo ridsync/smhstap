@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="roboto regular (inapp)"
-                android:fontFamily="@font/style_main_regular"
+                android:fontFamily="@font/style_regular"
                 android:textSize="16sp"
                 android:textColor="@color/main_text_primary" />
 
@@ -120,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ABCDEFGHIGKLMNOPQRSTUIVWXYZ"
-                android:fontFamily="@font/style_main_regular"
+                android:fontFamily="@font/style_regular"
                 android:textSize="20sp"
                 android:textColor="@color/main_text_primary" />
 
@@ -180,7 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1234567890"
-                android:fontFamily="@font/style_main_regular"
+                android:fontFamily="@font/style_regular"
                 android:textSize="20sp"
                 android:textColor="@color/main_text_primary" />
 
@@ -240,7 +240,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="가나다라마바사아자차카타파하"
-            android:fontFamily="@font/style_main_regular"
+            android:fontFamily="@font/style_regular"
             android:textSize="20sp"
             android:textColor="@color/main_text_primary" />
 
@@ -314,7 +314,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="가나다라마바사아자차카타파하(regular)"
-                android:fontFamily="@font/style_main_regular"
+                android:fontFamily="@font/style_regular"
                 android:includeFontPadding="false"
                 android:textSize="23sp"
                 android:textColor="@color/main_text_primary" />
